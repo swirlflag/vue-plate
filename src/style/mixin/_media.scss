@@ -1,0 +1,47 @@
+/*
+    media query mixin을 작성합니다
+    작성하려는 scss스코프 최상위에
+    @import '@/style/_mixin.scss';
+    를 선언하면 사용 가능합니다.
+
+    ex) inclue 
+*/
+
+$STANDARD_mobile : 768px;
+$STANDARD_tablet : 1024px;
+$STANDARD_fhd : 1920px;
+
+// 스마트폰 사이즈 전용
+@mixin phone {
+    @media screen and (max-width : $STANDARD_mobile){
+        @content;    
+    }
+}
+
+// 타블렛 사이즈 전용
+@mixin tablet {
+    @media screen and (max-width : $STANDARD_tablet) and (min-width : $STANDARD_mobile){
+        @content;    
+    }
+}
+
+// 타블렛 이하 스마트폰을 포함하는 사이즈
+@mixin mobile {
+    @media screen and (max-width : $STANDARD_tablet){
+        @content;    
+    }
+}
+
+@mixin desktop {
+}
+
+
+
+
+// 하위 태그들까지 강력하게 셀렉팅
+@mixin hardSelect {
+    @content;
+    a ,button , input, textarea{
+        @content;
+    }
+}

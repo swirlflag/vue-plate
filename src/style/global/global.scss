@@ -1,0 +1,13 @@
+@import '@/style/_mixin.scss';
+
+body {
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Roboto','Noto Sans KR', sans-serif;
+    font-size: 16px;
+    letter-spacing: -0.04em;
+    background-color: #000;
+    
+    @include hardSelect {
+        color: #fff;
+    }
+}
