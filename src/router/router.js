@@ -10,14 +10,40 @@ import VueRouter from 'vue-router';
 // // import ViewUser from '../views/ViewUser.vue';
 // // import CreateListView from '../views/CreateListView.js';
 
+import {
+    PageMain, PageLayout , B ,C
+} from '@/pages';
+
+
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+const routerInfo =  {
     mode : 'history',
     routes : [
         {
             path : '/',
+            name : 'main',
+            component : PageMain,
         }
+        ,
+        {
+            path : '/layout',
+            name : 'layout',
+            component : PageLayout,
+        }
+        ,
+        {
+            path : '/B',
+            name : 'b',
+            component : B,
+        }
+        ,
+        {
+            path : '/C',
+            name : 'c',
+            component : C,
+        }
+        ,
         // {
         //     path : '/news',
         //     name : 'news',
@@ -34,8 +60,11 @@ const router = new VueRouter({
         //     }
         // },
     ],
-});
+}
+
+const router = new VueRouter(routerInfo);
 
 export {
     router,
+    routerInfo,
 }
