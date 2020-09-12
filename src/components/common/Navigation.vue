@@ -26,7 +26,7 @@
         </div>
 
         <!-- 예시 : 메뉴로 열고닫는 네비게이션-->
-        <div class="gnb_menu">
+        <div class="gnb_menu st-open">
             <div class="gnb_menu__dimd"></div>
             <div class="gnb_menu__wrap">
                 <ul class="gnb_menu__links">
@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+@import '@/style/_mixin.scss';
+
 #gnb{
     position: fixed;
     width: 100vw; height: 100vh;
@@ -57,13 +60,7 @@ export default {
         pointer-events: auto;
     }
 }
-</style>
 
-
-<style lang="scss" scoped>
-// 더미용
-
-@import '@/style/_mixin.scss';
 $c_blue1 : rgb(84, 99, 230);
 $c_blue2 : rgb(195, 184, 245);
 
@@ -78,6 +75,10 @@ $c_black : #000;
     top: 0; left: 0;
     padding: $SIZE_PC_distanceContent;
     box-sizing: border-box;
+
+    @include phone {
+        padding: $SIZE_MO_distanceContent;
+    }
 
     .gnb_fix__wrap{
         display: flex;
@@ -136,6 +137,10 @@ $c_black : #000;
                 &:last-child::after{
                     display: none;
                 }
+
+                @include phone {
+                    display: none;
+                }
                 
             }
         }
@@ -166,19 +171,28 @@ $c_black : #000;
 
 
 .gnb_menu {
-
-    display: block;
     display: block;
 
     @include hardSelect {
         color: $c_blue2;
     };
-    
+
+    pointer-events: none;
+    &.st-open {
+        pointer-events: auto;
+    }
+
     .gnb_menu__dimd {
         width: 100%; height: 100%;
         position: absolute;
         top: 0; left: 0;
-        background-color: rgba(0,0,0,0.5);
+        background-color: transparent;
+        transition: background-color 0.5s ease;
+        pointer-events: none;
+    }
+    &.st-open .gnb_menu__dimd {
+        pointer-events: all;
+        background-color: rgba(0,0,0,0.8);
     }
 
     .gnb_menu__wrap {
@@ -192,7 +206,15 @@ $c_black : #000;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
-        background-color: rgba(0,0,0,0.9);
+        transform: translateX(-101%);
+        transition: transform 0.6s ease;
+        background-color: rgb(20, 6, 46);
+        @include phone {
+            width: 100%; height: 50%;
+        }
+    }
+    &.st-open .gnb_menu__wrap {
+        transform: translateX(0);
     }
 
     .gnb_menu__links {
@@ -210,6 +232,7 @@ $c_black : #000;
             }
         }
     }
+
 }
 
 
