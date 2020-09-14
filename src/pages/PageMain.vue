@@ -4,7 +4,7 @@
 
         <div class="paragraph">
 
-            <div class="paragraph__title">
+            <div class="paragraph__title size--1">
                 HELLO, VUE PLATE.
             </div>
 
@@ -18,13 +18,13 @@
                 빠르게 초기 틀 제작과 설정을 건너뛰어 일관된 형태의 컨벤션을 유지할 수 있을 것입니다.
             </div>
             
-            <div class="paragraph__title size--2">
+            <div class="paragraph__title size--3">
                 환경
             </div>
             <div class="paragraph__text">
                 vue-cli v4.x버전의 vue-create를 사용해 프로젝트 생성후 아래의 항목을 설치했습니다.
             </div>
-            <div class="paragraph__title size--3">
+            <div class="paragraph__title size--4">
                 dependencies
             </div>
             <ul class="paragraph__list">
@@ -33,7 +33,7 @@
                 <li>vue-router</li>
                 <li>vuex</li>
             </ul>
-            <div class="paragraph__title size--3">
+            <div class="paragraph__title size--4">
                 dev-dependencies
             </div>
             <ul class="paragraph__list">
@@ -55,8 +55,5 @@ export default {
 <style lang="scss" scoped>
 @import '@/style/_mixin.scss';
 
-.page__inner {
-    margin: 100px auto;
-}
 
 </style>

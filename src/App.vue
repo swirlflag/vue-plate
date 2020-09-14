@@ -1,10 +1,10 @@
 <template>
     <div id="app" v-bind:class="`page--${pageName}`">
-
         <!-- 모달 -->
+        <ModalPlate></ModalPlate>  
 
         <!-- 네비게이션 -->
-        <Navigation></Navigation>
+        <NavigationPlate></NavigationPlate>
 
         <!-- 백그라운드 fix -->
 
@@ -24,30 +24,57 @@
 <script>
 
 import { 
-    Navigation ,
+    NavigationPlate ,
+    ModalPlate,
     Footer ,
 } from '@/components';
 
 export default {
     name: 'App',
+    data() {
+        return {
+            scrollPosition : 0,
+        }
+    },
     components: {
-        Navigation , Footer
+        NavigationPlate , ModalPlate , Footer
     },
     computed : {
         pageName () {
             return this.$route.name
         },
     },
+    watch : {
+        '$store.state.isPageScrollLock'(now){
+            const body = document.body;
+            if(now){
+                body.classList.add('st-lockscroll');
+            }else {
+                body.classList.remove('st-lockscroll');
+            }
+        },
+        '$store.state.isModalActive'(now) {
+            if(now){
+                if(this.$store.state.use_openModalWithLockScroll){
+                    this.$store.commit('lock_scroll');
+                }
+            }else {
+                this.$store.commit('unlock_scroll');
+            }
+        },
+        '$route.path'() {
+            window.scrollTo(0,0);
+        },
+
+    },
+    methods : {
+        justPreventDefault(e) {
+            e.preventDefault();
+        }
+    },
     created() {
-        console.log(this.$store.state.pageScrollLock);
-        this.$store.commit('lock_scroll');
-        console.log(this.$store.state.pageScrollLock);
-        // window.addEventListener('scroll' ,  (e) => {
-        //     console.log(e);
-        // })
-        // document.querySelector('html').addEventListener('scroll' , (e) => {
-        //     console.log(e);
-        // })
+        // console.log(this.$store.state.isPageScrollLock);
+        // console.log(this.$store.state.isPageScrollLock);
     },
 };
 </script>

@@ -1,20 +1,21 @@
 <template>
-    <!-- 
-        Navigation 에선, 가로, 세로 100% 인 #gnb 라는 레이어에서 
-        전역 성격으로 적절한 네비게이션들을 배치합니다
-        #gnb 자체는 기본적으로 윈도우의 크기를 가집니다.
-        #gnb 이하의 컴포넌트들은 자유롭게 배치할수 있습니다.
-    -->
+<!-- 
+    MEMO :
+    NavigationPlate 에선, 기본적으로 가로, 세로 100% 인 #gnb 라는 레이어에서 
+    전역 성격으로 적절한 네비게이션들을 배치합니다
+    #gnb 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
+    #gnb 이하의 컴포넌트들은 자유롭게 배치할수 있습니다.
+-->
 
     <nav id="gnb">
         
-        <!-- 예시 : 고정 영역인 네비게이션 -->
+        <!-- 예시 : 고정 영역 네비게이션 컴포넌트 -->
         <div class="gnb_fix">
             <div class="gnb_fix__wrap">
                 <router-link class="gnb_fix__logo" to="/">뷰 플레이트</router-link>
                 <ul class="gnb_fix__links">
-                    <li class="gnb_fix__link"><router-link to="/layout" exact>layout</router-link></li>
-                    <li class="gnb_fix__link"><router-link to="/B" exact>PAGE B</router-link></li>
+                    <li class="gnb_fix__link"><router-link to="/layout" exact>글로벌</router-link></li>
+                    <li class="gnb_fix__link"><router-link to="/B" exact>구조</router-link></li>
                     <li class="gnb_fix__link"><router-link to="/C" exact>PAGE C</router-link></li>
                 </ul>
                 <button class="gnb_fix__menubutton" v-on:click="toggleGlobalMenu">
@@ -25,7 +26,7 @@
             </div>
         </div>
 
-        <!-- 예시 : 메뉴로 열고닫는 네비게이션-->
+        <!-- 예시 : 메뉴로 열고닫는 네비게이션 컴포넌트-->
         <div class="gnb_menu" v-bind:class="{'st-open' : isOpenMenu}">
             <div class="gnb_menu__dimd" v-on:click="closeGlobalMenu"></div>
             <div class="gnb_menu__wrap">
@@ -43,7 +44,7 @@
 
 <script>
 export default {
-    name : 'Navigation',
+    name : 'NavigationPlate',
     data () {
         return {
             isOpenMenu : false,
@@ -84,15 +85,9 @@ export default {
     }
 }
 
-$c_blue1 : rgb(84, 99, 230);
-$c_blue2 : rgb(195, 184, 245);
-
-$c_white : #fff;
-$c_black : #000;
-
 .gnb_fix {
-    border-bottom: 4px dashed $c_blue1;
-    color: $c_white;
+    border-bottom: 4px dashed $COLOR_theme;
+    color: #fff;
     position: absolute;
     width: 100%;
     top: 0; left: 0;
@@ -119,7 +114,7 @@ $c_black : #000;
         font-weight: 700;
 
         @include hardSelect {
-            color: $c_blue1;
+            color: $COLOR_theme;
         }
         
         .gnb_fix__logo {
@@ -134,7 +129,7 @@ $c_black : #000;
             padding-right: 5px;
             border-radius: 23px 5px 0px 5px;
             line-height: 1em;
-            border: 4px solid $c_blue1;
+            border: 4px solid $COLOR_theme;
             border-left-style: dashed;
             border-top-style: dashed;
 
@@ -146,8 +141,8 @@ $c_black : #000;
             @include hover {
                 padding-left: 40px;
                 padding-right: 15px;
-                color: #fff;
-                border-color : #fff;
+                color:$COLOR_theme_highlight;
+                border-color :$COLOR_theme_highlight;
             }
         }
 
@@ -167,7 +162,7 @@ $c_black : #000;
                     content:'';
                     width: 3px; height: 10px;
                     right: -20px;
-                    background-color: $c_blue1;
+                    background-color: $COLOR_theme;
                     opacity: 0.6;
                     position: relative;
                     display: inline-block;
@@ -180,14 +175,14 @@ $c_black : #000;
                     display: none;
                 }
                 > a {
-                    color: $c_blue1;
+                    color: $COLOR_theme;
                     border-bottom: 4px dashed transparent;
                     &.router-link-active {
-                        border-color : $c_blue1;
+                        border-color : $COLOR_theme;
                     }
                     @include hover {
-                        color: #fff;
-                        border-color : #fff;
+                        color:$COLOR_theme_highlight;
+                        border-color :$COLOR_theme_highlight;
                     }
                 }
             }
@@ -195,7 +190,7 @@ $c_black : #000;
 
         .gnb_fix__menubutton {
             width: 48px; height: 48px;
-            border: 4px solid $c_blue1;
+            border: 4px solid $COLOR_theme;
             border-left-style: dashed;
             box-sizing: border-box;
             position: relative;
@@ -205,7 +200,7 @@ $c_black : #000;
                 position: absolute;
                 width : 25px; height : 4px;
                 display: inline-block;
-                background-color: $c_blue1;
+                background-color: $COLOR_theme;
                 top : 50%; left: 50%;
                 transform: translate(-50%,-50%);
                 &:nth-child(1) {top: 29%;}
@@ -213,9 +208,9 @@ $c_black : #000;
             }
 
             @include hover {
-                border-color: #fff;
+                border-color:$COLOR_theme_highlight;
                 span {
-                    background-color: #fff;
+                    background-color:$COLOR_theme_highlight;
                 }
             }
             
@@ -229,7 +224,7 @@ $c_black : #000;
     z-index: 10;
 
     @include hardSelect {
-        color: $c_blue2;
+        color: $COLOR_theme;
     };
 
     pointer-events: none;
@@ -246,7 +241,7 @@ $c_black : #000;
     }
     &.st-open .gnb_menu__dimd {
         pointer-events: all;
-        background-color: rgba(28, 56, 214, 0.35)
+        background-color: $COLOR_dimmed;
     }
 
     .gnb_menu__wrap {
@@ -254,21 +249,21 @@ $c_black : #000;
         top: 0; left: 0;
         width: 50%;
         height: 100%;
-        border-right: 4px dashed $c_blue2;
+        border-right: 4px dashed $COLOR_theme;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
         transform: translateX(-101%);
-        transition: transform 600ms ease, opacity 0s 601ms ease ;
+        transition: transform 300ms $EASE_inCubic, opacity 0ms 401ms ease ;
         opacity: 0;
-        background-color : rgba(0,0,0,0.5);
+        background-color : $COLOR_layer_background;
         backdrop-filter: blur(10px);
         @include phone {
             padding-top: 84px;
             border-right: none;
-            border-bottom: 4px dashed $c_blue2;
+            border-bottom: 4px dashed $COLOR_theme;
             transform: translateY(-101%);
             width: 100%; height: auto;
             padding: $SIZE_MO_distanceContent;
@@ -277,7 +272,7 @@ $c_black : #000;
     }
     &.st-open .gnb_menu__wrap {
         transform: translate(0);
-        transition: transform 600ms ease, opacity 0s ease;
+        transition: transform 650ms $EASE_outQuint, opacity 0ms ease;
         opacity: 1;
     }
 
@@ -302,7 +297,7 @@ $c_black : #000;
                 display: inline-block;
                 border-bottom: 4px dashed transparent;
                 &.router-link-active {
-                    border-color: $c_blue2;
+                    border-color: $COLOR_theme;
                 }
                 @include hover {
                     color: #fff;

@@ -6,13 +6,22 @@
     를 선언하면 값들을 사용 가능합니다.
 */
 
+$COLOR_theme : rgb(23, 235, 189);
+$COLOR_theme_background :#1B1D21;
+$COLOR_theme_highlight : #fff;
+$COLOR_layer_background : rgba(0,0,0,0.5);
+$COLOR_dimmed : rgba(12, 109, 91, 0.45);
 
 $SIZE_PC_distanceContent : 50px;
 $SIZE_MO_distanceContent : 15px;
 
 $SIZE_PC_maxWidth : 1000px;
 
-
 $EASE_inCubic       : cubic-bezier(0.32, 0, 0.67, 0);
+$EASE_inQuint       : cubic-bezier(0.64, 0, 0.78, 0);
+
 $EASE_outCubic      : cubic-bezier(0.33, 1, 0.68, 1);
+$EASE_outExpo       : cubic-bezier(0.16, 1, 0.3, 1);
+$EASE_outQuint      : cubic-bezier(0.22, 1, 0.36, 1);
+
 $EASE_inOutCubic    : cubic-bezier(0.65, 0, 0.35, 1);
