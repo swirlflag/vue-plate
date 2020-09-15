@@ -1,14 +1,14 @@
 <template>
-    <div class="popup--alert" v-bind:class="{'st-show' : this.$store.state.isPopupAlertActive }">
+    <div class="popup--alert" v-bind:class="{'st-show' : this.$store.state.is_ModalAlertActive }">
         <div class="popup__title">
-            {{ popupAlertTitle }}
+            {{ modalAlertTitle }}
         </div>
         <div class="popup__message">
-            {{ popupAlertMessage }}
+            {{ modalAlertMessage }}
         </div>
         <div class="popup__button">
-            <ButtonType1 v-on:click="closePopupAlert">
-                {{ popupAlertButton }}
+            <ButtonType1 v-on:click="closeModalAlert">
+                {{ modalAlertButton }}
             </ButtonType1>
         </div>
     </div>
@@ -20,23 +20,25 @@ import { mapState } from 'vuex';
 import ButtonType1 from '@/components/input/ButtonType1.vue'
 
 export default {
-    name: 'PopupAlert',
+    name: 'ModalAlert',
     components : {
         ButtonType1,
     },
 
     methods : {
-        closePopupAlert() {
-            this.$store.commit('hide_popupAlert');
-            this.$store.commit('disable_modal');
-            this.$store.commit('trigger_popupAlertClose');
+        closeModalAlert() {
+
+            this.$store.dispatch('closeModalAlert');
+            // this.$store.commit('hide_modalAlert');
+            // this.$store.commit('disable_modal');
+            // this.$store.commit('trigger_modalAlertClose');
         }
     },
     computed : {
         ...mapState([
-            'popupAlertTitle',
-            'popupAlertMessage',
-            'popupAlertButton',
+            'modalAlertTitle',
+            'modalAlertMessage',
+            'modalAlertButton',
         ]),
     },
     created() {
@@ -60,21 +62,24 @@ export default {
     z-index: 1020;
     background-color: $COLOR_layer_background;
     border: 4px dashed $COLOR_theme;
-    transition: transform 300ms ease , 
-                opacity 300ms ease
-                ;
-    pointer-events: none;
     padding: 30px;
     display : flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    pointer-events: none;
+    transition: transform 260ms $EASE_inCubic , 
+                opacity 250ms ease
+                ;
 
     &.st-show  {
         opacity: 1;
-        transform :translate(-50% ,calc(-50% - 20px));
+        transform :translate(-50% ,calc(-50% - 30px));
         pointer-events: all;
+        transition: transform 400ms $EASE_outQuint , 
+                    opacity 300ms ease
+                    ;
     }
     
     > * {

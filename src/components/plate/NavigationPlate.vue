@@ -14,8 +14,8 @@
             <div class="gnb_fix__wrap">
                 <router-link class="gnb_fix__logo" to="/">뷰 플레이트</router-link>
                 <ul class="gnb_fix__links">
+                    <li class="gnb_fix__link"><router-link to="/ia" exact>구조</router-link></li>
                     <li class="gnb_fix__link"><router-link to="/layout" exact>글로벌</router-link></li>
-                    <li class="gnb_fix__link"><router-link to="/B" exact>구조</router-link></li>
                     <li class="gnb_fix__link"><router-link to="/C" exact>PAGE C</router-link></li>
                 </ul>
                 <button class="gnb_fix__menubutton" v-on:click="toggleGlobalMenu">
@@ -32,8 +32,8 @@
             <div class="gnb_menu__wrap">
                 <ul class="gnb_menu__links">
                     <li class="gnb_menu__link"><router-link to="/" exact>Home</router-link></li>
-                    <li class="gnb_menu__link"><router-link to="/layout" exact>Layout</router-link></li>
-                    <li class="gnb_menu__link"><router-link to="/B" exact>PAGE B</router-link></li>
+                    <li class="gnb_menu__link"><router-link to="/ia" exact>구조</router-link></li>
+                    <li class="gnb_menu__link"><router-link to="/layout" exact>글로벌</router-link></li>
                     <li class="gnb_menu__link"><router-link to="/C" exact>PAGE C</router-link></li>
                 </ul>
             </div>

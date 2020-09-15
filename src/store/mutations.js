@@ -1,46 +1,39 @@
 const mutations = {
-    lock_scroll(state){
-        state.isPageScrollLock = true;
+
+    LOCK_scroll(state) {
+        state.is_pageScrollLock = true;
     },
-    unlock_scroll(state){
-        state.isPageScrollLock = false;
+    UNLOCK_scroll(state) {
+        state.is_pageScrollLock = false;
+    },
+    ENABLE_modal (state) {
+        state.is_modalActive = true;
+    },
+    DISABLE_modal (state) {
+        state.is_modalActive = false;
+    },
+    SHOW_modalDimmed (state) {
+        state.is_modalDimmedActive = true;
+    },
+    HIDE_modalDimmed (state) {
+        state.is_modalDimmedActive = false;
+    },
+    SHOW_modalAlert(state){
+        state.is_ModalAlertActive = true;
+    },
+    HIDE_modalAlert(state){
+        state.is_ModalAlertActive = false;
+    },
+    CHANGE_modalAlertTitle(state, title = '') {
+        state.modalAlertMessage = title;
+    },
+    CHANGE_modalAlertMessage(state, message = '') {
+        state.modalAlertMessage = message;
+    },
+    REGIST_modalAlertClose (state, action) {
+        state.modalAlertCloseAction = action;
     },
 
-    enable_modal(state,withDimmed) {
-        state.isModalActive = true;
-        if(withDimmed){
-            state.isModalDimmedActive = true;
-        }
-    },
-    disable_modal(state) {
-        state.isModalActive = false;
-        state.isModalDimmedActive = false;
-    },
-
-    show_popupAlert(state){
-        state.isPopupAlertActive = true;
-    },
-    hide_popupAlert(state){
-        state.isPopupAlertActive = false;
-    },
-
-    change_popupAlertTitle() {
-
-    },
-    change_popupAlertMessage(state, message) {
-        state.popupAlertMessage = message;
-    },    
-
-    regist_popupAlertClose (state, action) {
-        state.popupAlertAction = action;
-    },
-
-    trigger_popupAlertClose (state) {
-        state.popupAlertAction();
-        state.popupAlertAction = () => {}
-        // state.popupAlertTitle = '알림';
-        // state.popupAlertMessage = '알림 내용입니다.';
-    }
 };
 
 export default mutations;

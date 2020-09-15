@@ -9,12 +9,12 @@
 
                 <div class="paragraph__text st-italic">
                     기능 적용 상태 :
-                    <br>모달 딤드 클릭시 딤드 해제 : {{ this.$store.state.use_clickDimmedThenCloseModal }}
+                    <br>모달 딤드 클릭시 모달 해제 : {{ this.$store.state.use_clickDimmedThenCloseModal }}
                     <br>모달 오픈시 스크롤 잠금 : {{ this.$store.state.use_openModalWithLockScroll }}
                 </div>
 
                 <div>
-                    <ButtonType1 v-on:click="showModalPopupAlert" >
+                    <ButtonType1 v-on:click="showModalAlert" >
                         모달 팝업 호출 테스트
                     </ButtonType1>
                 </div>
@@ -55,7 +55,7 @@
 
                 <div class="paragraph__text st-italic">
                     기능 적용 상태 :
-                    <br>현재 스크롤 잠금 : {{ this.$store.state.isPageScrollLock }}
+                    <br>현재 스크롤 잠금 : {{ this.$store.state.is_pageScrollLock }}
                 </div>
 
                 <div>
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 import {
     ButtonType1,
@@ -97,22 +98,28 @@ export default {
     components : {
         ButtonType1,
     },
+    computeds: {
+        ...mapState([
+        ])
+    },
     methods : {
-        showModalPopupAlert () {
-            this.$store.commit('enable_modal' ,true);
-            this.$store.commit('show_popupAlert');
-            this.$store.commit('change_popupAlertMessage', '메인으로 돌아갑니다.');
-            this.$store.commit('regist_popupAlertClose' , () => {
-                this.$router.push('/')
-            });
+        showModalAlert () {
+            const modalAlertPayload = {
+                message : '메인으로 돌아갑니다',
+                close : () => {
+                    this.$router.push('/');
+                }
+            };
+
+            this.$store.dispatch('showModalAlert', modalAlertPayload);
+
         },
         toggleScrollLock () {
-            if(this.$store.state.isPageScrollLock){
-                this.$store.commit('unlock_scroll');
+            if(this.$store.state.is_pageScrollLock){
+                this.$store.commit('UNLOCK_scroll');
             }else {
-                this.$store.commit('lock_scroll');
+                this.$store.commit('LOCK_scroll');
             }
-            
         }
     }
 }

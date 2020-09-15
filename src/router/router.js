@@ -11,7 +11,7 @@ import VueRouter from 'vue-router';
 // // import CreateListView from '../views/CreateListView.js';
 
 import {
-    PageMain, PageLayout , B ,C
+    PageMain, PageLayout , PageIA, 
 } from '@/pages';
 
 
@@ -27,23 +27,16 @@ const routerInfo =  {
         }
         ,
         {
+            path : '/ia',
+            name : 'IA',
+            component : PageIA,
+        }        
+        ,
+        {
             path : '/layout',
             name : 'layout',
             component : PageLayout,
-        }
-        ,
-        {
-            path : '/B',
-            name : 'b',
-            component : B,
-        }
-        ,
-        {
-            path : '/C',
-            name : 'c',
-            component : C,
-        }
-        ,
+        },
         // {
         //     path : '/news',
         //     name : 'news',

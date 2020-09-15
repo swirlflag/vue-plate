@@ -1,5 +1,6 @@
 <template>
     <div id="app" v-bind:class="`page--${pageName}`">
+
         <!-- 모달 -->
         <ModalPlate></ModalPlate>  
 
@@ -11,6 +12,7 @@
         <!-- 스피너 -->
 
         <!-- 라우터 페이지 -->
+        <!-- <PagePlate></PagePlate> 로 변경하자-->
         <div id="page">
             <router-view></router-view>
             <!-- 페이지 푸터 -->
@@ -45,7 +47,7 @@ export default {
         },
     },
     watch : {
-        '$store.state.isPageScrollLock'(now){
+        '$store.state.is_pageScrollLock'(now){
             const body = document.body;
             if(now){
                 body.classList.add('st-lockscroll');
@@ -53,15 +55,15 @@ export default {
                 body.classList.remove('st-lockscroll');
             }
         },
-        '$store.state.isModalActive'(now) {
-            if(now){
-                if(this.$store.state.use_openModalWithLockScroll){
-                    this.$store.commit('lock_scroll');
-                }
-            }else {
-                this.$store.commit('unlock_scroll');
-            }
-        },
+        // '$store.state.is_modalActive'(now) {
+        //     if(now){
+        //         if(this.$store.state.use_openModalWithLockScroll){
+        //             this.$store.commit('lock_scroll');
+        //         }
+        //     }else {
+        //         this.$store.commit('unlock_scroll');
+        //     }
+        // },
         '$route.path'() {
             window.scrollTo(0,0);
         },
@@ -73,8 +75,8 @@ export default {
         }
     },
     created() {
-        // console.log(this.$store.state.isPageScrollLock);
-        // console.log(this.$store.state.isPageScrollLock);
+        // console.log(this.$store.state.is_pageScrollLock);
+        // console.log(this.$store.state.is_pageScrollLock);
     },
 };
 </script>

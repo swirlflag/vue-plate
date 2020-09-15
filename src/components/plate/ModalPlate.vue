@@ -6,14 +6,14 @@
     #modal 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
     #modal 이하의 컴포넌트들을 자유롭게 수정 확장할수 있습니다.
 -->
-    <div id="modal" v-bind:class="{'st-active': this.$store.state.isModalActive}">
+    <div id="modal" v-bind:class="{'st-active': this.$store.state.is_modalActive}">
 
         <div    class="modal__dimmed" 
-                v-bind:class="{'st-show' : this.$store.state.isModalDimmedActive}"
+                v-bind:class="{'st-show' : this.$store.state.is_modalDimmedActive}"
                 v-on:click="clickModalDimmed"
         ></div>
 
-        <PopupAlert></PopupAlert>
+        <ModalAlert></ModalAlert>
 
     </div>
 </template>
@@ -21,7 +21,7 @@
 <script>
 
 import { mapState } from 'vuex';
-import PopupAlert from '@/components/modal/PopupAlert.vue';
+import  ModalAlert  from '@/components/modal/ModalAlert.vue';
 
 export default {
     computed : {
@@ -29,25 +29,21 @@ export default {
             'use_clickDimmedThenCloseModal',
             'use_openModalThenLockScroll',
 
-            'isModalActive',
-            'isPopupAlertActive',
+            'is_modalActive',
+            'is_ModalAlertActive',
         ]),
     },
     components: {
-        PopupAlert
+        ModalAlert
     },
 
     methods : {
         clickModalDimmed() {
-            if(!this.use_clickDimmedThenCloseModal){
+            if(!this.use_clickDimmedThenCloseModal && !this.is_modalActive){
                 return;
             }
-            if(this.isModalActive){
-                this.$store.commit('disable_modal');
-            }
-            if(this.isPopupAlertActive){
-                this.$store.commit('hide_popupAlert');
-                this.$store.commit('trigger_popupAlertClose');
+            if(this.is_ModalAlertActive){
+                this.$store.dispatch('closeModalAlert');
             }
         }
     }
@@ -65,11 +61,11 @@ export default {
     display: inline-block;
     box-sizing: border-box;
     pointer-events: none;
-    &.st-active {
-        > * {
-            pointer-events: all;
-        }
-    }
+    // &.st-active {
+    //     > * {
+    //         pointer-events: all;
+    //     }
+    // }
 }
 
 .modal__dimmed {
@@ -81,6 +77,7 @@ export default {
     transition: opacity 300ms ease;
     z-index: 1000;
     &.st-show {
+        pointer-events: all;
         opacity: 1;
         display : block;
     }
