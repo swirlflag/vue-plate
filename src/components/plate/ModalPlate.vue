@@ -6,14 +6,14 @@
     #modal 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
     #modal 이하의 컴포넌트들을 자유롭게 수정 확장할수 있습니다.
 -->
-    <div id="modal" v-bind:class="{'st-active': this.$store.state.is_modalActive}">
+    <div id="modal_plate" v-bind:class="{'st-active': this.$store.state.is_modalActive}">
 
         <div    class="modal__dimmed" 
                 v-bind:class="{'st-show' : this.$store.state.is_modalDimmedActive}"
                 v-on:click="clickModalDimmed"
         ></div>
 
-        <ModalAlert></ModalAlert>
+        <ModalAlert/>
 
     </div>
 </template>
@@ -50,22 +50,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import '@/style/_mixin.scss';
 
-#modal {
+#modal_plate {
     z-index: 1020;
     width: 100vw; height: 100%; 
     position: fixed;
     display: inline-block;
     box-sizing: border-box;
     pointer-events: none;
-    // &.st-active {
-    //     > * {
-    //         pointer-events: all;
-    //     }
-    // }
 }
 
 .modal__dimmed {

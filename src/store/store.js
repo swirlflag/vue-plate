@@ -8,23 +8,22 @@ import clientActions from '@/store/clientActions.js';
 Vue.use(Vuex);
 
 const modalState = {
-    is_modalActive : false,
-    is_modalDimmedActive : false,
+    use_clickDimmedThenCloseModal   : true,
+    use_openModalWithLockScroll     : true,
+    use_openModalWithShowDimmed     : true,
 
-    is_ModalAlertActive : false,
-    modalAlertTitle        : '알림' ,
-    modalAlertMessage      : '알림 내용입니다.' ,
-    modalAlertButton       : '확인' ,
-    modalAlertCloseAction : () => {},
+    is_modalActive                  : false,
+    is_modalDimmedActive            : false,
+
+    is_ModalAlertActive             : false,
+    modalAlertTitle                 : '알림' ,
+    modalAlertMessage               : '알림 내용입니다.' ,
+    modalAlertButton                : '확인' ,
+    modalAlertCloseAction           : () => {},
 }
 
 const store = new Vuex.Store({
     state : {
-        
-        use_clickDimmedThenCloseModal : true,
-        use_openModalWithLockScroll : true,
-        use_openModalWithShowDimmed : true,
-
         is_pageScrollLock : false,
         ...modalState,
     },

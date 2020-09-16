@@ -3,11 +3,11 @@
     <div class="page__inner">
         <div class="paragraph">
             <div class="paragraph__title size--1">
-                기본 구조
+                마크업 기준
             </div>
             <div class="paragraph__divider"></div>
-            <div class="paragraph__title size--2">
-                html,body
+            <div class="paragraph__title size--3">
+                 각 페이지
             </div>
             <div class="paragraph__text">
                 html, body는 아래의 app 위로 바로 맞닿은 document root 입니다. <br>
@@ -24,12 +24,17 @@
                 뷰 플레이트에서 미리 준비된 plate들은 아래와 같으며 필요시 App.vue내부에서 늘려갈 수 있습니다.
             </div>
             <div class="paragraph__text">
-                <strong>#app</strong>
-                <br><strong>┣ #modal</strong> → 모달로 분류되는 레이어팝업, 전체 레이어 등
-                <br><strong>┣ #spinner</strong> → 화면 전환이나 전역적 로딩을 표현하는 스피너
-                <br><strong>┣ #gnb</strong> → fixed상태를 띄는 네비게이션들
-                <br><strong>┣ #page</strong> → router 형태로 관리할 본문 페이지들
-                <br><strong>┗ #footer</strong> → 공통 footer
+                <strong>
+                    #app
+                    <br>┣ #modal_plate
+                    <br>┣ #spinner_plate
+                    <br>┣ #nav_plate
+                    <br>┣ #page_plate
+                    <br>┗ #footer_plate
+                </strong>
+            </div>
+            <div class="paragraph__title size--2">
+                #modal_plate
             </div>
         </div>
     </div>
@@ -38,7 +43,7 @@
 
 <script>
 export default {
-
+    name : 'PageMarkup'
 }
 </script>
 

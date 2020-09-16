@@ -2,45 +2,42 @@
     <div id="app" v-bind:class="`page--${pageName}`">
 
         <!-- 모달 -->
-        <ModalPlate></ModalPlate>  
+        <ModalPlate/>
 
         <!-- 네비게이션 -->
-        <NavigationPlate></NavigationPlate>
+        <NavigationPlate/>
 
         <!-- 백그라운드 fix -->
 
         <!-- 스피너 -->
 
         <!-- 라우터 페이지 -->
-        <!-- <PagePlate></PagePlate> 로 변경하자-->
-        <div id="page">
-            <router-view></router-view>
-            <!-- 페이지 푸터 -->
-        </div>
+        <PagePlate/>
+        
+        <!-- 공통 footer-->
+        <FooterPlate/>
 
-        <!-- 공통 푸터 -->
-        <Footer></Footer>
     </div>
 </template>
 
 <script>
 
-import { 
-    NavigationPlate ,
-    ModalPlate,
-    Footer ,
-} from '@/components';
+import NavigationPlate      from '@/components/plate/NavigationPlate.vue';
+import ModalPlate           from '@/components/plate/ModalPlate.vue';
+import PagePlate            from '@/components/plate/PagePlate.vue';
+import FooterPlate          from '@/components/plate/FooterPlate.vue';
 
 export default {
     name: 'App',
+    components: {
+        NavigationPlate , ModalPlate , PagePlate , FooterPlate
+    },
     data() {
         return {
             scrollPosition : 0,
         }
     },
-    components: {
-        NavigationPlate , ModalPlate , Footer
-    },
+    
     computed : {
         pageName () {
             return this.$route.name
@@ -55,17 +52,8 @@ export default {
                 body.classList.remove('st-lockscroll');
             }
         },
-        // '$store.state.is_modalActive'(now) {
-        //     if(now){
-        //         if(this.$store.state.use_openModalWithLockScroll){
-        //             this.$store.commit('lock_scroll');
-        //         }
-        //     }else {
-        //         this.$store.commit('unlock_scroll');
-        //     }
-        // },
         '$route.path'() {
-            window.scrollTo(0,0);
+            // window.scrollTo(0,0);
         },
 
     },
@@ -75,8 +63,6 @@ export default {
         }
     },
     created() {
-        // console.log(this.$store.state.is_pageScrollLock);
-        // console.log(this.$store.state.is_pageScrollLock);
     },
 };
 </script>

@@ -10,10 +10,10 @@ import VueRouter from 'vue-router';
 // // import ViewUser from '../views/ViewUser.vue';
 // // import CreateListView from '../views/CreateListView.js';
 
-import {
-    PageMain, PageLayout , PageIA, 
-} from '@/pages';
-
+import PageMain         from '@/pages/PageMain.vue';
+import PageGlobal       from '@/pages/PageGlobal.vue';
+import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
+import PageMarkup       from '@/pages/PageMarkup.vue';
 
 Vue.use(VueRouter);
 
@@ -27,15 +27,20 @@ const routerInfo =  {
         }
         ,
         {
-            path : '/ia',
-            name : 'IA',
-            component : PageIA,
+            path : '/plate',
+            name : 'plate',
+            component : PageAboutPlate,
         }        
         ,
         {
-            path : '/layout',
-            name : 'layout',
-            component : PageLayout,
+            path : '/global',
+            name : 'global',
+            component : PageGlobal,
+        },
+        {
+            path : '/markup',
+            name : 'markup',
+            component : PageMarkup
         },
         // {
         //     path : '/news',

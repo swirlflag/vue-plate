@@ -33,6 +33,9 @@ const mutations = {
     REGIST_modalAlertClose (state, action) {
         state.modalAlertCloseAction = action;
     },
+    RESET_modalAlertClose (state) {
+        state.modalAlertCloseAction = () => {};
+    },
 
 };
 

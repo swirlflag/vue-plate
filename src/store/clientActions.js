@@ -17,18 +17,22 @@ const clientActions =  {
     },
 
     showModalAlert(context, payload = {}) {
-        const {
-            title, message , close,
-        } = payload;        
-
-        if(message){
-            context.commit('CHANGE_modalAlertMessage' , message);
-        }
-        if(title){
-            context.commit('CHANGE_modalAlertTitle' , title);
-        }
-        if(close){
-            context.commit('REGIST_modalAlertClose' , close);
+        if(typeof payload === 'string'){
+            context.commit('CHANGE_modalAlertMessage' , payload);
+        }else {
+            const {
+                title, message , close,
+            } = payload;      
+            
+            if(message){
+                context.commit('CHANGE_modalAlertMessage' , message);
+            }
+            if(title){
+                context.commit('CHANGE_modalAlertTitle' , title);
+            }
+            if(close){
+                context.commit('REGIST_modalAlertClose' , close);
+            }
         }
 
         context.dispatch('enableModal');
@@ -38,7 +42,7 @@ const clientActions =  {
 
     closeModalAlert(context) {
         context.state.modalAlertCloseAction();
-        context.commit('REGIST_modalAlertClose' , () => {});
+        context.commit('RESET_modalAlertClose' , () => {});
         context.dispatch('disableModal');
         context.commit('HIDE_modalAlert');
     },

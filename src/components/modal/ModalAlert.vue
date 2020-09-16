@@ -1,12 +1,12 @@
 <template>
-    <div class="popup--alert" v-bind:class="{'st-show' : this.$store.state.is_ModalAlertActive }">
-        <div class="popup__title">
+    <div class="modal--alert" v-bind:class="{'st-show' : this.$store.state.is_ModalAlertActive }">
+        <div class="alert__title">
             {{ modalAlertTitle }}
         </div>
-        <div class="popup__message">
+        <div class="alert__message">
             {{ modalAlertMessage }}
         </div>
-        <div class="popup__button">
+        <div class="alert__button">
             <ButtonType1 v-on:click="closeModalAlert">
                 {{ modalAlertButton }}
             </ButtonType1>
@@ -24,14 +24,9 @@ export default {
     components : {
         ButtonType1,
     },
-
     methods : {
         closeModalAlert() {
-
             this.$store.dispatch('closeModalAlert');
-            // this.$store.commit('hide_modalAlert');
-            // this.$store.commit('disable_modal');
-            // this.$store.commit('trigger_modalAlertClose');
         }
     },
     computed : {
@@ -51,7 +46,7 @@ export default {
 
 @import '@/style/_mixin.scss';
 
-.popup--alert {
+.modal--alert {
     max-width: 500px; min-width : 300px; 
     height: auto;
     position: absolute;
@@ -89,14 +84,14 @@ export default {
         }
     }
 
-    .popup__title {
+    .alert__title {
         font-size: 26px;
         font-weight: 700;
     }
-    .popup__message {
+    .alert__message {
         
     }
-    .popup__check {
+    .alert__check {
 
     }
 
