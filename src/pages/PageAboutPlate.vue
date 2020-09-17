@@ -38,11 +38,7 @@
                     #modal_plate
                 </div>
                 <div class="paragraph__text">
-                    <ButtonType1 to="/global">
-                        링크
-                    </ButtonType1>
-                    <br>
-                    #modal_plate에 들어가는 컨텐츠의 성격은 다음과 같으며 자세한 내용은 global페이지에서 설명합니다.
+                    #modal_plate에 들어가는 컨텐츠의 성격은 다음과 같으며 자세한 내용은 global페이지에서 설명합니다.&nbsp;<router-link to="/global">링크</router-link>
                 </div>
                 <ul class="paragraph__list">
                     <li>position : fixed</li>
@@ -70,11 +66,9 @@
 </template>
 
 <script>
-import ButtonType1 from '@/components/input/ButtonType1.vue';
 
 export default {
     name : 'PageAboutPlate',
-    components : { ButtonType1 },
 }
 </script>
 

@@ -14,8 +14,7 @@
             </div>
 
             <div class="paragraph__text st-italic">
-                기능 적용 상태 :
-                <br>모달 딤드 클릭시 모달 해제 : {{ this.$store.state.use_clickDimmedThenCloseModal }}
+                모달 딤드 클릭시 모달 해제 : {{ this.$store.state.use_clickDimmedThenCloseModal }}
                 <br>모달 오픈시 스크롤 잠금 : {{ this.$store.state.use_openModalWithLockScroll }}
             </div>
 
@@ -65,8 +64,7 @@
             </div>
 
             <div class="paragraph__text st-italic">
-                기능 적용 상태 :
-                <br>현재 스크롤 잠금 : {{ this.$store.state.is_pageScrollLock }}
+                현재 스크롤 잠금 : {{ this.$store.state.is_pageScrollLock }}
             </div>
 
             <div>

@@ -19,7 +19,7 @@ export default {
 @import '@/style/_mixin.scss';
 
 #footer_plate {
-    
+    margin-top: 100px;
 }
 
 .footer__outer {

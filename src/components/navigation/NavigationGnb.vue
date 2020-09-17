@@ -3,9 +3,15 @@
         <div class="nav__gnb__wrap">
             <router-link class="nav__gnb__logo" to="/">뷰 플레이트</router-link>
             <ul class="nav__gnb__links">
-                <li class="nav__gnb__link"><router-link to="/plate" exact>Plate</router-link></li>
-                <li class="nav__gnb__link"><router-link to="/global" exact>Global</router-link></li>
-                <li class="nav__gnb__link"><router-link to="/C" exact>PAGE C</router-link></li>
+                <template   v-for="(route,idx) in gnbRoutesList">
+                    <li     v-bind:key="idx"
+                            class="nav__gnb__link" 
+                    >
+                        <router-link v-bind:to="route.path" exact>
+                            {{ route.name }}
+                        </router-link>
+                    </li>
+                </template>
             </ul>
             <button class="nav__gnb__menubutton" v-on:click="toggleGlobalMenu">
                 <span></span>
@@ -18,11 +24,22 @@
 
 <script>
 export default {
+    props : {
+        routesInfo : Array,
+    },
     name : 'NavigationGnb',
+    computed : {
+        gnbRoutesList() {
+            return this.routesInfo.filter(c => !(c.path === '/') );
+        }
+    },
     methods : {
         toggleGlobalMenu() {
             this.$emit('toggleGlobalMenu');
         }
+    },
+    created() {
+        
     }
 }
 </script>

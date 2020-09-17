@@ -13,7 +13,8 @@ import VueRouter from 'vue-router';
 import PageMain         from '@/pages/PageMain.vue';
 import PageGlobal       from '@/pages/PageGlobal.vue';
 import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
-import PageMarkup       from '@/pages/PageMarkup.vue';
+import PageAPI          from '@/pages/PageAPI.vue';
+import PagePlugin       from '@/pages/PagePlugin.vue';
 
 Vue.use(VueRouter);
 
@@ -21,27 +22,33 @@ const routerInfo =  {
     mode : 'history',
     routes : [
         {
-            path : '/',
-            name : 'main',
-            component : PageMain,
+            path        : '/',
+            name        : 'Main',
+            component   : PageMain,
         }
         ,
         {
-            path : '/plate',
-            name : 'plate',
-            component : PageAboutPlate,
+            path        : '/plate',
+            name        : 'Plate',
+            component   : PageAboutPlate,
         }        
         ,
         {
-            path : '/global',
-            name : 'global',
-            component : PageGlobal,
+            path        : '/global',
+            name        : 'Global',
+            component   : PageGlobal,
         },
         {
-            path : '/markup',
-            name : 'markup',
-            component : PageMarkup
+            path        : '/api',
+            name        : 'API',
+            component   : PageAPI,
         },
+        {
+            path        : '/plugin',
+            name        : 'Plugin',
+            component   : PagePlugin,
+        },
+
         // {
         //     path : '/news',
         //     name : 'news',

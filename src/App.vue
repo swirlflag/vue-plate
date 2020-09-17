@@ -1,5 +1,14 @@
 <template>
-    <div id="app" v-bind:class="`page--${pageName}`">
+    <div id="app" v-bind:class="`page--${pageName.toLowerCase()}`">
+
+        <!-- 
+            todo: 
+            구글 로그인
+            카카오 로그인
+            라우터 가드 셋팅
+            스피너
+            API 셋팅
+         -->
 
         <!-- 모달 -->
         <ModalPlate/>
@@ -20,6 +29,7 @@
     </div>
 </template>
 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
 
 import NavigationPlate      from '@/components/plate/NavigationPlate.vue';
@@ -52,17 +62,16 @@ export default {
                 body.classList.remove('st-lockscroll');
             }
         },
-        '$route.path'() {
-            // window.scrollTo(0,0);
+        '$route.path'(now) {
+            window.scrollTo(0,0);
+            this.$_ua.pageview(now).send();
         },
 
     },
     methods : {
-        justPreventDefault(e) {
-            e.preventDefault();
-        }
     },
     created() {
+        
     },
 };
 </script>

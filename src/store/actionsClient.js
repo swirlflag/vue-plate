@@ -1,9 +1,9 @@
-const clientActions =  {
+const actionsClient =  {
 
     enableModal(context) {
         context.commit('ENABLE_modal');
         if(context.state.use_openModalWithShowDimmed){
-            context.commit('SHOW_modalDimmed');
+            context.commit('ENABLE_modalDimmed');
         }
         if(context.state.use_openModalWithLockScroll){
             context.commit('LOCK_scroll');
@@ -12,7 +12,7 @@ const clientActions =  {
 
     disableModal(context) {
         context.commit('DISABLE_modal');
-        context.commit('HIDE_modalDimmed');
+        context.commit('DISABLE_modalDimmed');
         context.commit('UNLOCK_scroll');
     },
 
@@ -47,8 +47,6 @@ const clientActions =  {
         context.commit('HIDE_modalAlert');
     },
 
-
-
 }
 
-export default clientActions;
+export default actionsClient;

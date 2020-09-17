@@ -51,4 +51,40 @@
 
 // };
 
-// export default actions;
+import {
+    request_newsList ,
+    request_jobsList ,
+} from '@/api';
+
+const apiActions = {
+    async fetch_newsList(context){
+        const response = await request_newsList();
+        context.commit('WRITE_newsList', response.data);
+        return response;    
+    },
+
+    async fetch_jobsList (context) {
+        const response = await request_jobsList();
+        context.commit('WRITE_jobsList', response.data);
+        return response;    
+    },
+}
+
+const authActions = {
+
+    async auth_google(context) {
+        
+        console.log(context.state);
+        // const googleAcount = await context.$gAuth.signIn();
+        // console.log(googleAcount);
+        // context.commit('RECORD_login');
+        // context.commit('RECORD_loginType', 'google');
+        // return googleAcount;
+    }
+}
+
+const actionsExternal = {
+    ...apiActions,    
+    ...authActions,
+};
+export default actionsExternal;

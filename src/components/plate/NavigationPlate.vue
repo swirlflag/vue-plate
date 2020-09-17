@@ -11,21 +11,25 @@
 
         <!-- 예시 : gnb 영역 네비게이션 컴포넌트 -->
         <NavigationGnb  v-on:toggleGlobalMenu="toggleGlobalMenu" 
+                        v-bind:routesInfo="routesInfo"
+                        
         />            
 
         <!-- 예시 : 메뉴로 열고닫는 네비게이션 컴포넌트-->
 
         <NavigationMenu     v-bind:isOpenMenu="isOpenMenu"
                             v-on:closeGlobalMenu="closeGlobalMenu"
+                            v-bind:routesInfo="routesInfo"
         />
         
     </nav>
 </template>
 
 <script>
+import { routerInfo }   from '@/router/router.js';
 
-import NavigationGnb from '@/components/navigation/NavigationGnb.vue';
-import NavigationMenu from '@/components/navigation/NavigationMenu.vue';
+import NavigationGnb    from '@/components/navigation/NavigationGnb.vue';
+import NavigationMenu   from '@/components/navigation/NavigationMenu.vue';
 
 export default {
     name : 'NavigationPlate',
@@ -33,6 +37,7 @@ export default {
     data () {
         return {
             isOpenMenu : false,
+            routesInfo : routerInfo.routes
         };
     },
     watch: {
@@ -48,7 +53,7 @@ export default {
         openGlobalMenu()    { this.isOpenMenu = true },
         closeGlobalMenu()   { this.isOpenMenu = false },
     },
-    create() {
+    created() {
         
     },
 }

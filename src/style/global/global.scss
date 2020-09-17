@@ -15,14 +15,13 @@ body {
     overflow-y: overlay;
     overflow-x: hidden;
     word-break: keep-all;
-
+    
     @include hardSelect {
         color: $COLOR_theme;
     }
     &.st-lockscroll {
         width: 100vw; 
         overflow: hidden;
-        // position: fixed;
     }
 }
 
@@ -31,7 +30,14 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+    
+    // overflow-x: hidden;
+    .st-lockscroll & {
+        // overflow: hidden;
+    }
 }
+
+
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -65,6 +71,16 @@ body {
     > * {
         margin: 20px 0;
     }
+    
+    a {
+        text-decoration: underline;
+        line-height: 1em;
+        padding: 3px 5px;
+        @include hover {
+            background-color: $COLOR_theme;
+            color: $COLOR_theme_background;
+        }
+    }
 
     .paragraph__title {
         font-weight: 700;
@@ -89,10 +105,9 @@ body {
     }
 
     .paragraph__text {
-        margin-top: 0;
+        // margin-top: 0;
         font-size: 16px;
         line-height: 1.55em;
-        word-break: keep-all;
         &.st-italic {
             font-style: italic;
         }

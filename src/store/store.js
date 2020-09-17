@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// import ua from 'universal-analytics';
 
-import mutations from '@/store/mutations.js';
-import clientActions from '@/store/clientActions.js';
-// import actions from './actions.js';
+import mutationsClient      from '@/store/mutationsClient.js';
+import mutationsExternal    from '@/store/mutationsExternal.js';
+
+import actionsClient        from '@/store/actionsClient.js';
+import actionsExternal      from '@/store/actionsExternal.js';
 
 Vue.use(Vuex);
 
@@ -20,21 +23,37 @@ const modalState = {
     modalAlertMessage               : '알림 내용입니다.' ,
     modalAlertButton                : '확인' ,
     modalAlertCloseAction           : () => {},
-}
+};
+
+const fetchData = {
+    newsList : [],
+    jobsList : [],
+};
 
 const store = new Vuex.Store({
     state : {
+
+        is_login : false,
+
+        ua_visitor : null,
+
+        accessToken : null,
+        
+        UA_accountID : 'UA-178128469-1', 
+        
         is_pageScrollLock : false,
+
         ...modalState,
+        ...fetchData,
     },
-    // getters : {
-    //     list : ({list}) => list,
-    //     userItems : ({userItems}) => userItems,
-    //     itemInfo : ({itemInfo}) => itemInfo,
-    // },
-    mutations,
+
+    mutations : {
+        ...mutationsClient,
+        ...mutationsExternal,
+    },
     actions : {
-        ...clientActions,
+        ...actionsClient,
+        ...actionsExternal,
     },
 });
 

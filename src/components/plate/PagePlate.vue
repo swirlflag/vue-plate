@@ -7,7 +7,7 @@
 </template>
 
 <script>
-// 페이지 추가는 router로 가십시오 
+// 페이지 등록은 router.js로 
 
 export default {
     name : 'PagePlate',

@@ -1,4 +1,4 @@
-const mutations = {
+const mutationsClient = {
 
     LOCK_scroll(state) {
         state.is_pageScrollLock = true;
@@ -12,10 +12,10 @@ const mutations = {
     DISABLE_modal (state) {
         state.is_modalActive = false;
     },
-    SHOW_modalDimmed (state) {
+    ENABLE_modalDimmed (state) {
         state.is_modalDimmedActive = true;
     },
-    HIDE_modalDimmed (state) {
+    DISABLE_modalDimmed (state) {
         state.is_modalDimmedActive = false;
     },
     SHOW_modalAlert(state){
@@ -39,4 +39,4 @@ const mutations = {
 
 };
 
-export default mutations;
+export default mutationsClient;

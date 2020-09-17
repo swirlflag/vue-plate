@@ -3,10 +3,14 @@
         <div class="nav__menu__dimd" v-on:click="closeGlobalMenu"></div>
         <div class="nav__menu__wrap">
             <ul class="nav__menu__links">
-                <li class="nav__menu__link"><router-link to="/" exact>Home</router-link></li>
-                <li class="nav__menu__link"><router-link to="/ia" exact>구조</router-link></li>
-                <li class="nav__menu__link"><router-link to="/layout" exact>글로벌</router-link></li>
-                <li class="nav__menu__link"><router-link to="/C" exact>PAGE C</router-link></li>
+                <li     v-for="(route,idx) in routesInfo" 
+                        v-bind:key="idx"
+                        class="nav__menu__link" 
+                >
+                    <router-link v-bind:to="route.path" exact>
+                        {{ route.name }}
+                    </router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -17,12 +21,14 @@ export default {
     name : 'NavigationMenu',
     props : {
         isOpenMenu : Boolean,
+        routesInfo : Array,
     },
     methods : {
         closeGlobalMenu() {
             this.$emit('closeGlobalMenu');
         }
-    }
+    },
+
 }
 </script>
 
@@ -66,7 +72,7 @@ export default {
         justify-content: center;
         align-items: flex-end;
         transform: translateX(-101%);
-        transition: transform 300ms $EASE_inCubic, opacity 0ms 401ms ease ;
+        transition: transform 300ms $EASE_outCubic, opacity 0ms 301ms ease ;
         opacity: 0;
         background-color : $COLOR_layer_background;
         backdrop-filter: blur(10px);
@@ -82,7 +88,7 @@ export default {
     }
     &.st-open .nav__menu__wrap {
         transform: translate(0);
-        transition: transform 650ms $EASE_outQuint, opacity 0ms ease;
+        transition: transform 550ms $EASE_outQuint, opacity 0ms ease;
         opacity: 1;
     }
 
