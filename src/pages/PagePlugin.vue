@@ -11,20 +11,32 @@
                     외부 로그인
                 </div>
                 <div class="paragraph__text st-italic">
-                    현재 로그인 상태 : {{ this.$store.state.is_login}}
+                    현재 로그인 상태 : <strong>{{ this.$store.state.is_login }}</strong>
+                    <template v-if="this.$store.state.is_login">
+                        <br>로그인 타입 : <strong>{{ this.$store.state.loginType }}</strong>
+                        <br>엑세스 토큰 : <strong>{{ this.$store.state.accessToken }}</strong>
+                    </template>
                 </div>
                 <div class="paragraph__title size--3">
                     Google 
                 </div>
                 <div class="paragraph__text">
-                    <ButtonGoogleAuth/>
-                </div>
-                <div class="paragraph__title size--3">
-                    Naver
+                    <ButtonGoogleLogin v-on:success="success" v-on:cancle="cancle"/>
                 </div>
                 <div class="paragraph__title size--3">
                     Kakao
                 </div>
+                <div class="paragraph__text">
+                    <ButtonKakaoLogin v-on:success="success" v-on:cancle="cancle"/>
+                </div>
+                <div class="paragraph__title size--3">
+                    Naver
+                </div>
+
+                <div class="paragraph__text">
+                    <button v-on:click="logouttest">로그아웃 테스트(카카오만)</button>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -32,20 +44,30 @@
 
 <script>
 
-import ButtonGoogleAuth from '@/components/input/ButtonGoogleAuth.vue';
+import ButtonGoogleLogin from '@/components/input/ButtonGoogleLogin.vue';
+import ButtonKakaoLogin from '@/components/input/ButtonKakaoLogin.vue';
 
 export default {
     name : 'Analytics',
     components : {
-        ButtonGoogleAuth,
-    },
-    data() {
-        return {
-            
-        }
+        ButtonGoogleLogin, ButtonKakaoLogin,
     },
 
     methods : {
+        success(){
+            
+        },
+        cancle(){
+            
+        },
+        logouttest() {
+            this.$_Kakao.API.request({
+                url: '/v1/user/unlink',
+                success(res) {
+                    console.dev(res);
+                }
+            });
+        }
     },
     created() {
         

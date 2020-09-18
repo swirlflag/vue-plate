@@ -1,3 +1,7 @@
+/* 
+    클리이언트 내부 상태 변경과 로직에 연관된 동작들을 정의합니다.    
+*/
+
 const actionsClient =  {
 
     enableModal(context) {

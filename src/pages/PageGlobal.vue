@@ -103,7 +103,7 @@ export default {
         },
         alertGotoMain() {
             const modalAlertPayload = {
-                message : '메인으로 돌아갑니다',
+                message : '확인을 누르면 메인으로 돌아갑니다',
                 close : () => this.$router.push('/'),
             };
             this.$store.dispatch('showModalAlert', modalAlertPayload);

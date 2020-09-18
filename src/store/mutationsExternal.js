@@ -9,12 +9,15 @@ const mutationsExternal = {
         state.jobsList = jobs;
     },
 
-    LOGIN(state,token = String) {
-        state.accessToken = token;
+    LOGIN(state,) {
+        state.is_login = true;
     },
     LOGOUT(state) {
-        state.accessToken = null;  
+        state.is_login = false;
     },
+    RECORD_accessToken(state,token = String) {
+        state.accessToken = token;
+    }, 
     RECORD_loginType(state,type = String) {
         state.loginType = type;
     },

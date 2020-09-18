@@ -2,7 +2,7 @@
     <div id="app" v-bind:class="`page--${pageName.toLowerCase()}`">
 
         <!-- 
-            todo: 
+            TODO: 
             구글 로그인
             카카오 로그인
             라우터 가드 셋팅
@@ -64,14 +64,12 @@ export default {
         },
         '$route.path'(now) {
             window.scrollTo(0,0);
-            console.log(this.$_ua);
         },
 
     },
     methods : {
     },
     created() {
-        
     },
 };
 </script>

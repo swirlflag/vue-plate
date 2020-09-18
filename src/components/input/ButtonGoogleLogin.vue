@@ -1,5 +1,7 @@
 <template>
-    <button class="button--google_login" v-on:click="click">
+    <button     class="button--google_login" 
+                v-on:click="click"
+    >
         <img src="@/assets/icon/googleAuth.svg" alt="구글 로그인 아이콘">
         <span>{{ buttonText }}</span>
     </button>
@@ -17,17 +19,27 @@ export default {
         }
     },
     methods  : {
+
         click () {
+            this.$emit('click');
+            this.tryLoginGoogle();
+        },
+
+        tryLoginGoogle () {
             this.$gAuth.signIn()
                 .then((response) => {
-                    this.$store.dispatch('auth_googleSuccess',response)
+                    this.$store.dispatch('login_google',response);
+                    this.$emit('success');
                 })
                 .catch((error) => {
-                    this.$store.dispatch('auth_cancle',error)
+                    this.$store.dispatch('login_cancle',error)
+                    this.$emit('cancle');
                 })
             ;
         },
+        
     },    
+
 }
 </script>
 
@@ -41,8 +53,9 @@ export default {
     height: 50px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
     transition: box-shadow 218ms ease;
-    border-radius: 2px;
+    border-radius: 3px;
     overflow:hidden;
+
     @include hover {
         box-shadow: 0 0 3px 3px rgba(66,133,244,.3);
     }
