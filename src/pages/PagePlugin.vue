@@ -17,7 +17,7 @@
                     Google 
                 </div>
                 <div class="paragraph__text">
-                    <ButtonGoogleAuth></ButtonGoogleAuth>
+                    <ButtonGoogleAuth/>
                 </div>
                 <div class="paragraph__title size--3">
                     Naver
@@ -26,7 +26,6 @@
                     Kakao
                 </div>
             </div>
-            
         </div>
     </div>
 </template>

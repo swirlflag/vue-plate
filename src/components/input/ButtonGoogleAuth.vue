@@ -1,45 +1,69 @@
 <template>
-    <ButtonType1 v-on:click="click">
-        구글 로그인 ..?
-    </ButtonType1>
+    <button class="button--google_login" v-on:click="click">
+        <img src="@/assets/icon/googleAuth.svg" alt="구글 로그인 아이콘">
+        <span>{{ buttonText }}</span>
+    </button>
 </template>
 
 <script>
 
-import ButtonType1 from '@/components/input/ButtonType1.vue';
-
 export default {
-    components : {
-        ButtonType1 , 
+    props : {
+        value : String,
     },
     data() {
         return {
-           
+            buttonText : this.value || "Sign in With Google",
         }
     },
     methods  : {
-        async click () {
-
+        click () {
             this.$gAuth.signIn()
                 .then((response) => {
-                    this.onSuccess(response);
+                    this.$store.dispatch('auth_googleSuccess',response)
                 })
                 .catch((error) => {
-                    this.onFailure(error);
+                    this.$store.dispatch('auth_cancle',error)
                 })
             ;
         },
-
-        onSuccess (googleUser) {
-            console.log(googleUser);
-        },
-        onFailure(error) {
-            console.log(error);
-        }
-    }
+    },    
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '@/style/_mixin.scss';
+.button--google_login {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    height: 50px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+    transition: box-shadow 218ms ease;
+    border-radius: 2px;
+    overflow:hidden;
+    @include hover {
+        box-shadow: 0 0 3px 3px rgba(66,133,244,.3);
+    }
+    img {
+        height: 100%;
+        border: 1px solid #4285f4;
+        
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+    span {
+        display: inline-block;
+        background-color: #4285f4;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        color: #fff;
+        white-space: nowrap;
+        text-align: center;
+    }
+}
 
 </style>

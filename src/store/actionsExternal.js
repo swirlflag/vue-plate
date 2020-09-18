@@ -56,6 +56,7 @@ import {
     request_jobsList ,
 } from '@/api';
 
+
 const apiActions = {
     async fetch_newsList(context){
         const response = await request_newsList();
@@ -72,15 +73,15 @@ const apiActions = {
 
 const authActions = {
 
-    async auth_google(context) {
-        
-        console.log(context.state);
-        // const googleAcount = await context.$gAuth.signIn();
-        // console.log(googleAcount);
-        // context.commit('RECORD_login');
-        // context.commit('RECORD_loginType', 'google');
-        // return googleAcount;
+    auth_googleSuccess(context, googleUser) {
+        console.log('success google login');
+        console.log(googleUser);
+    },
+    
+    auth_cancle(context,error) {
+        console.log(error);
     }
+
 }
 
 const actionsExternal = {

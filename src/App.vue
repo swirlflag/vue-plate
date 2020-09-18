@@ -64,7 +64,7 @@ export default {
         },
         '$route.path'(now) {
             window.scrollTo(0,0);
-            this.$_ua.pageview(now).send();
+            console.log(this.$_ua);
         },
 
     },
