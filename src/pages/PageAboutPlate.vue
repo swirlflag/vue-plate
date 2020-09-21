@@ -13,10 +13,10 @@
                     html,body
                 </div>
                 <div class="paragraph__text">
-                    html, body는 아래의 app 위로 바로 맞닿은 document root 입니다. <br>
+                    html, body는 #app 위로 바로 맞닿은 document root 입니다. <br>
                     html > body > #app 의 형태로 구조화 되어있으며 이런 구조때문에 공식적으로 뷰 내부에서는 body를 refs할수 없습니다.
                     따라서 문서 전체를 대상으로 하는 특수한 경우(IOS포함한 스크롤 잠금)가 아니라면 
-                    언제나 하위의 #app을 root 기준으로 합니다. 
+                    언제나 하위의 #app을 root로 삼습니다.
                 </div>
                 <div class="paragraph__title size--3">
                     #app
@@ -38,7 +38,7 @@
                     </strong>
                 </div>
                 <div class="paragraph__text">
-                    눈치 채셨겠지만 분류의 특징은 자칫 지역으로 흩어질수 있는 기능들의 root 바로 아래의 병렬 규합이며 모두 유지할 필요 없이 프로젝트에서 추가, 제거 하며 사용하면 됩니다. (예) particle_plate , chatbot_plate )
+                    이 분류의 특징은 자칫 지역으로 흩어질수 있는 기능들의 root 바로 아래의 병렬 규합이며 모두 유지할 필요 없이 프로젝트에서 추가, 제거 하며 사용하면 됩니다. (예) particle_plate , chatbot_plate, visual_plate )
                 </div>
                 <div class="paragraph__title size--3">
                     #modal_plate

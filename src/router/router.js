@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import { store } from '@/store/store.js';
+
+import Page404          from '@/pages/Page404.vue';
 import PageMain         from '@/pages/PageMain.vue';
 import PageGlobal       from '@/pages/PageGlobal.vue';
 import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
@@ -13,10 +16,25 @@ const routerInfo =  {
     mode : 'history',
     routes : [
         {
+            path        : '*',
+            name        : 'redirect path',
+            beforeEnter(to,from,next) {
+                router.replace('/404');
+                next(false);
+            }   
+        }
+        ,
+        {
+            path        : '/404',
+            name        : '404 not found',
+            component   : Page404,
+        }
+        ,
+        {
             path        : '/',
             name        : 'Main',
             component   : PageMain,
-            
+
         }
         ,
         {
@@ -29,53 +47,46 @@ const routerInfo =  {
             path        : '/global',
             name        : 'Global',
             component   : PageGlobal,
-        },
+        }
+        ,
         {
             path        : '/api',
             name        : 'API',
             component   : PageAPI,
-        },
+        }
+        ,
         {
             path        : '/plugin',
             name        : 'Plugin',
             component   : PagePlugin,
-        },
+        }
 
-        // {
-        //     path : '/news',
-        //     name : 'news',
-        //     component : ViewNews,
-        //     beforeEnter : (to,from,next) => {
-        //         bus.$emit('start:spinner');
-        //         store.dispatch('FETCH_NEWS')
-        //             .then(() => next())
-        //             .catch((error) => {
-        //                 console.log(error)
-        //             })
-        //         ;
-        //     }
-        // },
     ],
 }
 
 const router = new VueRouter(routerInfo);
 
-// router.beforeResolve((to, from, next) => {
-//     console.log({to,from,next});
-// })
+router.beforeEach((to,from,next) => {
+    
+    if(store.state.is_pageScrollLock){
+        store.dispatch('showModalAlert' , '라우터가드 테스트')
+        next(false);
+        return;
+    }
 
-console.log(router.beforeEach);
-
-router.beforeEach(() => {
-    console.log(1);
+    next();
 })
 
-router.afterEach((to) => {        
-    const vue = router.app;    
-    if(!router.app){
-        return
+router.afterEach((to) => {
+
+    if(router.app){
+
+        if(store.state.is_dev){
+            router.app.$_ua.pageview(to.path).send();
+        }
+
     }
-    vue.$_ua.pageview(to.path).send();
+
 });
 
 export {

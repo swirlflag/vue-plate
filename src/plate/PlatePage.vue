@@ -10,13 +10,14 @@
 // 페이지 등록은 router.js로 
 
 export default {
-    name : 'PagePlate',
+    name : 'PlatePage',
 }
 </script>
 
 <style scoped lang="scss">
 #page_plate {
     flex: 1;
+    flex-basis: 100%;
 }
 </style>
 <style lang="scss">

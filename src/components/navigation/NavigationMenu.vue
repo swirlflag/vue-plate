@@ -3,7 +3,7 @@
         <div class="nav__menu__dimd" v-on:click="closeGlobalMenu"></div>
         <div class="nav__menu__wrap">
             <ul class="nav__menu__links">
-                <li     v-for="(route,idx) in routesInfo" 
+                <li     v-for="(route,idx) in gnbRoutesList" 
                         v-bind:key="idx"
                         class="nav__menu__link" 
                 >
@@ -22,6 +22,14 @@ export default {
     props : {
         isOpenMenu : Boolean,
         routesInfo : Array,
+    },
+    computed : {
+        gnbRoutesList() {
+            return this.routesInfo.filter(c =>  {
+                return c.path !== '*'  
+                    && c.path !== '/404'
+            });
+        },
     },
     methods : {
         closeGlobalMenu() {
@@ -65,7 +73,7 @@ export default {
         top: 0; left: 0;
         width: 50%;
         height: 100%;
-        border-right: 4px dashed $COLOR_theme;
+        border-right: 3px solid $COLOR_theme;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -79,7 +87,7 @@ export default {
         @include phone {
             padding-top: 84px;
             border-right: none;
-            border-bottom: 4px dashed $COLOR_theme;
+            border-bottom: 3px solid $COLOR_theme;
             transform: translateY(-101%);
             width: 100%; height: auto;
             padding: $SIZE_MO_distanceContent;
@@ -111,7 +119,7 @@ export default {
 
             > a {
                 display: inline-block;
-                border-bottom: 4px dashed transparent;
+                border-bottom: 4px solid transparent;
                 &.router-link-active {
                     border-color: $COLOR_theme;
                 }

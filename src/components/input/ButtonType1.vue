@@ -44,7 +44,7 @@ export default {
 .button--type1 {
     border: 1px solid #fff;
     min-width : 100px;
-    border: 4px dashed $COLOR_theme;
+    border: 2px solid $COLOR_theme;
     box-sizing : border-box;
     display: inline-block;
     text-align: center;

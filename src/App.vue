@@ -15,45 +15,45 @@
 
         <template v-if="this.$store.state.use_coverdPlate">
             <!-- IE 및 기타 환경 대체 화면 -->
-            <CoverPlate/>
+            <PlateCover/>
         </template>
 
         <template v-else>
             <!-- 모달 -->
-            <ModalPlate/>
+            <PlateModal/>
 
             <!-- 네비게이션 -->
-            <NavigationPlate/>
+            <PlateNavigation/>
 
             <!-- 백그라운드 fix -->
-            <!-- <BackgroundPlate/> -->
+            <!-- <PlateBackground/> -->
 
             <!-- 스피너 -->
-            <!-- <SpinnerPlate/> -->
+            <!-- <PlateSpinner/> -->
 
             <!-- 라우터 페이지 -->
-            <PagePlate/>
+            <PlatePage/>
             
             <!-- 공통 footer-->
-            <FooterPlate/>
+            <PlateFooter/>
+
         </template>
 
     </div>
 </template>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
 
-import NavigationPlate      from '@/plate/NavigationPlate.vue';
-import ModalPlate           from '@/plate/ModalPlate.vue';
-import PagePlate            from '@/plate/PagePlate.vue';
-import FooterPlate          from '@/plate/FooterPlate.vue';
-import CoverPlate           from '@/plate/CoverPlate.vue';
+import PlateNavigation      from '@/plate/PlateNavigation.vue';
+import PlateModal           from '@/plate/PlateModal.vue';
+import PlatePage            from '@/plate/PlatePage.vue';
+import PlateFooter          from '@/plate/PlateFooter.vue';
+import PlateCover           from '@/plate/PlateCover.vue';
 
 export default {
     name: 'App',
     components: {
-        NavigationPlate , ModalPlate , PagePlate , FooterPlate , CoverPlate
+        PlateNavigation , PlateModal , PlatePage , PlateFooter , PlateCover
     },
     data() {
         return {
@@ -62,7 +62,7 @@ export default {
     },
     computed : {
         pageName () {
-            return this.$route.name
+            return this.$route.name || ''
         },
     },
     watch : {
@@ -74,16 +74,12 @@ export default {
                 body.classList.remove('st-lockscroll');
             }
         },
-        '$route.path'(now) {
+        '$route.path'() {
             window.scrollTo(0,0);
         },
 
     },
-    methods : {
-    },
-    created() {
-        // console.log(this.$store.state.use_coverdPlate);
-    },
+
 };
 </script>
 

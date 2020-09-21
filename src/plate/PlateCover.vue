@@ -26,7 +26,7 @@
 
 <script>
 export default {
-    name : 'CoverPlate',
+    name : 'PlateCover',
 }
 </script>
 

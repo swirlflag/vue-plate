@@ -56,7 +56,7 @@
             </div>
 
             <div class="paragraph__text">
-                모든 공통 모달은 ModalPlate.vue에 모아 관리되며 이는 router로 관리되는 page_plate보다 상위에 위치해 있어, 
+                모든 공통 모달은 PlateModal.vue에 모아 관리되며 이는 router로 관리되는 page_plate보다 상위에 위치해 있어, 
                 path에 관계없이 호출 및 변경할수 있습니다.
             </div>
 

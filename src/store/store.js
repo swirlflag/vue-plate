@@ -12,7 +12,9 @@ import actionsRouter        from '@/store/actionsRouter.js';
 Vue.use(Vuex);
 
 const gloablState  = {
+    is_dev          : false,
     use_coverdPlate : false,
+    is_pageScrollLock : false,
 }
 
 const modalState = {
@@ -48,13 +50,10 @@ const userData = {
 
 const store = new Vuex.Store({
     state : {
-        is_pageScrollLock : false,
-        
         ...gloablState,
         ...modalState,
         ...userData,
         ...fetchData,
-
     },
     mutations : {
         ...mutationsClient,

@@ -30,7 +30,11 @@ export default {
     name : 'NavigationGnb',
     computed : {
         gnbRoutesList() {
-            return this.routesInfo.filter(c => !(c.path === '/') );
+            return this.routesInfo.filter(c => {
+                return c.path !== '*'
+                    && c.path !== '/'
+                    && c.path !== '/404'
+            });
         }
     },
     methods : {
@@ -38,9 +42,6 @@ export default {
             this.$emit('toggleGlobalMenu');
         }
     },
-    created() {
-        
-    }
 }
 </script>
 
@@ -48,14 +49,14 @@ export default {
 @import '@/style/_mixin.scss';
 
 .nav__gnb {
-    border-bottom: 4px dashed $COLOR_theme;
+    border-bottom: 3px solid $COLOR_theme;
     color: #fff;
     position: absolute;
     width: 100%;
     top: 0; left: 0;
     padding: 41px $SIZE_PC_distanceContent;
     box-sizing: border-box;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
     
     @include phone {
         padding: $SIZE_MO_distanceContent;
@@ -91,8 +92,8 @@ export default {
             border-radius: 23px 5px 0px 5px;
             line-height: 1em;
             border: 4px solid $COLOR_theme;
-            border-left-style: dashed;
-            border-top-style: dashed;
+            border-left-width: 2px;
+            border-top-width: 2px;
 
             font-family: 'Black Han Sans', sans-serif; 
             font-weight: 400;
@@ -137,7 +138,7 @@ export default {
                 }
                 > a {
                     color: $COLOR_theme;
-                    border-bottom: 4px dashed transparent;
+                    border-bottom: 3px solid transparent;
                     &.router-link-active {
                         border-color : $COLOR_theme;
                     }
@@ -151,15 +152,14 @@ export default {
 
         .nav__gnb__menubutton {
             width: 48px; height: 48px;
-            border: 4px solid $COLOR_theme;
-            border-left-style: dashed;
+            border: 3px solid $COLOR_theme;
             box-sizing: border-box;
             position: relative;
             z-index: 12;
             
             span {
                 position: absolute;
-                width : 25px; height : 4px;
+                width : 25px; height : 3px;
                 display: inline-block;
                 background-color: $COLOR_theme;
                 top : 50%; left: 50%;

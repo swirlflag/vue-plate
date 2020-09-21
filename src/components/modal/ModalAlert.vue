@@ -56,7 +56,7 @@ export default {
     opacity: 0;
     z-index: 1020;
     background-color: $COLOR_layer_background;
-    border: 4px dashed $COLOR_theme;
+    border: 2px solid $COLOR_theme;
     padding: 30px;
     display : flex;
     flex-direction: column;
@@ -64,6 +64,7 @@ export default {
     align-items: center;
     text-align: center;
     pointer-events: none;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
     transition: transform 260ms $EASE_inCubic , 
                 opacity 250ms ease
                 ;

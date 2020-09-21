@@ -24,7 +24,6 @@ export default {
 
 .footer__outer {
     padding: $SIZE_PC_distanceContent;
-    border-top: 4px dashed $COLOR_theme_background;
     background-color:$COLOR_theme;
     box-sizing: border-box;
     color:$COLOR_theme_background;

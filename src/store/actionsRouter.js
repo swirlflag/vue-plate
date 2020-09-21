@@ -3,7 +3,7 @@
 */
 
 const actionsRouter =  {
-    routerGuardLockScroll() {
+    cannotNextScrollLock () {
         console.log(11);
     }
 

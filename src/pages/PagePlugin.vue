@@ -4,7 +4,7 @@
 
             <div class="paragraph">
                 <div class="paragraph__title size--1">
-                    플러그인
+                    플러그인 (작성중)
                 </div>
                 <div class="paragraph__divider"></div>
                 <div class="paragraph__title size--2">
@@ -36,6 +36,13 @@
 
                 <div class="paragraph__text">
                     
+                </div>
+
+                <div class="paragraph__title size--2">
+                    결제
+                </div>
+                <div class="paragraph__text">
+                    결제는 기본적으로 iamport가 등록되어있습니다.
                 </div>
                 
             </div>

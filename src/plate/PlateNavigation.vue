@@ -1,7 +1,7 @@
 <template>
 <!-- 
     MEMO :
-    NavigationPlate 에선, 기본적으로 가로, 세로 100% 인 #nav 라는 레이어에서 
+    PlateNavigation 에선, 기본적으로 가로, 세로 100% 인 #nav 라는 레이어에서 
     전역 성격으로 적절한 네비게이션들을 배치합니다
     #nav 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
     #nav 이하의 컴포넌트들은 자유롭게 배치할수 있습니다.
@@ -10,7 +10,7 @@
     <nav id="nav_plate">        
 
         <!-- 예시 : gnb 영역 네비게이션 컴포넌트 -->
-        <NavigationGnb  v-on:toggleGlobalMenu="toggleGlobalMenu" 
+        <NavigationGnb  v-on:toggleGlobalMenu="toggleGlobalMenu"
                         v-bind:routesInfo="routesInfo"
                         
         />            
@@ -32,7 +32,7 @@ import NavigationGnb    from '@/components/navigation/NavigationGnb.vue';
 import NavigationMenu   from '@/components/navigation/NavigationMenu.vue';
 
 export default {
-    name : 'NavigationPlate',
+    name : 'PlateNavigation',
     components : { NavigationGnb , NavigationMenu },
     data () {
         return {
@@ -44,14 +44,20 @@ export default {
         '$route' () {
             this.closeGlobalMenu();
         },
-        'isOpenMenu' () {
-            this.$emit('changeGnbState' , this.isOpenMenu);
-        },
     },
     methods : {
-        toggleGlobalMenu()  { this.isOpenMenu = !this.isOpenMenu },
-        openGlobalMenu()    { this.isOpenMenu = true },
-        closeGlobalMenu()   { this.isOpenMenu = false },
+        toggleGlobalMenu() {
+            this.isOpenMenu = !this.isOpenMenu;
+            this.$store.commit(this.isOpenMenu ? 'LOCK_scroll' : 'UNLCOK_scroll');
+        },
+        openGlobalMenu() { 
+            this.isOpenMenu = true;
+            this.$store.commit('LOCK_scroll');
+        },
+        closeGlobalMenu() { 
+            this.isOpenMenu = false;
+            this.$store.commit('UNLOCK_scroll');
+        },
     },
     created() {
         
