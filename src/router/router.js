@@ -1,14 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// // import bus from '../utils/bus.js';
-// // import { store } from '../store/index.js';
-
-// // import ViewNews from '../views/ViewNews.vue';
-// // import ViewAsk from '../views/ViewAsk.vue';
-// // import ViewJobs from '../views/ViewJobs.vue';
-// // import ViewItem from '../views/ViewItem.vue';
-// // import ViewUser from '../views/ViewUser.vue';
-// // import CreateListView from '../views/CreateListView.js';
 
 import PageMain         from '@/pages/PageMain.vue';
 import PageGlobal       from '@/pages/PageGlobal.vue';
@@ -25,6 +16,7 @@ const routerInfo =  {
             path        : '/',
             name        : 'Main',
             component   : PageMain,
+            
         }
         ,
         {
@@ -61,13 +53,30 @@ const routerInfo =  {
         //                 console.log(error)
         //             })
         //         ;
-
         //     }
         // },
     ],
 }
 
 const router = new VueRouter(routerInfo);
+
+// router.beforeResolve((to, from, next) => {
+//     console.log({to,from,next});
+// })
+
+console.log(router.beforeEach);
+
+router.beforeEach(() => {
+    console.log(1);
+})
+
+router.afterEach((to) => {        
+    const vue = router.app;    
+    if(!router.app){
+        return
+    }
+    vue.$_ua.pageview(to.path).send();
+});
 
 export {
     router,

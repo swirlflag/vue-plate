@@ -5,26 +5,38 @@
             TODO: 
             구글 로그인
             카카오 로그인
-            라우터 가드 셋팅
+            라우터 가드 
             스피너
             API 셋팅
+            smoothscroll
+            table
+            IE
          -->
 
-        <!-- 모달 -->
-        <ModalPlate/>
+        <template v-if="this.$store.state.use_coverdPlate">
+            <!-- IE 및 기타 환경 대체 화면 -->
+            <CoverPlate/>
+        </template>
 
-        <!-- 네비게이션 -->
-        <NavigationPlate/>
+        <template v-else>
+            <!-- 모달 -->
+            <ModalPlate/>
 
-        <!-- 백그라운드 fix -->
+            <!-- 네비게이션 -->
+            <NavigationPlate/>
 
-        <!-- 스피너 -->
+            <!-- 백그라운드 fix -->
+            <!-- <BackgroundPlate/> -->
 
-        <!-- 라우터 페이지 -->
-        <PagePlate/>
-        
-        <!-- 공통 footer-->
-        <FooterPlate/>
+            <!-- 스피너 -->
+            <!-- <SpinnerPlate/> -->
+
+            <!-- 라우터 페이지 -->
+            <PagePlate/>
+            
+            <!-- 공통 footer-->
+            <FooterPlate/>
+        </template>
 
     </div>
 </template>
@@ -32,22 +44,22 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
 
-import NavigationPlate      from '@/components/plate/NavigationPlate.vue';
-import ModalPlate           from '@/components/plate/ModalPlate.vue';
-import PagePlate            from '@/components/plate/PagePlate.vue';
-import FooterPlate          from '@/components/plate/FooterPlate.vue';
+import NavigationPlate      from '@/plate/NavigationPlate.vue';
+import ModalPlate           from '@/plate/ModalPlate.vue';
+import PagePlate            from '@/plate/PagePlate.vue';
+import FooterPlate          from '@/plate/FooterPlate.vue';
+import CoverPlate           from '@/plate/CoverPlate.vue';
 
 export default {
     name: 'App',
     components: {
-        NavigationPlate , ModalPlate , PagePlate , FooterPlate
+        NavigationPlate , ModalPlate , PagePlate , FooterPlate , CoverPlate
     },
     data() {
         return {
             scrollPosition : 0,
         }
     },
-    
     computed : {
         pageName () {
             return this.$route.name
@@ -70,6 +82,7 @@ export default {
     methods : {
     },
     created() {
+        // console.log(this.$store.state.use_coverdPlate);
     },
 };
 </script>

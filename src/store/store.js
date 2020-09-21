@@ -7,8 +7,13 @@ import mutationsExternal    from '@/store/mutationsExternal.js';
 
 import actionsClient        from '@/store/actionsClient.js';
 import actionsExternal      from '@/store/actionsExternal.js';
+import actionsRouter        from '@/store/actionsRouter.js';
 
 Vue.use(Vuex);
+
+const gloablState  = {
+    use_coverdPlate : false,
+}
 
 const modalState = {
 
@@ -32,7 +37,8 @@ const fetchData = {
     jobsList : [],
 };
 
-const userState = {
+
+const userData = {
     is_login    : false,
     loginType   : null,
     ua_visitor  : null,
@@ -43,10 +49,12 @@ const userState = {
 const store = new Vuex.Store({
     state : {
         is_pageScrollLock : false,
-
+        
+        ...gloablState,
         ...modalState,
-        ...userState,
+        ...userData,
         ...fetchData,
+
     },
     mutations : {
         ...mutationsClient,
@@ -54,6 +62,7 @@ const store = new Vuex.Store({
     },
     actions : {
         ...actionsClient,
+        ...actionsRouter,
         ...actionsExternal,
     },
 });

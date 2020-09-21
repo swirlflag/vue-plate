@@ -8,6 +8,28 @@
             </div>
 
             <div class="paragraph__divider"></div>
+
+            <div class="paragraph__title size--2">
+                Scroll Lock
+            </div>
+
+            <div class="paragraph__text st-italic">
+                현재 스크롤 잠금 : {{ this.$store.state.is_pageScrollLock }}
+            </div>
+
+            <div>
+                <ButtonType1 v-on:click="toggleScrollLock" >
+                    스크롤 lock/unlock 테스트
+                </ButtonType1>
+            </div>
+
+            <div class="paragraph__text">
+                스크롤 잠금 기능은 page의 컨텐츠를 주 대상으로 합니다. 
+                만약 모달 컨텐츠 내부의 내용이 많아서 스크롤 되어야 한다면, 해당 엘리먼트 내부의 스크롤로 처리합니다.
+                이때 스크롤 영역을 감싸는 엘리먼트는 window의 크기보다 작아야 합니다.
+            </div>
+
+            <span class="paragraph__divider"></span>
             
             <div class="paragraph__title size--2">
                 Modal Syetem
@@ -34,7 +56,7 @@
             </div>
 
             <div class="paragraph__text">
-                모든 공통 모달은 ModalPlate.vue에 모아 관리되며 이는 router로 관리되는 page보다 상위에 위치해 있어, 
+                모든 공통 모달은 ModalPlate.vue에 모아 관리되며 이는 router로 관리되는 page_plate보다 상위에 위치해 있어, 
                 path에 관계없이 호출 및 변경할수 있습니다.
             </div>
 
@@ -55,28 +77,25 @@
             </div>
             <div class="paragraph__text">
                 모든 모달의 컨텐츠는 각자가 아닌 #modal이 가지고 있는 .modal__dimmed를 공통으로 이용하여 딤드를 표시합니다.
+                따라서 모달의 컨텐츠를 호출할때 딤드의 호출 조작도 함께 해야하며 이를통해 딤드를 표시할 모달과 그렇지 않은 모달을 동적으로 제어할수 있습니다.
             </div>
 
             <span class="paragraph__divider"></span>
-
+            
             <div class="paragraph__title size--2">
-                Scroll Lock
+                IE 대응 환경
             </div>
-
-            <div class="paragraph__text st-italic">
-                현재 스크롤 잠금 : {{ this.$store.state.is_pageScrollLock }}
-            </div>
-
             <div>
-                <ButtonType1 v-on:click="toggleScrollLock" >
-                    스크롤 lock/unlock 테스트
+                <ButtonType1 v-on:click="coverdTest" >
+                    IE 대응 페이지 확인
                 </ButtonType1>
+                 &nbsp;새로고침을 통해 돌아와 주세요.
             </div>
-
             <div class="paragraph__text">
-                스크롤 잠금 기능은 page의 컨텐츠를 주 대상으로 합니다. 
-                만약 모달 컨텐츠 내부의 내용이 많아서 스크롤 되어야 한다면, 해당 엘리먼트 내부의 스크롤로 처리합니다.
-                이때 스크롤 영역을 감싸는 엘리먼트는 window의 크기보다 작아야 합니다.
+                IE 및 대응 하려는 환경에서 표시할 페이지를 따로 제작해 표시할수 있습니다. 
+                이경우 본 페이지의 메인 컨텐츠엔 접근할 수 없으며 
+                프로젝트의 성격에 따라 핵심 컨텐츠를 약식으로 표시해주거나, 적절히 생략합니다.
+                또한 특별한 이상이 없는 경우에 다른 환경에서 접속할 수 있는 안내를 반드시 해주어야 합니다.
             </div>
 
         </div>
@@ -114,7 +133,12 @@ export default {
             }else {
                 this.$store.commit('LOCK_scroll');
             }
+        },
+
+        coverdTest() {
+            this.$store.state.use_coverdPlate = true
         }
+        
     }
 }
 </script>

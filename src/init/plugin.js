@@ -13,6 +13,23 @@ import VueCookies   from "vue-cookies";             // https://www.npmjs.com/pac
 import { installCDN } from '@/util';
 
 const cdns = {
+    /*
+        cdn컨텐츠를 vue에 가져와 확장하는 객체입니다.
+        cdn의 A 객체를 가져온다면, vue내에서 this.$_A로 접근해 사용할수 있습니다.
+        이하 작성 내용
+
+        [ cdn이름 ] : {
+
+            url : cdn 스크립트 태그에 들어갈 url,
+
+            plugins : ['리스트1' , '리스트2'] 형태의 배열. cdn에서 import 하려는 메소드나 객체의 이름.
+
+            success : cdn이 불러와지고 vue에 등록된 이후의 성공 콜백. cdn컨텐츠가 init등을 요구할시 이곳에 적어줍니다.
+
+        }
+          
+    */    
+
     kakao : {
         // https://developers.kakao.com/docs/latest/ko/sdk-download/js
         url : "https://developers.kakao.com/sdk/js/kakao.js",  
@@ -33,6 +50,7 @@ const cdns = {
 }
 
 export default {
+    // vue root에 등록
     install(Vue) {        
 
         installCDN(Vue, cdns)

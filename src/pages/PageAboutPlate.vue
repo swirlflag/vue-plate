@@ -6,6 +6,9 @@
                     기본구조와 Plate
                 </div>
                 <div class="paragraph__divider"></div>
+                <div class="paragraph__title size--2">
+                    태그 구조
+                </div>
                 <div class="paragraph__title size--3">
                     html,body
                 </div>
@@ -34,6 +37,9 @@
                         <br>┗ #footer_plate
                     </strong>
                 </div>
+                <div class="paragraph__text">
+                    눈치 채셨겠지만 분류의 특징은 자칫 지역으로 흩어질수 있는 기능들의 root 바로 아래의 병렬 규합이며 모두 유지할 필요 없이 프로젝트에서 추가, 제거 하며 사용하면 됩니다. (예) particle_plate , chatbot_plate )
+                </div>
                 <div class="paragraph__title size--3">
                     #modal_plate
                 </div>
@@ -51,13 +57,13 @@
                 </div>
                 <div class="paragraph__text">
                     page_plate에서는 router.js에서 관리되는 router-view를 가지고 있습니다.
-                    라우팅을 따로 관리하므로 이 플레이트에선 페이지 전역의 스타일과 로직을 관리합니다.
+                    라우팅은 router.js에서 관리하므로 이 플레이트에선 페이지 전역의 스타일과 로직을 관리합니다.
                 </div>
                 <div class="paragraph__title size--3">
                     #footer_plate
                 </div>
                 <div class="paragraph__text">
-                    웹 하단의 공통 footer plate입니다. 
+                    웹 컨텐츠 하단의 공통 footer plate입니다. 
                     스타일 표현 방식에 따라 page_plate에 올려진 각 페이지 컴포넌트로 위치를 이동시킬수도 있습니다.
                 </div>
             </div>

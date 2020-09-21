@@ -9,7 +9,7 @@
 
                 <div class="paragraph__text">
                     뷰 플레이트에서 api호출은 기본적으로 두 단계로 나뉘어 있습니다.
-                    @/api/index.js 에서 api에 대한 직접적인 호출에 대한 작성을 하고, 실제 사용은 action에서 이루어지게 됩니다.
+                    @/api/index.js 에서 api에 대한 직접적인 리퀘스트 내용을 작성하고, 실제 사용은 action에서 이루어지게 됩니다.
                     따라서 apiActions들은 fetch(requset + write 로 가정) 의 기능을 기본적으로 가지고 있으며 return되는 then을 통해 지역적으로 로직을 추가할 수 있습니다. 
                 </div>
                 <div class="paragraph__text">

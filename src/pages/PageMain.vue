@@ -18,23 +18,23 @@
                 환경
             </div>
             <div class="paragraph__text">
-                vue-cli v4.x버전의 vue-create를 사용해 프로젝트 생성후 아래의 항목을 설치했습니다.
+                vue-cli v4.x버전의 vue-create를 사용해 프로젝트를 생성했으며 아래와 같은 항목들이 설치되어 있습니다. (오름차순)
             </div>
             <div class="paragraph__title size--3">
                 dependencies
             </div>
             <ul class="paragraph__list">
-                <li>axios</li>
-                <li>sass</li>
-                <li>vue-router</li>
-                <li>vuex</li>
+                <li v-for="(item,idx) in dependencies" v-bind:key="idx">
+                    {{ item }}
+                </li>
             </ul>
             <div class="paragraph__title size--3">
                 dev-dependencies
             </div>
             <ul class="paragraph__list">
-                <li>node-sass</li>
-                <li>sass-loader</li>
+                <li v-for="(item,idx) in devDependencies" v-bind:key="idx">
+                    {{ item }}
+                </li>
             </ul>
         </div>
     </div>
@@ -42,8 +42,18 @@
 </template>
 
 <script>
+
+import packageData from '../../package.json';
+
 export default {
     name : 'page_main',
+    data() {
+        return {
+            dependencies : Object.keys(packageData.dependencies),
+            devDependencies : Object.keys(packageData.devDependencies),
+        }
+    },
+    
 }
 </script>
 
