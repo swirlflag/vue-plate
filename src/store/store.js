@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import ua from 'universal-analytics';
 
 import mutationsClient      from '@/store/mutationsClient.js';
 import mutationsExternal    from '@/store/mutationsExternal.js';
@@ -39,14 +38,12 @@ const fetchData = {
     jobsList : [],
 };
 
-
 const userData = {
     is_login    : false,
     loginType   : null,
     ua_visitor  : null,
     accessToken : null,
 }
-
 
 const store = new Vuex.Store({
     state : {

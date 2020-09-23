@@ -17,16 +17,7 @@ const routerInfo =  {
     routes : [
         {
             path        : '*',
-            name        : 'redirect path',
-            beforeEnter(to,from,next) {
-                router.replace('/404');
-                next(false);
-            }   
-        }
-        ,
-        {
-            path        : '/404',
-            name        : '404 not found',
+            name        : '404',
             component   : Page404,
         }
         ,
@@ -34,7 +25,6 @@ const routerInfo =  {
             path        : '/',
             name        : 'Main',
             component   : PageMain,
-
         }
         ,
         {
@@ -67,13 +57,6 @@ const routerInfo =  {
 const router = new VueRouter(routerInfo);
 
 router.beforeEach((to,from,next) => {
-    
-    if(store.state.is_pageScrollLock){
-        store.dispatch('showModalAlert' , '라우터가드 테스트')
-        next(false);
-        return;
-    }
-
     next();
 })
 

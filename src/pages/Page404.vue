@@ -19,6 +19,11 @@ export default {
         gotoMain() {
             this.$router.push('/');
         }
+    },
+    created() {
+        if(this.$route.path !== '/404'){
+            this.$router.replace('/404');
+        }
     }
 }
 </script>

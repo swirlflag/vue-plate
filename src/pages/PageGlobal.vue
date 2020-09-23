@@ -98,6 +98,20 @@
                 또한 특별한 이상이 없는 경우에 다른 환경에서 접속할 수 있는 안내를 반드시 해주어야 합니다.
             </div>
 
+            <span class="paragraph__divider"></span>
+            
+            <div class="paragraph__title size--2">
+                404
+            </div>
+            <div>
+                <ButtonType1 v-on:click="page404Test">
+                    임의의 랜덤 path로 이동
+                </ButtonType1>
+            </div>
+            <div class="paragraph__text">
+                
+            </div>
+
         </div>
     </div>
 </div>
@@ -137,7 +151,15 @@ export default {
 
         coverdTest() {
             this.$store.state.use_coverdPlate = true
-        }
+        },
+        page404Test() {
+            const randomPath = '/' + Math.floor(Math.random()*100);
+            const modalAlertPayload = {
+                message : `이동할 랜덤 path : ${randomPath}`,
+                close : () => this.$router.push(randomPath),
+            };
+            this.$store.dispatch('showModalAlert' , modalAlertPayload);
+        },
         
     }
 }

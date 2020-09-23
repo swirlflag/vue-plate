@@ -3,9 +3,6 @@
 */
 
 const actionsRouter =  {
-    cannotNextScrollLock () {
-        console.log(11);
-    }
 
 }
 
