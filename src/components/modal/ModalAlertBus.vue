@@ -1,13 +1,14 @@
+
 <template>
-    <div class="modal--alert" :class="{'st-show' : this.$store.state.is_modalAlertActive }">
+    <div class="modal--alert" :class="{'st-show' : true }">
         <div class="alert__title">
-            {{ this.$store.state.modalAlertTitle }}
+            타이틀
         </div>
         <div class="alert__message">
-            {{ this.$store.state.modalAlertMessage }}
+            메시지
         </div>
         <div class="alert__button">
-            <ButtonType1    :text="this.$store.state.modalAlertButtonConfirm" 
+            <ButtonType1    text="확인1" 
                             @click="close"
             />
         </div>
@@ -16,20 +17,24 @@
 
 <script>
 
-import ButtonType1 from '@/components/input/ButtonType1.vue'
+import ButtonType1 from '@/components/input/ButtonType1.vue';
 
 export default {
-    name: 'ModalAlert',
+    name : 'ModalAlert',
     components : {
-        ButtonType1,
+        ButtonType1
     },
-    methods : {
+    methods  : {
+        show(payload) {
+            console.log(payload);
+        },
         close() {
-            this.$store.dispatch('closeModalAlert');
-        }
+            console.log('close..');
+        },
     },
     created() {
-        
+        this.$modal.$on('alert:open' , this.show);
+        this.$modal.$on('alert:close', this.close);
     },
 }
 </script>

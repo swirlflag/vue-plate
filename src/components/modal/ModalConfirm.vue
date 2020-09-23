@@ -1,44 +1,45 @@
 <template>
-    <div class="modal--alert" :class="{'st-show' : this.$store.state.is_modalAlertActive }">
-        <div class="alert__title">
-            {{ this.$store.state.modalAlertTitle }}
+    <div class="modal--alert" :class="{'st-show' : this.$store.state.is_modalConfirmActive }">
+        <div class="alert__title">            
+            {{ this.$store.state.modalConfirmTitle }}
         </div>
         <div class="alert__message">
-            {{ this.$store.state.modalAlertMessage }}
+            {{ this.$store.state.modalConfirmMessage }}
         </div>
         <div class="alert__button">
-            <ButtonType1    :text="this.$store.state.modalAlertButtonConfirm" 
-                            @click="close"
+            <ButtonType1    :text="this.$store.state.modalConfirmButtonConfirm" 
+                            @click="confirm" 
+            />
+            &nbsp;
+            <ButtonType1    :text="this.$store.state.modalConfirmButtonCancle"
+                            @click="cancle"
             />
         </div>
     </div>
 </template>
 
 <script>
-
-import ButtonType1 from '@/components/input/ButtonType1.vue'
-
+import ButtonType1 from '@/components/input/ButtonType1.vue';
 export default {
-    name: 'ModalAlert',
+    name: 'ModalConfirm',
     components : {
         ButtonType1,
     },
     methods : {
-        close() {
-            this.$store.dispatch('closeModalAlert');
-        }
-    },
-    created() {
-        
+        confirm() {
+            this.$store.dispatch('closeModalConfirm' , true);
+        },
+        cancle() {
+            this.$store.dispatch('closeModalConfirm' , false);
+        },
     },
 }
 </script>
 
 <style lang="scss">
-
 @import '@/style/_mixin.scss';
 
-.modal--alert {
+.modal--confirm {
     max-width: 500px; min-width : 300px; 
     height: auto;
     position: absolute;

@@ -4,16 +4,16 @@
             <router-link class="nav__gnb__logo" to="/">뷰 플레이트</router-link>
             <ul class="nav__gnb__links">
                 <template   v-for="(route,idx) in gnbRoutesList">
-                    <li     v-bind:key="idx"
+                    <li     :key="idx"
                             class="nav__gnb__link" 
                     >
-                        <router-link v-bind:to="route.path" exact>
+                        <router-link :to="route.path" exact>
                             {{ route.name }}
                         </router-link>
                     </li>
                 </template>
             </ul>
-            <button class="nav__gnb__menubutton" v-on:click="toggleGlobalMenu">
+            <button class="nav__gnb__menubutton" @click="toggleGlobalMenu">
                 <span></span>
                 <span></span>
                 <span></span>

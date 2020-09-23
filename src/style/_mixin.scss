@@ -1,10 +1,7 @@
-/* 
-    MEMO : 
+/*
     공통으로 필요한 믹스인들을 가져옵니다.
     다른 파일에서 @import '@/style/_mixin.scss'를 선언하여 사용합니다.
 */
 
 @import '@/style/mixin/_variable.scss';
 @import '@/style/mixin/_media.scss';
-
-

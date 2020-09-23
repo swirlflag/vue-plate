@@ -1,9 +1,21 @@
 <template>
     <div class="page__outer">
         <div class="page__inner">
-            <h1><strong>404</strong> Page Not Found</h1>
+            <h1>
+                <strong>404</strong>
+                <br class="br-phone">
+                Page Not Found
+            </h1>
             <p>페이지를 찾을수 없습니다.</p>
-            <ButtonType1 v-on:click="gotoMain">메인으로 돌아가기</ButtonType1>
+            <div class="buttons">
+                <ButtonType1    text="메인으로 돌아가기"
+                                @click="gotoMain"
+                />
+
+                <ButtonType1    text="이전 페이지로"
+                                @click="gotoBack"
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -18,7 +30,10 @@ export default {
     methods : {
         gotoMain() {
             this.$router.push('/');
-        }
+        },
+        gotoBack() {
+            this.$router.go(-1);
+        },
     },
     created() {
         if(this.$route.path !== '/404'){
@@ -33,6 +48,9 @@ export default {
 
 .page__outer {
     height: 100%;
+    @include phone {
+        text-align: center;
+    }
 }
 .page__inner {
     height: 80%;
@@ -52,10 +70,33 @@ h1 {
     strong  {
         font-weight: 700;
     }
+
+    @include phone {
+        font-size: 5vw;
+        strong {
+            font-weight: 700;
+            font-size: 45vw;
+        }
+    }
 }
 
 p {
     font-size: 16px;
+}
+.buttons {
+    display: flex;
+
+    @include phone {
+        flex-direction: column;
+    }
+
+    > * {
+        margin-right: 20px;
+        @include phone {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
 }
 
 button {
@@ -63,5 +104,6 @@ button {
     border: 1px solid $COLOR_theme;
     display: inline-block;
 }
+
 
 </style>

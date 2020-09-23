@@ -1,21 +1,18 @@
+/* 
+    로직을 제외한 api에 대한 직접 호출을 정리합니다.
+    api에 대한 사용과 결과에 따른 로직은 @/store/actionsExternal.js 에서 정의합니다.
+*/
+
 import axios from 'axios';
 
 const config = {
-    baseUrl : "https://api.hnpwa.com/v0",
+    hackerNews : "https://api.hnpwa.com/v0",
 }
 
-const request_newsList = () => axios.get(`${config.baseUrl}/news/1.json`);
+export const request_newsList = () => axios.get(`${config.hackerNews}/news/1.json`);
 
-const request_jobsList = () => axios.get(`${config.baseUrl}/jobs/1.json`);
+export const request_jobsList = () => axios.get(`${config.hackerNews}/jobs/1.json`);
 
-const request_askList = () => axios.get(`${config.baseUrl}/ask/1.json`);
+export const request_askList = () => axios.get(`${config.hackerNews}/ask/1.json`);
 
-const request_list = (pageName) => axios.get(`${config.baseUrl}/${pageName}/1.json`);
-
-
-export {
-    request_newsList,
-    request_jobsList,
-    request_askList,
-    request_list
-}
+export const request_list = (pageName) => axios.get(`${config.hackerNews}/${pageName}/1.json`);

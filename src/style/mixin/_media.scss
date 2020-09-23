@@ -1,5 +1,4 @@
 /*
-    MEMO :
     필요한 media query mixin을 작성합니다.
     작성하려는 scss스코프 최상위에
     @import '@/style/_mixin.scss';
@@ -36,8 +35,9 @@ $STANDARD_fhd : 1920px;
 @mixin desktop {
 }
 
+
 @mixin hover {
-    &:hover {
+    #app.unuse_touch &:hover {
         @content;
     }
 }

@@ -1,13 +1,13 @@
 <template>
-    <div class="nav__menu" v-bind:class="{'st-open' : isOpenMenu}">
-        <div class="nav__menu__dimd" v-on:click="closeGlobalMenu"></div>
+    <div class="nav__menu" :class="{'st-open' : isOpenMenu}">
+        <div class="nav__menu__dimd" @click="closeGlobalMenu"></div>
         <div class="nav__menu__wrap">
             <ul class="nav__menu__links">
                 <li     v-for="(route,idx) in gnbRoutesList" 
-                        v-bind:key="idx"
+                        :key="idx"
                         class="nav__menu__link" 
                 >
-                    <router-link v-bind:to="route.path" exact>
+                    <router-link :to="route.path" exact>
                         {{ route.name }}
                     </router-link>
                 </li>

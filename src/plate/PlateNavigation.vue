@@ -10,16 +10,16 @@
     <nav id="nav_plate">        
 
         <!-- 예시 : gnb 영역 네비게이션 컴포넌트 -->
-        <NavigationGnb  v-on:toggleGlobalMenu="toggleGlobalMenu"
-                        v-bind:routesInfo="routesInfo"
+        <NavigationGnb  @toggleGlobalMenu="toggleGlobalMenu"
+                        :routesInfo="routesInfo"
                         
         />            
 
         <!-- 예시 : 메뉴로 열고닫는 네비게이션 컴포넌트-->
 
-        <NavigationMenu     v-bind:isOpenMenu="isOpenMenu"
-                            v-on:closeGlobalMenu="closeGlobalMenu"
-                            v-bind:routesInfo="routesInfo"
+        <NavigationMenu     :isOpenMenu="isOpenMenu"
+                            @closeGlobalMenu="closeGlobalMenu"
+                            :routesInfo="routesInfo"
         />
         
     </nav>

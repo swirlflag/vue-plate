@@ -25,17 +25,20 @@ const actionsClient =  {
             context.commit('CHANGE_modalAlertMessage' , payload);
         }else {
             const {
-                title, message , close,
+                title, message , close, confirmButton,
             } = payload;      
             
-            if(message){
-                context.commit('CHANGE_modalAlertMessage' , message);
-            }
             if(title){
                 context.commit('CHANGE_modalAlertTitle' , title);
             }
+            if(message){
+                context.commit('CHANGE_modalAlertMessage' , message);
+            }
+            if(confirmButton){
+                context.commit('CHANGE_modalAlertMessage' , message);
+            }
             if(close){
-                context.commit('REGIST_modalAlertClose' , close);
+                context.commit('REGIST_modalAlertActionClose' , close);
             }
         }
 
@@ -45,10 +48,46 @@ const actionsClient =  {
     },
 
     closeModalAlert(context) {
-        context.state.modalAlertCloseAction();
-        context.commit('RESET_modalAlertClose' , () => {});
+        context.state.modalAlertActionClose();
+        context.commit('RESET_modalAlertActionClose' , () => {});
         context.dispatch('disableModal');
         context.commit('HIDE_modalAlert');
+    },
+
+    showModalConfirm(context,payload) {
+        if(typeof payload === 'string'){
+            context.commit('CHANGE_modalConfirmMessage' , payload);
+        }else {
+            const {
+                title, message , close, confirmButton, cancleButton
+            } = payload;      
+
+            if(title){
+                context.commit('CHANGE_modalConfirmTitle' , title);
+            }
+            if(message){
+                context.commit('CHANGE_modalConfirmMessage' , message);
+            }
+            if(confirmButton){
+                context.commit('CHANGE_modalConfirmButtonConfirm' , confirmButton);
+            }
+            if(cancleButton){
+                context.commit('CHANGE_modalConfirmButtonCancle' , cancleButton);
+            }
+            if(close){
+                context.commit('REGIST_modalConfirmActionClose' , close);
+            }
+        }
+
+        context.dispatch('enableModal');
+        context.commit('SHOW_modalConfirm');
+    },
+
+    closeModalConfirm(context, confirmResult = false) {
+        context.state.modalConfirmActionClose(confirmResult);
+        context.commit('RESET_modalConfirmActionClose' , () => {});
+        context.dispatch('disableModal');
+        context.commit('HIDE_modalConfirm');
     },
 
 }

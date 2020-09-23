@@ -18,9 +18,9 @@
             </div>
 
             <div>
-                <ButtonType1 v-on:click="toggleScrollLock" >
-                    스크롤 lock/unlock 테스트
-                </ButtonType1>
+                <ButtonType1    text="스크롤 lock/unlock 테스트"
+                                @click="toggleScrollLock" 
+                />
             </div>
 
             <div class="paragraph__text">
@@ -41,14 +41,17 @@
             </div>
 
             <div>
-                <ButtonType1 v-on:click="alertSimple" >
-                    Simple Test
-                </ButtonType1>
+                <ButtonType1    text="Alert - simple"
+                                @click="alertSimple" 
+                />
                 &nbsp;
-                <ButtonType1 v-on:click="alertGotoMain" >
-                    Function Test
-                </ButtonType1>
-                
+                <ButtonType1    text="Alert - callback"
+                                @click="alertGotoMain" 
+                />
+                &nbsp;
+                <ButtonType1    text="Confirm - callback"
+                                @click="confirmSimple" 
+                />
             </div>
 
             <div class="paragraph__title size--3">
@@ -56,8 +59,8 @@
             </div>
 
             <div class="paragraph__text">
-                모든 공통 모달은 PlateModal.vue에 모아 관리되며 이는 router로 관리되는 page_plate보다 상위에 위치해 있어, 
-                path에 관계없이 호출 및 변경할수 있습니다.
+                모든 공통 모달의 구조는 PlateModal.vue에 모아 관리되며 이는 router로 관리되는 #page_plate보다 상위에 위치해 있어, 
+                path에 관계없이 호출 및 변경할수 있습니다. @/store/mutationsClient에서 조작하는 값에 의존합니다. @/store/actionClient에서 로직을 등록합니다.
             </div>
 
             <div class="paragraph__title size--3">
@@ -86,10 +89,11 @@
                 IE 대응 환경
             </div>
             <div>
-                <ButtonType1 v-on:click="coverdTest" >
-                    IE 대응 페이지 확인
-                </ButtonType1>
-                 &nbsp;새로고침을 통해 돌아와 주세요.
+                <ButtonType1    text="IE 대응 페이지 확인"
+                                @click="coverdTest" 
+                />
+                &nbsp;&nbsp;
+                새로고침을 통해 돌아와 주세요.
             </div>
             <div class="paragraph__text">
                 IE 및 대응 하려는 환경에서 표시할 페이지를 따로 제작해 표시할수 있습니다. 
@@ -103,10 +107,15 @@
             <div class="paragraph__title size--2">
                 404
             </div>
+            <div class="paragraph__text">
+                404 페이지는 기본적으로 router.js에서 해당되는 라우터 페이지가 없을때 자동으로 연결됩니다.
+                철저히 SPA인 클라이언트 기능만으로 동작하므로 정적 프로젝트를 넘어서면 404처리 로직을 어느정도 수정해야합니다.
+                방문한 에러 path는 history에서 곧바로 삭제하기 때문에 <strong>[ before → error → 404 ]</strong> 가 아닌 <strong>[ before → 404 ]</strong>의 기록이 남게 됩니다.
+            </div>
             <div>
-                <ButtonType1 v-on:click="page404Test">
-                    임의의 랜덤 path로 이동
-                </ButtonType1>
+                <ButtonType1    text="임의의 에러 path로 이동"
+                                @click="page404Test"
+                />
             </div>
             <div class="paragraph__text">
                 
@@ -132,14 +141,25 @@ export default {
     },
     methods : {
         alertSimple() {
-            this.$store.dispatch('showModalAlert' , '테스트 내용입니다');
+            this.$store.dispatch('showModalAlert' , '알림 내용이 들어갑니다.');
         },
         alertGotoMain() {
-            const modalAlertPayload = {
-                message : '확인을 누르면 메인으로 돌아갑니다',
+            const payload = {
+                message : '메인으로 이동합니다.',
                 close : () => this.$router.push('/'),
             };
-            this.$store.dispatch('showModalAlert', modalAlertPayload);
+            this.$store.dispatch('showModalAlert', payload);
+        },
+        confirmSimple() {
+            const payload = {
+                message : '하이',
+                title : '타타',
+                cancleButton : 'no',
+                close : (result) => {
+                    console.log(result)
+                },
+            };
+            this.$store.dispatch('showModalConfirm', payload);
         },
         toggleScrollLock () {
             if(this.$store.state.is_pageScrollLock){
@@ -155,7 +175,7 @@ export default {
         page404Test() {
             const randomPath = '/' + Math.floor(Math.random()*100);
             const modalAlertPayload = {
-                message : `이동할 랜덤 path : ${randomPath}`,
+                message : `${window.location.origin}${randomPath} 로 이동을 시도합니다.`,
                 close : () => this.$router.push(randomPath),
             };
             this.$store.dispatch('showModalAlert' , modalAlertPayload);

@@ -1,6 +1,7 @@
 <template>
-    <div id="app" v-bind:class="`page--${pageName.toLowerCase()}`">
+    <div id="app" :class="`${appClassNamePage} ${appClassNameDevice} ${appClassNameOS} ${appClassNameBrowser} ${appClassNameTouchdevice}` "
 
+    >
         <!-- 
             TODO: 
             구글 로그인
@@ -61,8 +62,20 @@ export default {
         }
     },
     computed : {
-        pageName () {
-            return this.$route.name || ''
+        appClassNamePage() {
+            return `page--${(this.$route.name || 'error').toLowerCase()}`;
+        },
+        appClassNameBrowser() {
+            return `browser--${this.$store.state.type_browser}`;
+        },
+        appClassNameOS() {
+            return `os--${this.$store.state.type_os}`;
+        },
+        appClassNameDevice() {
+            return `device--${this.$store.state.type_device}`;
+        },
+        appClassNameTouchdevice() {
+            return this.$store.state.is_touchDevice ? 'use_touch' : 'unuse_touch';
         },
     },
     watch : {
@@ -83,6 +96,7 @@ export default {
 };
 </script>
 
+<style src="@/style/global/font.css"></style>
 <style src="@/style/global/reset.css"></style>
 <style src="@/style/global/global.scss" lang="scss"></style>
 <style src="@/style/mixin/_test.scss" lang="scss"></style>

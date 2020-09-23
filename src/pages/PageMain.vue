@@ -1,6 +1,7 @@
 <template>
 <div class="page__outer">
     <div class="page__inner">
+        <button @click="TEST" style="border:1px solid #d3d">hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</button>
         <div class="paragraph">
             <div class="paragraph__title size--1">
                 HELLO, VUE PLATE.
@@ -24,7 +25,7 @@
                 dependencies
             </div>
             <ul class="paragraph__list">
-                <li v-for="(item,idx) in dependencies" v-bind:key="idx">
+                <li v-for="(item,idx) in dependencies" :key="idx">
                     {{ item }}
                 </li>
             </ul>
@@ -32,8 +33,19 @@
                 dev-dependencies
             </div>
             <ul class="paragraph__list">
-                <li v-for="(item,idx) in devDependencies" v-bind:key="idx">
+                <li v-for="(item,idx) in devDependencies" :key="idx">
                     {{ item }}
+                </li>
+            </ul>
+            <div class="paragraph__title size--2">
+                명령어
+            </div>
+            <div class="paragraph__text">
+                vue-create에서 제공하는 기본 명령어입니다.
+            </div>
+            <ul class="paragraph__list">
+                <li v-for="(item,idx) in packageScripts" :key="idx">
+                    npm run {{ item[0] }} : {{ item[1] }}
                 </li>
             </ul>
         </div>
@@ -51,13 +63,19 @@ export default {
         return {
             dependencies : Object.keys(packageData.dependencies),
             devDependencies : Object.keys(packageData.devDependencies),
+            packageScripts : Object.entries(packageData.scripts),
         }
     },
+    methods : {
+        TEST () {
+            this.$modal.$emit('alert:open' , 1212);
+        }
+    }
+    
     
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/style/_mixin.scss';
-
 </style>

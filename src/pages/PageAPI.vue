@@ -17,9 +17,9 @@
                 </div>
                 <ul class="paragraph__list">
                     <li v-for="item in newsList"
-                        v-bind:key="item.id"
+                        :key="item.id"
                     >
-                        <a v-bind:href="item.url" target="_blank">{{ item.title }}</a>
+                        <a :href="item.url" target="_blank">{{ item.title }}</a>
                     </li>
                 </ul>
                 <div class="paragraph__text">
@@ -27,9 +27,9 @@
                 </div>
                 <ul class="paragraph__list">
                     <li v-for="item in jobsList"
-                        v-bind:key="item.id"
+                        :key="item.id"
                     >
-                        <a v-bind:href="item.url" target="_blank">{{ item.title }}</a>                
+                        <a :href="item.url" target="_blank">{{ item.title }}</a>                
                     </li>
                 </ul>
             </div>

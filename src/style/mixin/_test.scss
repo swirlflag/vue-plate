@@ -1,12 +1,7 @@
 @import '@/style/_mixin.scss';
 /* 
-    MEMO :
     test.css의 사용 용도는 두가지이며. 전역에서 스코프 없이 적용됩니다.
     1. 테스트용 셀렉터를 미리 선언해두고, 레이아웃 개발시 적절히 사용한다. 
         ex) .TEST_border { border : 1px solid '#d3d'}
     2. 전역에서 스타일을 작성하며 테스트 해보고 싶을때 적으며 테스트하고, 추후 알맞은 자리에 이동시킨다.
 */
-
-body {
-    // overflow: hidden !important;
-}

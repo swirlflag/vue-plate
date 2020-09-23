@@ -21,14 +21,14 @@
                     Google 
                 </div>
                 <div class="paragraph__text">
-                    <ButtonGoogleLogin v-on:success="success" v-on:cancle="cancle"/>
+                    <ButtonGoogleLogin @success="success" @cancle="cancle"/>
                 </div>
                 <div class="paragraph__title size--3">
                     Kakao
                 </div>
                 <div class="paragraph__text">
-                    <ButtonKakaoLogin v-on:success="success" v-on:cancle="cancle"/>
-                    <br><button v-on:click="logouttest">로그아웃 테스트(카카오만)</button>
+                    <ButtonKakaoLogin @success="success" @cancle="cancle"/>
+                    <br><button @click="logouttest">로그아웃 테스트(카카오만)</button>
                 </div>
                 <div class="paragraph__title size--3">
                     Naver

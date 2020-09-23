@@ -1,6 +1,6 @@
 <template>
     <button     class="button--google_login" 
-                v-on:click="click"
+                @click="click"
     >
         <img src="@/assets/icon/googleAuth.svg" alt="구글 로그인 아이콘">
         <span>{{ buttonText }}</span>

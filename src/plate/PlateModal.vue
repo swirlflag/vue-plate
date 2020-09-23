@@ -6,44 +6,64 @@
     #modal 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
     #modal 이하의 컴포넌트들을 자유롭게 수정 확장할수 있습니다.
 -->
-    <div id="modal_plate" v-bind:class="{'st-active': this.$store.state.is_modalActive}">
+    <div id="modal_plate" :class="{'st-active': this.$store.state.is_modalActive}">
 
         <div    class="modal__dimmed" 
-                v-bind:class="{'st-show' : this.$store.state.is_modalDimmedActive}"
-                v-on:click="clickModalDimmed"
+                :class="{'st-show' : this.$store.state.is_modalDimmedActive}"
+                @click="clickModalDimmed"
         ></div>
 
-        <ModalAlert/>
+        <ModalAlert
+        />
+
+        <ModalConfirm 
+        />
+
+        <ModalAlertBus/>
 
     </div>
 </template>
 
 <script>
 
-import { mapState } from 'vuex';
-import  ModalAlert  from '@/components/modal/ModalAlert.vue';
+import { mapState }     from 'vuex';
+import ModalAlert       from '@/components/modal/ModalAlert.vue';
+
+import ModalConfirm     from '@/components/modal/ModalConfirm.vue';
+import ModalAlertBus    from '@/components/modal/ModalAlertBus.vue';
 
 export default {
+    name : "PlateModal",
+    components: {
+        ModalAlert , ModalConfirm , ModalAlertBus
+    },
+    data() {
+        return {
+            
+        }
+    },
     computed : {
         ...mapState([
             'use_clickDimmedThenCloseModal',
             'use_openModalThenLockScroll',
 
             'is_modalActive',
-            'is_ModalAlertActive',
+            'is_modalAlertActive',
         ]),
     },
-    components: {
-        ModalAlert
-    },
-
     methods : {
         clickModalDimmed() {
-            if(!this.use_clickDimmedThenCloseModal && !this.is_modalActive){
+            const {
+                state , dispatch ,
+            } = this.$store;
+            if(!state.use_clickDimmedThenCloseModal && !state.is_modalActive){
                 return;
             }
-            if(this.is_ModalAlertActive){
-                this.$store.dispatch('closeModalAlert');
+            if(state.is_modalAlertActive){
+                dispatch('closeModalAlert');
+            }
+            if(state.is_modalConfirmActive){
+                dispatch('closeModalConfirm', false);
             }
         }
     }

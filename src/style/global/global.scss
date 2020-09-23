@@ -1,3 +1,9 @@
+/*
+    프로젝트 전역에서 사용할 스타일을 작성합니다.
+    ex) 
+    스타일링을 했지만 컴포넌트화를 하지 않은 블록, 
+    외부에서 가져온 컴포넌트의 전역적인 스타일 수정
+*/
 @import '@/style/_mixin.scss';
 
 html , body {
@@ -62,6 +68,13 @@ body {
     text-shadow: none;
 }
 
+br.br-phone {
+    display: none;
+    @include phone {
+        display: block;
+    }
+}
+
 .paragraph {
     display: flex;
     flex-direction: column;
@@ -87,6 +100,7 @@ body {
         margin-top: 40px;
         margin-bottom: 40px;
         padding-right: 20px;
+        word-break: break-all;
         
         &.size--1 {
             font-size: 85px;

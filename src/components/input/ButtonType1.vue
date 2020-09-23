@@ -2,16 +2,16 @@
     <div class="button--type1">
 
         <button     v-if="!to"
-                    v-on:click="buttonClick"
+                    @click="buttonClick"
         >
-            {{ buttonText }}
+            {{ text }}
         </button>
 
         <router-link    v-if="to"
-                        v-bind:to="to"
-                        v-on:click="buttonClick"
+                        :to="to"
+                        @click="buttonClick"
         >
-            {{ buttonText }}
+            {{ text }}
         </router-link>
 
     </div>
@@ -21,21 +21,13 @@
 
 <script>
 export default {
-    props : ['to'],
+    props : ['to' , 'text' ],
     name : 'ButtonType1',
-    computed : {
-        buttonText() {
-            return this.$slots.default[0].text;
-        },
-    },
-    created() {
-    },
     methods : {
         buttonClick(){
             this.$emit('click');
         },
     },
-
 }
 </script>
 
