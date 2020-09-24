@@ -4,9 +4,15 @@
 
             <div class="paragraph">
                 <div class="paragraph__title size--1">
-                    플러그인 (작성중)
+                    플러그인 (아 너무어렵다)
                 </div>
                 <div class="paragraph__divider"></div>
+                <div class="paragraph__title size--2">
+                    플러그인 설치법
+                </div>
+                <div class="paragraph__text">
+                    플러그인 설치법 작성
+                </div>
                 <div class="paragraph__title size--2">
                     외부 로그인
                 </div>
@@ -42,7 +48,7 @@
                     결제
                 </div>
                 <div class="paragraph__text">
-                    결제는 기본적으로 iamport가 등록되어있습니다.
+                    결제는 기본적으로 iamport를 사용
                 </div>
                 
             </div>

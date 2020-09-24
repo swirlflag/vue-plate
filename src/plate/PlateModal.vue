@@ -30,7 +30,14 @@ import { mapState }     from 'vuex';
 import ModalAlert       from '@/components/modal/ModalAlert.vue';
 
 import ModalConfirm     from '@/components/modal/ModalConfirm.vue';
-import ModalAlertBus    from '@/components/modal/ModalAlertBus.vue';
+import ModalAlertBus , { alertStore } from '@/components/modal/ModalAlertBus.vue';
+
+const modalStore = {
+    name : 'modal',
+    alertStore,
+};
+
+export { modalStore };
 
 export default {
     name : "PlateModal",

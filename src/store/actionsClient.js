@@ -20,39 +20,39 @@ const actionsClient =  {
         context.commit('UNLOCK_scroll');
     },
 
-    showModalAlert(context, payload = {}) {
-        if(typeof payload === 'string'){
-            context.commit('CHANGE_modalAlertMessage' , payload);
-        }else {
-            const {
-                title, message , close, confirmButton,
-            } = payload;      
+    // showModalAlert(context, payload = {}) {
+    //     if(typeof payload === 'string'){
+    //         context.commit('CHANGE_modalAlertMessage' , payload);
+    //     }else {
+    //         const {
+    //             title, message , close, confirmButton,
+    //         } = payload;      
             
-            if(title){
-                context.commit('CHANGE_modalAlertTitle' , title);
-            }
-            if(message){
-                context.commit('CHANGE_modalAlertMessage' , message);
-            }
-            if(confirmButton){
-                context.commit('CHANGE_modalAlertMessage' , message);
-            }
-            if(close){
-                context.commit('REGIST_modalAlertActionClose' , close);
-            }
-        }
+    //         if(title){
+    //             context.commit('CHANGE_modalAlertTitle' , title);
+    //         }
+    //         if(message){
+    //             context.commit('CHANGE_modalAlertMessage' , message);
+    //         }
+    //         if(confirmButton){
+    //             context.commit('CHANGE_modalAlertMessage' , message);
+    //         }
+    //         if(close){
+    //             context.commit('REGIST_modalAlertActionClose' , close);
+    //         }
+    //     }
 
-        context.dispatch('enableModal');
-        context.commit('SHOW_modalAlert');
+    //     context.dispatch('enableModal');
+    //     context.commit('SHOW_modalAlert');
         
-    },
+    // },
 
-    closeModalAlert(context) {
-        context.state.modalAlertActionClose();
-        context.commit('RESET_modalAlertActionClose' , () => {});
-        context.dispatch('disableModal');
-        context.commit('HIDE_modalAlert');
-    },
+    // closeModalAlert(context) {
+    //     context.state.modalAlertActionClose();
+    //     context.commit('RESET_modalAlertActionClose' , () => {});
+    //     context.dispatch('disableModal');
+    //     context.commit('HIDE_modalAlert');
+    // },
 
     showModalConfirm(context,payload) {
         if(typeof payload === 'string'){

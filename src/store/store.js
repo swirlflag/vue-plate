@@ -8,6 +8,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { registerStore } from '@/util';
+
 import mutationsClient      from '@/store/mutationsClient.js';
 import mutationsExternal    from '@/store/mutationsExternal.js';
 
@@ -15,7 +17,10 @@ import actionsClient        from '@/store/actionsClient.js';
 import actionsExternal      from '@/store/actionsExternal.js';
 import actionsRouter        from '@/store/actionsRouter.js';
 
+import { modalStore }       from '@/plate/PlateModal.vue';
+
 Vue.use(Vuex);
+
 const globalState  = {
     is_dev              : false,
     is_touchDevice      : false,
@@ -68,7 +73,8 @@ const userData = {
     accessToken : null,
 }
 
-const store = new Vuex.Store({
+const store1 = {
+    // name : 'global',
     state : {
         ...globalState,
         ...appState,
@@ -85,7 +91,14 @@ const store = new Vuex.Store({
         ...actionsRouter,
         ...actionsExternal,
     },
-});
+}
+{store1}
+
+const store = new Vuex.Store(
+    registerStore(store1, modalStore)
+);
+
+// console.log( registerStore(store1 , modalStore));
 
 export {
     store,

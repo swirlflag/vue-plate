@@ -1,9 +1,57 @@
 /*
     프로젝트 내에서 사용할 유틸리티들을 export해줍니다.
 */
-import Vue from 'vue';
 
-export const bus = new Vue();
+export const registerStore = (...stores) => {
+
+    let complete = {};
+
+    const flatteningStore = (store , result = {}) => {
+        result.name        = store.name       ||  result.name|| null;
+        result.state       = result.state      || {};
+        result.getters     = result.getters    || {};
+        result.mutations   = result.mutations  || {};
+        result.actions     = result.actions    || {};
+
+        for(const [key,value] of Object.entries(store)){
+            switch (key) {
+                case ('state') : 
+                case ('getters') : 
+                case ('mutations') :
+                case ('actions') : {
+                    if(key === 'state' && result.name) {
+                        result.state[result.name] = {
+                            ...result.state[result.name],
+                            ...value,
+                        }
+                    }else {
+                        result[key] = {
+                            ...result[key],
+                            ...value,
+                        }
+                    }
+                    break;
+                }
+                default : {
+                    if(typeof value === 'object') {
+                        flatteningStore(value,result)
+                    }
+                    break;
+                }
+            }
+        }
+    
+        return result;
+    }
+
+    for(const value of Object.values(stores)) {
+        complete = flatteningStore(value,complete)
+    }
+    
+    complete.name = 'complete';
+
+    return complete;
+}
 
 export const installCDN = (Vue, cdns) => {
 
@@ -119,3 +167,4 @@ export const detectTouchdevice = () => {
         return false;  
     }  
 };
+

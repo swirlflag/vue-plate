@@ -10,8 +10,9 @@
             스피너
             API 셋팅
             smoothscroll
-            table
             IE
+            모달 bus방식 시도 취소하고 각 파일에서 vuex로 편입하기
+            다국어 시스템...
          -->
 
         <template v-if="this.$store.state.use_coverdPlate">

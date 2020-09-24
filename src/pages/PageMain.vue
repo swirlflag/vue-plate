@@ -1,7 +1,6 @@
 <template>
 <div class="page__outer">
     <div class="page__inner">
-        <button @click="TEST" style="border:1px solid #d3d">hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</button>
         <div class="paragraph">
             <div class="paragraph__title size--1">
                 HELLO, VUE PLATE.
@@ -67,12 +66,7 @@ export default {
         }
     },
     methods : {
-        TEST () {
-            this.$modal.$emit('alert:open' , 1212);
-        }
     }
-    
-    
 }
 </script>
 

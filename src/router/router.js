@@ -9,6 +9,7 @@ import PageGlobal       from '@/pages/PageGlobal.vue';
 import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
 import PageAPI          from '@/pages/PageAPI.vue';
 import PagePlugin       from '@/pages/PagePlugin.vue';
+import PageTest         from '@/pages/PageTest.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,12 @@ const routerInfo =  {
             path        : '*',
             name        : '404',
             component   : Page404,
+        }
+        ,
+        {
+            path        : '/test',
+            name        : 'test',
+            component   : PageTest,
         }
         ,
         {

@@ -1,6 +1,6 @@
 
 <template>
-    <div class="modal--alert" :class="{'st-show' : true }">
+    <div class="modal--alert" :class="{'st-show' : this.$store.state.modal.is_modalAlertActive }">
         <div class="alert__title">
             타이틀
         </div>
@@ -12,6 +12,8 @@
                             @click="close"
             />
         </div>
+        <!-- {{ this.$store.state.modal.is_modalAlertActive }} -->
+        <!-- {{this.$store.state.modal.s1}} -->
     </div>
 </template>
 
@@ -19,22 +21,89 @@
 
 import ButtonType1 from '@/components/input/ButtonType1.vue';
 
+const alertStore = {
+    state : {
+        is_modalAlertActive         : false ,
+        modalAlertTitle             : '알림',
+        modalAlertMessage           : '알림 내용입니다.' ,
+        modalAlertButtonConfirm     : '확인' ,
+        modalAlertActionClose       : () => {},
+    },
+    mutations : {
+        SHOW_modalAlertBus({modal})     { modal.is_modalAlertActive = true } ,  
+        HIDE_modalAlert({modal})        { modal.is_modalAlertActive = false } ,
+
+        // CHANGE_modalAlertTitle(state, title = '') {
+        //     state.modalAlertTitle = title;
+        // },
+        // CHANGE_modalAlertMessage(state, message = '') {
+        //     state.modalAlertMessage = message;
+        // },
+        // CHANGE_modalAlertButtonConfirm(state,confirmButtonText = '') {
+        //     state.modalAlertButtonConfirm = confirmButtonText;
+        // },
+        // REGIST_modalAlertActionClose (state, action = () => {}) {
+        //     state.modalAlertActionClose = action;
+        // },
+        // RESET_modalAlertActionClose (state) {
+        //     state.modalAlertActionClose = () => {};
+        // },
+
+    },
+    actions : {
+        showModalAlert(context, payload = {}) {
+            {context,payload}
+
+            if(typeof payload === 'string'){
+                context.commit('CHANGE_modalAlertMessage' , payload);
+            }else {
+                // const {
+                //     title, message , close, confirmButton,
+                // } = payload;      
+                
+                // if(title){
+                //     context.commit('CHANGE_modalAlertTitle' , title);
+                // }
+                // if(message){
+                //     context.commit('CHANGE_modalAlertMessage' , message);
+                // }
+                // if(confirmButton){
+                //     context.commit('CHANGE_modalAlertMessage' , message);
+                // }
+                // if(close){
+                //     context.commit('REGIST_modalAlertActionClose' , close);
+                // }
+            }
+
+            context.dispatch('enableModal');
+            context.commit('SHOW_modalAlert');
+            
+        },
+
+        closeModalAlert(context) {
+            {context}
+            // context.state.modalAlertActionClose();
+            // context.commit('RESET_modalAlertActionClose' , () => {});
+            // context.dispatch('disableModal');
+            // context.commit('HIDE_modalAlert');
+        },
+    },
+}
+
+export { alertStore };
+
 export default {
     name : 'ModalAlert',
     components : {
         ButtonType1
     },
     methods  : {
-        show(payload) {
-            console.log(payload);
-        },
         close() {
-            console.log('close..');
+            this.$store.dispatch('closeModalAlert');
         },
     },
     created() {
-        this.$modal.$on('alert:open' , this.show);
-        this.$modal.$on('alert:close', this.close);
+        // this.$store.commit('SHOW_modalAlertBus');
     },
 }
 </script>
