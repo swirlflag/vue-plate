@@ -1,17 +1,17 @@
 <template>
-    <div class="modal--alert" :class="{'st-show' : this.$store.state.is_modalConfirmActive }">
+    <div class="modal--alert" :class="{'st-show' : modal.is_confirmActive }">
         <div class="alert__title">            
-            {{ this.$store.state.modalConfirmTitle }}
+            {{ modal.confirmTitle }}
         </div>
         <div class="alert__message">
-            {{ this.$store.state.modalConfirmMessage }}
+            {{ modal.confirmMessage }}
         </div>
         <div class="alert__button">
-            <ButtonType1    :text="this.$store.state.modalConfirmButtonConfirm" 
+            <ButtonType1    :text="modal.confirmButtonConfirm" 
                             @click="confirm" 
             />
             &nbsp;
-            <ButtonType1    :text="this.$store.state.modalConfirmButtonCancle"
+            <ButtonType1    :text="modal.confirmButtonCancle"
                             @click="cancle"
             />
         </div>
@@ -19,11 +19,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ButtonType1 from '@/components/input/ButtonType1.vue';
 export default {
     name: 'ModalConfirm',
     components : {
         ButtonType1,
+    },
+    computed : {
+        ...mapState(['modal'])
     },
     methods : {
         confirm() {
@@ -33,7 +37,88 @@ export default {
             this.$store.dispatch('closeModalConfirm' , false);
         },
     },
-}
+    created() {
+        this.$store.commit('MODAL_addDimmedClickAction' , () => {
+            if(this.modal.is_confirmActive) {
+                this.cancle();
+            }
+        });
+    },
+};
+
+export const confirmStore = {
+
+    state : {
+
+        is_confirmActive           : false,
+        confirmTitle               : '확인 알림' ,
+        confirmMessage             : '확인 내용입니다.' ,
+        confirmButtonConfirm       : '확인' ,
+        confirmButtonCancle        : '취소' ,
+        confirmActionClose         : () => {} ,
+
+    },
+
+    mutations : {
+
+        MODAL_showConfirm(state) {
+            state.modal.is_confirmActive = true;
+        },
+        MODAL_hideConfirm(state) {
+            state.modal.is_confirmActive = false;
+        },
+        MODAL_changeConfirmTitle(state, title = '') {
+            state.modal.confirmTitle = title;
+        },
+        MODAL_changeConfirmMessage(state, message = '') {
+            state.modal.confirmMessage = message;
+        },
+        MODAL_changeConfirmButtonConfirm(state,confirmButtonText = '') {
+            state.modal.confirmButtonConfirm = confirmButtonText;
+        },
+        MODAL_changeConfirmButtonCancle(state,cancleButtonText = '') {
+            state.modal.confirmButtonCancle = cancleButtonText;
+        },
+        MODAL_registConfirmActionClose(state,action = () => {}) {
+            state.modal.confirmActionClose = action;
+        },
+        MODAL_resetConfirmActionClose(state) {
+            state.modal.confirmActionClose = () => {};
+        },
+
+    },
+
+    actions : {
+
+        showModalConfirm({commit, dispatch},payload = {}) {
+            if(typeof payload === 'string') {
+                commit('MODAL_changeConfirmMessage' , payload);
+            }else {
+                const {
+                    title, message , close, confirmButton, cancleButton
+                } = payload;
+
+                title           && commit('MODAL_changeConfirmTitle' , title);
+                message         && commit('MODAL_changeConfirmMessage' , message);
+                confirmButton   && commit('MODAL_changeConfirmButtonConfirm' , confirmButton);
+                cancleButton    && commit('MODAL_changeConfirmButtonCancle' , cancleButton);
+                close           && commit('MODAL_registConfirmActionClose' , close);
+            }
+
+            dispatch('enableModal');
+            commit('MODAL_showConfirm');
+        },
+
+        closeModalConfirm({state, commit, dispatch}, confirmResult = false) {
+            dispatch('disableModal');
+            commit('MODAL_hideConfirm');
+            state.modal.confirmActionClose(confirmResult);
+            commit('MODAL_resetConfirmActionClose' , () => {});
+        },
+        
+    },
+};
+
 </script>
 
 <style lang="scss">

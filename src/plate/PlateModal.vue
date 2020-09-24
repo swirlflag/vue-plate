@@ -6,75 +6,109 @@
     #modal 자체는 기본적으로 윈도우(100%,100%)의 크기를 가지며 position : fixed입니다.
     #modal 이하의 컴포넌트들을 자유롭게 수정 확장할수 있습니다.
 -->
-    <div id="modal_plate" :class="{'st-active': this.$store.state.is_modalActive}">
+    <div id="modal_plate" :class="{'st-active': this.$store.state.is_active}">
 
         <div    class="modal__dimmed" 
-                :class="{'st-show' : this.$store.state.is_modalDimmedActive}"
+                :class="{'st-show' : modal.is_dimmedActive}"
                 @click="clickModalDimmed"
-        ></div>
+        >
+        </div>
+
+        <ModalConfirm
+        />
 
         <ModalAlert
         />
-
-        <ModalConfirm 
-        />
-
-        <ModalAlertBus/>
 
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
-import { mapState }     from 'vuex';
-import ModalAlert       from '@/components/modal/ModalAlert.vue';
-
-import ModalConfirm     from '@/components/modal/ModalConfirm.vue';
-import ModalAlertBus , { alertStore } from '@/components/modal/ModalAlertBus.vue';
-
-const modalStore = {
-    name : 'modal',
-    alertStore,
-};
-
-export { modalStore };
+import ModalConfirm     , { confirmStore }  from '@/components/modal/ModalConfirm.vue';
+import ModalAlert       , { alertStore }    from '@/components/modal/ModalAlert.vue';
 
 export default {
     name : "PlateModal",
     components: {
-        ModalAlert , ModalConfirm , ModalAlertBus
-    },
-    data() {
-        return {
-            
-        }
+         ModalConfirm , ModalAlert
     },
     computed : {
-        ...mapState([
-            'use_clickDimmedThenCloseModal',
-            'use_openModalThenLockScroll',
-
-            'is_modalActive',
-            'is_modalAlertActive',
-        ]),
+        ...mapState(['modal'])
     },
     methods : {
         clickModalDimmed() {
-            const {
-                state , dispatch ,
-            } = this.$store;
-            if(!state.use_clickDimmedThenCloseModal && !state.is_modalActive){
+            if(!this.modal.use_clickDimmedThenCloseModal && !this.modal.is_active){
                 return;
             }
-            if(state.is_modalAlertActive){
-                dispatch('closeModalAlert');
-            }
-            if(state.is_modalConfirmActive){
-                dispatch('closeModalConfirm', false);
+            for(let i = 0, l = this.modal.clickDimmedActions.length; i < l; ++i){
+                this.modal.clickDimmedActions[i]();
             }
         }
     }
-}
+};
+
+export const modalStore = {
+    name : 'modal',
+    alertStore,
+    confirmStore,
+
+    state : {
+
+        use_clickDimmedThenCloseModal   : true,
+        use_openModalWithLockScroll     : true,
+        use_openModalWithShowDimmed     : true,
+
+        is_active                       : false,
+        is_dimmedActive                 : false,
+
+        clickDimmedActions              : [],
+
+    },
+
+    mutations : {
+
+        MODAL_enalbe (state) {
+            state.modal.is_active = true;
+        },
+        MODAL_disable (state) {
+            state.modal.is_active = false;
+        },
+
+        MODAL_enableDimmed (state) {
+            state.modal.is_dimmedActive = true;
+        },
+        MODAL_disableDimmed (state) {
+            state.modal.is_dimmedActive = false;
+        },
+        MODAL_addDimmedClickAction(state,action = () => {}) {
+            state.modal.clickDimmedActions.push(action);
+        },
+        
+    },
+
+    actions : {
+
+        enableModal({state,commit}) {
+            commit('MODAL_enalbe');
+            if(state.modal.use_openModalWithShowDimmed){
+                commit('MODAL_enableDimmed');
+            }
+            if(state.modal.use_openModalWithLockScroll){
+                commit('SCROLL_lock');
+            }
+        },
+
+        disableModal({commit}) {
+            commit('MODAL_disable');
+            commit('MODAL_disableDimmed');
+            commit('SCROLL_unlock');
+        },
+
+    },
+};
+
 </script>
 
 <style lang="scss" scoped>

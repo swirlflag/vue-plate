@@ -163,9 +163,9 @@ export default {
         },
         toggleScrollLock () {
             if(this.$store.state.is_pageScrollLock){
-                this.$store.commit('UNLOCK_scroll');
+                this.$store.commit('SCROLL_unlock');
             }else {
-                this.$store.commit('LOCK_scroll');
+                this.$store.commit('SCROLL_lock');
             }
         },
 

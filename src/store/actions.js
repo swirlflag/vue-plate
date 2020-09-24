@@ -1,6 +1,3 @@
-/* 
-    클리이언트 외부 연동 기능과 로직에 연관된 동작들을 정의합니다.    
-*/
 
 import {
     request_newsList ,
@@ -55,4 +52,5 @@ const actionsExternal = {
     ...apiActions,    
     ...authActions,
 };
+
 export default actionsExternal;

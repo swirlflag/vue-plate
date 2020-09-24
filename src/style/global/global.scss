@@ -56,8 +56,10 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-right: 3px solid $COLOR_theme;
+    transition: border 0.3s ease;
     &:hover {
         cursor: pointer;
+        border-right: 8px solid $COLOR_theme;
         border-color : $COLOR_theme_highlight;
     }
 }

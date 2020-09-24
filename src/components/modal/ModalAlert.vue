@@ -1,13 +1,13 @@
 <template>
-    <div class="modal--alert" :class="{'st-show' : this.$store.state.is_modalAlertActive }">
+    <div class="modal--alert" :class="{'st-show' : modal.is_alertActive }">
         <div class="alert__title">
-            {{ this.$store.state.modalAlertTitle }}
+            {{ modal.alertTitle }}
         </div>
         <div class="alert__message">
-            {{ this.$store.state.modalAlertMessage }}
+            {{ modal.alertMessage }}
         </div>
         <div class="alert__button">
-            <ButtonType1    :text="this.$store.state.modalAlertButtonConfirm" 
+            <ButtonType1    :text="modal.alertButtonConfirm" 
                             @click="close"
             />
         </div>
@@ -15,23 +15,93 @@
 </template>
 
 <script>
-
-import ButtonType1 from '@/components/input/ButtonType1.vue'
+import { mapState } from 'vuex';
+import ButtonType1 from '@/components/input/ButtonType1.vue';
 
 export default {
-    name: 'ModalAlert',
+    name : 'ModalAlert',
     components : {
-        ButtonType1,
+        ButtonType1
     },
-    methods : {
+    computed : {
+        ...mapState(['modal'])
+    },
+    methods  : {
         close() {
             this.$store.dispatch('closeModalAlert');
-        }
+        },
     },
     created() {
-        
+        this.$store.commit('MODAL_addDimmedClickAction',() => {
+            if(this.modal.is_alertActive){
+                this.close();
+            }
+        });
     },
 }
+
+export const alertStore = {
+    state : {
+        is_alertActive         : false ,
+        alertTitle             : '알림',
+        alertMessage           : '알림 내용입니다.' ,
+        alertButtonConfirm     : '확인' ,
+        alertActionClose       : () => {},
+    },
+    mutations : {
+        MODAL_showAlert(state) { 
+            state.modal.is_alertActive = true;
+        },  
+        MODAL_hideAlert(state) { 
+            state.modal.is_alertActive = false;
+        },
+        MODAL_changeAlertTitle(state, title = '') {
+            state.modal.alertTitle = title;
+        },
+        MODAL_changeAlertMessage(state, message = '') {
+            state.modal.alertMessage = message;
+        },
+        MODAL_changeAlertButtonConfirm(state,confirmButtonText = '') {
+            state.modal.alertButtonConfirm = confirmButtonText;
+        },
+        MODAL_registAlertActionClose (state, action = () => {}) {
+            state.modal.alertActionClose = action;
+        },
+        MODAL_resetAlertActionClose (state) { 
+            state.modal.alertActionClose = () => {};
+        },
+    },
+    actions : {
+        showModalAlert({commit, dispatch}, payload = {}) {
+
+            if(typeof payload === 'string'){
+                commit('MODAL_changeAlertMessage' , payload);
+            }else {
+                const {
+                    title, message , close, confirmButton,
+                } = payload;    
+                    
+                title           && commit('MODAL_changeAlertTitle' , title);
+                message         && commit('MODAL_changeAlertMessage' , message);
+                confirmButton   && commit('MODAL_changeAlertButtonConfirm' , confirmButton);
+                close           && commit('MODAL_registAlertActionClose' , close);
+            }
+
+            dispatch('enableModal');
+            commit('MODAL_showAlert');
+            
+        },
+
+        closeModalAlert({state,commit, dispatch}) {
+            dispatch('disableModal');
+            commit('MODAL_hideAlert');
+            state.modal.alertActionClose();
+            commit('MODAL_resetAlertActionClose' , () => {});
+        },
+
+    },
+}
+
 </script>
 
 <style lang="scss">

@@ -7,6 +7,7 @@ import Page404          from '@/pages/Page404.vue';
 import PageMain         from '@/pages/PageMain.vue';
 import PageGlobal       from '@/pages/PageGlobal.vue';
 import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
+import PageStore        from '@/pages/PageStore.vue';
 import PageAPI          from '@/pages/PageAPI.vue';
 import PagePlugin       from '@/pages/PagePlugin.vue';
 import PageTest         from '@/pages/PageTest.vue';
@@ -38,6 +39,12 @@ const routerInfo =  {
             path        : '/plate',
             name        : 'Plate',
             component   : PageAboutPlate,
+        }        
+        ,
+        {
+            path        : '/store',
+            name        : 'Store',
+            component   : PageStore,
         }        
         ,
         {

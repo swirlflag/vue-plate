@@ -10,16 +10,16 @@
     <nav id="nav_plate">        
 
         <!-- 예시 : gnb 영역 네비게이션 컴포넌트 -->
-        <NavigationGnb  @toggleGlobalMenu="toggleGlobalMenu"
-                        :routesInfo="routesInfo"
-                        
+        <NavigationGnb  
+            @toggleGlobalMenu="toggleGlobalMenu"
+            :routesInfo="routesInfo"            
         />            
 
         <!-- 예시 : 메뉴로 열고닫는 네비게이션 컴포넌트-->
-
-        <NavigationMenu     :isOpenMenu="isOpenMenu"
-                            @closeGlobalMenu="closeGlobalMenu"
-                            :routesInfo="routesInfo"
+        <NavigationMenu     
+            :isOpenMenu="isOpenMenu"
+            @closeGlobalMenu="closeGlobalMenu"
+            :routesInfo="routesInfo"
         />
         
     </nav>
@@ -48,15 +48,15 @@ export default {
     methods : {
         toggleGlobalMenu() {
             this.isOpenMenu = !this.isOpenMenu;
-            this.$store.commit(this.isOpenMenu ? 'LOCK_scroll' : 'UNLCOK_scroll');
+            this.$store.commit(this.isOpenMenu ? 'SCROLL_lock' : 'UNLCOK_scroll');
         },
         openGlobalMenu() { 
             this.isOpenMenu = true;
-            this.$store.commit('LOCK_scroll');
+            this.$store.commit('SCROLL_lock');
         },
         closeGlobalMenu() { 
             this.isOpenMenu = false;
-            this.$store.commit('UNLOCK_scroll');
+            this.$store.commit('SCROLL_unlock');
         },
     },
     created() {

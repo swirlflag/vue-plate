@@ -2,12 +2,12 @@
     프로젝트 내에서 사용할 유틸리티들을 export해줍니다.
 */
 
-export const registerStore = (...stores) => {
+export const combineStore = (...stores) => {
 
-    let complete = {};
+    let combine = {};
 
     const flatteningStore = (store , result = {}) => {
-        result.name        = store.name       ||  result.name|| null;
+        result.name        = store.name        ||  result.name  || null;
         result.state       = result.state      || {};
         result.getters     = result.getters    || {};
         result.mutations   = result.mutations  || {};
@@ -45,12 +45,12 @@ export const registerStore = (...stores) => {
     }
 
     for(const value of Object.values(stores)) {
-        complete = flatteningStore(value,complete)
+        combine = flatteningStore(value,combine)
     }
     
-    complete.name = 'complete';
+    combine.name = 'complete';
 
-    return complete;
+    return combine;
 }
 
 export const installCDN = (Vue, cdns) => {

@@ -3,102 +3,40 @@
     store를 직접 변경하는 경우는 최대한 피하며 예외인 대표적인 예시는 @/init/init.js입니다.
     컨텐츠가 전역적 성격을 띄더라도 제어가 지역적이면 컴포넌트에서 값을 관리합니다. 
     현재 네비게이션의 여닫기 조작이 대표적인 예시이며 만약 페이지에서 네비게이션 조작에 관여한다면 store를 사용하는게 좋습니다.
+
+    다른 파일에서 store를 정의해서 이곳에 등록할수 있습니다. 이경우에 combineStore를 사용해 vuex를 선언해야 하며 
+    name 속성을 추가하면 stroe.stage 아래에 객체로 값을 관리할수 있습니다. 중첩 구조는 불가능합니다.
+    name을 사용했다면 값을 불러올때도 this.$store.state[name]까지 접근해야 내부에 선언한 값을 볼수있습니다.
 */
 
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { registerStore } from '@/util';
+import { combineStore } from '@/util';
 
-import mutationsClient      from '@/store/mutationsClient.js';
-import mutationsExternal    from '@/store/mutationsExternal.js';
+import state            from '@/store/state.js';
+import mutations        from '@/store/mutations.js';
+import actions          from '@/store/actions.js';
 
-import actionsClient        from '@/store/actionsClient.js';
-import actionsExternal      from '@/store/actionsExternal.js';
-import actionsRouter        from '@/store/actionsRouter.js';
+import { 
+    userStore 
+} from '@/store/miniStore.js';
 
-import { modalStore }       from '@/plate/PlateModal.vue';
+import { modalStore }   from '@/plate/PlateModal.vue';
 
 Vue.use(Vuex);
 
-const globalState  = {
-    is_dev              : false,
-    is_touchDevice      : false,
-    use_coverdPlate     : false,
-
-    type_device         : '',
-    type_browser        : '',
-    type_os             : '',
-};
-
-const appState = {
-    is_pageScrollLock   : false,
-}
-
-const modalState = {
-
-    use_clickDimmedThenCloseModal   : true,
-    use_openModalWithLockScroll     : true,
-    use_openModalWithShowDimmed     : true,
-
-    is_modalActive                  : false,
-    is_modalDimmedActive            : false,
-
-    // Modal Alert
-    is_modalAlertActive             : false,
-    modalAlertTitle                 : '알림' ,
-    modalAlertMessage               : '알림 내용입니다.' ,
-    modalAlertButtonConfirm         : '확인' ,
-    modalAlertActionClose           : () => {},
-
-    // Modal Confirm     
-    is_modalConfirmActive           : false,
-    modalConfirmTitle               : '확인 알림' ,
-    modalConfirmMessage             : '확인 내용입니다.' ,
-    modalConfirmButtonConfirm       : '확인' ,
-    modalConfirmButtonCancle        : '취소' ,
-    modalConfirmActionClose         : () => {} ,
-    
-};
-
-const fetchData = {
-    newsList : [],
-    jobsList : [],
-};
-
-const userData = {
-    is_login    : false,
-    loginType   : null,
-    ua_visitor  : null,
-    accessToken : null,
-}
-
-const store1 = {
-    // name : 'global',
-    state : {
-        ...globalState,
-        ...appState,
-        ...modalState,
-        ...userData,
-        ...fetchData,
-    },
-    mutations : {
-        ...mutationsClient,
-        ...mutationsExternal,
-    },
-    actions : {
-        ...actionsClient,
-        ...actionsRouter,
-        ...actionsExternal,
-    },
-}
-{store1}
-
 const store = new Vuex.Store(
-    registerStore(store1, modalStore)
+    combineStore(
+        {
+            state,
+            mutations,
+            actions,
+        },
+        modalStore,
+        userStore,
+    )
 );
-
-// console.log( registerStore(store1 , modalStore));
 
 export {
     store,
