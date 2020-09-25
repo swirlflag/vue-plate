@@ -59,8 +59,8 @@
             </div>
 
             <div class="paragraph__text">
-                모든 공통 모달의 구조는 PlateModal.vue에 모아 관리되며 이는 router로 관리되는 #page_plate보다 상위에 위치해 있어, 
-                path에 관계없이 호출 및 변경할수 있습니다. @/store/mutationsClient에서 조작하는 값에 의존합니다. @/store/actionClient에서 로직을 등록합니다.
+                모든 공통 모달의 구조는 PlateModal.vue에 모아 관리되며 이는 router로 관리되는 #page_plate보다 엘리먼트가 상위에 위치해 있어, 
+                페이지에 관계없이 호출 및 변경할수 있습니다. 기본적으로 조작값들을 store에 등록해서 사용합니다.
             </div>
 
             <div class="paragraph__title size--3">
