@@ -16,18 +16,28 @@ const mutations = {
     },
 
     LOGIN(state) {
-        state.is_login = true;
+        state.user.is_login = true;
     },
     LOGOUT(state) {
-        state.is_login = false;
+        state.user.is_login = false;
     },
     
     RECORD_accessToken(state,token = '') {
-        state.accessToken = token;
+        state.user.accessToken = token;
     }, 
     RECORD_loginType(state,type = '') {
-        state.loginType = type;
+        state.user.loginType = type;
     },
+
+    WRITE_language(state,language = {}) {
+        state.language = language;
+    },
+    WRITE_languageKinds(state, languageKinds = []) {
+        state.languageKinds = languageKinds;
+    },
+    CHANGE_languageType (state , languageType = 'ko') {
+        state.languageType = languageType;
+    }
 
 }
 

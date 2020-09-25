@@ -39,15 +39,30 @@ export default {
     justify-content: center;
     padding: 5vw;
     box-sizing: border-box;
+
+    @include phone {
+        display: inline-block;
+        padding: 0 0;
+        margin: $SIZE_MO_distanceContent 0;
+    }
 } 
 .cover_content {
-    padding: 100px;
     display: flex;
     flex-direction: column;
     border: 1px solid $COLOR_theme;
     max-width : 680px;
     margin : 0 auto;
     align-items: flex-start;
+    padding: 100px;
+    box-sizing: border-box;
+
+    @include phone {
+        min-height: 100%;
+        overflow : scroll;
+        padding: $SIZE_MO_distanceContent;
+        margin: 0 $SIZE_MO_distanceContent;
+        margin-bottom: $SIZE_MO_distanceContent;
+    }
     
     > * {
         line-height:1em;

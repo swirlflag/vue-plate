@@ -2,6 +2,7 @@
 import {
     request_newsList ,
     request_jobsList ,
+    request_language,
 } from '@/api';
 
 
@@ -19,7 +20,36 @@ const apiActions = {
         return response;    
     },
 
+    async fetch_lanuage (context) {
+        const response = await request_language();
+
+        const {
+            languageKinds , languageContents
+        } = response.data;        
+        
+        context.commit('WRITE_languageKinds' , languageKinds);
+
+        let result = {};
+
+        for(const [key,list] of Object.entries(languageContents)){
+            for(const lang of Object.keys(languageKinds)){
+                if(!result[lang]){
+                    result[lang] = {};
+                }
+                result[lang][key] = list[lang];
+            }
+        }
+
+        context.commit('WRITE_language' , result);
+
+        return response;
+    },
+
 };
+
+const clientActions = {
+
+}
 
 const authActions = {
 
@@ -42,7 +72,8 @@ const authActions = {
         console.dev(error);
     },
 
-    logout() {
+    logout(context) {
+        context.commit('LOGOUT');
         console.dev('로그아웃 합니다.');
     },
     
@@ -51,6 +82,7 @@ const authActions = {
 const actionsExternal = {
     ...apiActions,    
     ...authActions,
+    ...clientActions,
 };
 
 export default actionsExternal;

@@ -6,7 +6,9 @@
                     API체계 (작성중..)
                 </div>
                 <div class="paragraph__divider"></div>
-
+                <div class="paragraph__title size--2">
+                    외부 API
+                </div>
                 <div class="paragraph__text">
                     뷰 플레이트에서 api호출은 기본적으로 두 단계로 나뉘어 있습니다.
                     @/api/index.js 에서 api에 대한 직접적인 리퀘스트 내용을 작성하고, 실제 사용은 action에서 이루어지게 됩니다.
@@ -32,6 +34,13 @@
                         <a :href="item.url" target="_blank">{{ item.title }}</a>                
                     </li>
                 </ul>
+                <div class="paragraph__divider"></div>
+                <div class="paragraph__title size--2">
+                    다국어
+                </div>
+                <div class="paragraph__text">
+                    다국어에대한설명
+                </div>
             </div>
         </div>
     </div>

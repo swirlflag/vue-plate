@@ -1,7 +1,9 @@
 <template>
     <div class="nav__gnb">
         <div class="nav__gnb__wrap">
-            <router-link class="nav__gnb__logo" to="/">뷰 플레이트</router-link>
+            <router-link class="nav__gnb__logo" to="/">
+                {{ $L['common:logo_text'] }}
+            </router-link>
             <ul class="nav__gnb__links">
                 <template   v-for="(route,idx) in gnbRoutesList">
                     <li     :key="idx"
@@ -29,6 +31,7 @@ export default {
     },
     name : 'NavigationGnb',
     computed : {
+        $L() { return this.$store.getters.$L },
         gnbRoutesList() {
             return this.routesInfo.filter(c => {
                 return c.path !== '*'

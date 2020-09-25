@@ -2,23 +2,24 @@
     <div class="page__outer">
         <div class="page__inner">
             <button @click="alertTest">
-                지역  alert호출 테스트
+                지역 alert 테스트
             </button>
             <br>
             <br>
             <br>
-            <button @click="confirmTest">
-                지역 confirm 호출 테스트
+            <button @click="confirmTest" data-l="page-test:confirm_test_button">
+                지역 confirm 테스트
             </button>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     methods : {
         alertTest () {
-            this.$store.dispatch('showModalAlert' , '지역 store alert 테스트');
+            this.$store.dispatch('showModalAlert' );
         },
         confirmTest () {
             const payload = {
@@ -27,8 +28,8 @@ export default {
                 }
             }
             this.$store.dispatch('showModalConfirm' , payload); 
-        }
-    }
+        },
+    },
 }
 </script>
 

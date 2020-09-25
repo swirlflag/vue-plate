@@ -48,7 +48,7 @@ export default {
     methods : {
         toggleGlobalMenu() {
             this.isOpenMenu = !this.isOpenMenu;
-            this.$store.commit(this.isOpenMenu ? 'SCROLL_lock' : 'UNLCOK_scroll');
+            this.$store.commit(this.isOpenMenu ? 'SCROLL_lock' : 'SCROLL_unlock');
         },
         openGlobalMenu() { 
             this.isOpenMenu = true;
@@ -56,7 +56,9 @@ export default {
         },
         closeGlobalMenu() { 
             this.isOpenMenu = false;
-            this.$store.commit('SCROLL_unlock');
+            if(this.$store.state.is_pageScrollLock){
+                this.$store.commit('SCROLL_unlock');
+            }
         },
     },
     created() {

@@ -1,6 +1,5 @@
 /*
-    전역적으로 자주 사용하는 플러그인은 vue에 직접 등록해 사용합니다.    
-    cdn
+    전역적으로 자주 사용하는 플러그인은 vue에 직접 등록해 사용합니다.
 */
 
 // TODO : 이곳의 하드코딩된 정보(url, accountId, key 등) 들을 나중에 따로 빼두기 
@@ -59,6 +58,7 @@ export default {
     
         Vue.use(VueCookies);
 
+    // 구글 로그인 설치
         Vue.use(GAuth, {
                 clientId: "374932594337-klgvja2sbfojouoovcq9osfbp25alti5.apps.googleusercontent.com",
                 redirect_uri : 'https://google.co.kr',

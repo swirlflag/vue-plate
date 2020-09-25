@@ -11,6 +11,10 @@ const state = {
     type_browser        : '',
     type_os             : '',
 
+    language            : {} , 
+    languagekinds       : [],
+    languageType        : 'ko',
+
 }
 
 export default state;

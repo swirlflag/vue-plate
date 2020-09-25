@@ -27,6 +27,10 @@ export default {
     background-color:$COLOR_theme;
     box-sizing: border-box;
     color:$COLOR_theme_background;
+    @include phone {
+        padding: $SIZE_MO_distanceContent * 2 $SIZE_MO_distanceContent;
+        
+    }
 }
 
 .footer__inner {
@@ -34,6 +38,7 @@ export default {
     max-width : $SIZE_PC_maxWidth;
     margin: 0 auto;
     box-sizing: border-box;
+    color: rgba(0,0,0,0.4);
 }
 
 </style>

@@ -35,7 +35,6 @@ $STANDARD_fhd : 1920px;
 @mixin desktop {
 }
 
-
 @mixin hover {
     #app.unuse_touch &:hover {
         @content;

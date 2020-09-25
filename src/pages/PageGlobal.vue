@@ -36,8 +36,8 @@
             </div>
 
             <div class="paragraph__text st-italic">
-                모달 딤드 클릭시 모달 해제 : {{ this.$store.state.use_clickDimmedThenCloseModal }}
-                <br>모달 오픈시 스크롤 잠금 : {{ this.$store.state.use_openModalWithLockScroll }}
+                모달 딤드 클릭시 모달 해제 : {{ this.$store.state.modal.use_clickDimmedThenCloseModal }}
+                <br>모달 오픈시 스크롤 잠금 : {{ this.$store.state.modal.use_openModalWithLockScroll }}
             </div>
 
             <div>
@@ -152,11 +152,11 @@ export default {
         },
         confirmSimple() {
             const payload = {
-                message : '하이',
-                title : '타타',
-                cancleButton : 'no',
+                message : '메인으로 이동하려면 확인을 누르세요.',
                 close : (result) => {
-                    console.log(result)
+                    if(result){
+                        this.$router.push('/')
+                    }
                 },
             };
             this.$store.dispatch('showModalConfirm', payload);

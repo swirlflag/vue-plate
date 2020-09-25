@@ -16,3 +16,5 @@ export const request_jobsList = () => axios.get(`${config.hackerNews}/jobs/1.jso
 export const request_askList = () => axios.get(`${config.hackerNews}/ask/1.json`);
 
 export const request_list = (pageName) => axios.get(`${config.hackerNews}/${pageName}/1.json`);
+
+export const request_language = () => axios.get(`/language/text.json`);

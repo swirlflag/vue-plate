@@ -12,7 +12,25 @@
                     </router-link>
                 </li>
             </ul>
+
+            <div class="language_select" v-if="$store.state.languageKinds">
+                <ul class="language_select__list">
+                    <li 
+                        v-for="(item,idx) in Object.entries($store.state.languageKinds)" 
+                        class="language_select__item"
+                        v-bind:class="{ 'st-select' : $store.state.languageType  === item[0] }"
+                        :key="idx"
+                        @click="changeLanguage(item[0])"
+                    >
+                        {{ item[1] }}
+                    </li>
+                    
+                </ul>
+                <span>언어는 테스트로 메인페이지만 변경됩니다.</span>
+            </div>
+
         </div>
+        
     </div>
 </template>
 
@@ -31,9 +49,13 @@ export default {
             });
         },
     },
+    
     methods : {
         closeGlobalMenu() {
             this.$emit('closeGlobalMenu');
+        },
+        changeLanguage(lang) {
+            this.$store.commit('CHANGE_languageType' , lang);
         }
     },
 
@@ -130,6 +152,54 @@ export default {
             }
 
         }
+    }
+
+}
+
+.language_select {
+    display: inline-block;
+    position: absolute;
+    left: $SIZE_PC_distanceContent;
+    bottom: $SIZE_PC_distanceContent;
+
+    @include phone {
+        left: $SIZE_MO_distanceContent;
+        bottom: $SIZE_MO_distanceContent;
+    }
+
+    .language_select__list {
+        display: flex;
+        align-items: center;
+    }
+
+    .language_select__item {
+        display: inline-block;
+        cursor: pointer;
+        @include hover {
+            text-decoration: underline;
+        }
+        &.st-select {
+            text-decoration: underline;
+            font-weight: 700;
+        }
+        &:after {
+            content : '';
+            display: inline-block;
+            background-color: $COLOR_theme;
+            opacity: 0.55;
+            width: 1px; height: 10px;
+            margin: 0 10px;
+        }
+        &:last-child:after{
+            display: none;
+        }
+    }
+
+    > span {
+        font-style: italic;
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 10px;
     }
 
 }

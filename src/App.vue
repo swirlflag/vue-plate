@@ -1,5 +1,14 @@
 <template>
-    <div id="app" :class="`${appClassNamePage} ${appClassNameDevice} ${appClassNameOS} ${appClassNameBrowser} ${appClassNameTouchdevice}` "
+    <div 
+        id="app" 
+        :class="`
+            ${appClassNamePage} 
+            ${appClassNameDevice} 
+            ${appClassNameOS} 
+            ${appClassNameBrowser} 
+            ${appClassNameLanguage} 
+            ${appClassNameTouchdevice}
+        `"
 
     >
         <!-- 
@@ -75,6 +84,9 @@ export default {
         appClassNameDevice() {
             return `device--${this.$store.state.type_device}`;
         },
+        appClassNameLanguage() {
+            return `language--${this.$store.state.languageType}`;
+        },
         appClassNameTouchdevice() {
             return this.$store.state.is_touchDevice ? 'use_touch' : 'unuse_touch';
         },
@@ -93,6 +105,9 @@ export default {
         },
 
     },
+    created() {
+        
+    }
 
 };
 </script>
