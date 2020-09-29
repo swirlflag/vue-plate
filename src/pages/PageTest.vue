@@ -1,5 +1,6 @@
 <template>
     <div class="page__outer">
+
         <SelectOption v-on:changeValue="changeSelectTeacher" :height='40' v-if="false">
             <select placeholder="placeholder">
                 <option value="1">1번</option>
@@ -18,15 +19,11 @@
 
         <p>{{now}}</p>
 
-        <!-- <select slot="select" placeholder="Select Coach" v-bind:data-id="item.id">
-                <option v-for="(coachItem) in coachesSelect" 
-                        v-bind:key="coachItem.id"
-                        v-bind:value="coachItem.id"
-                        v-bind:select="item.teacherName === coachItem.name"
-                >
-                    {{coachItem.name}}
-                </option>
-            </select> -->
+        <button @click="bottomSheet">
+            소환~
+        </button>
+
+   
     </div>
 </template>
 
@@ -51,6 +48,15 @@ export default {
         changeValue (idx) {
             this.now = idx
         },
+        bottomSheet() {
+            const payload = {
+                list : ['a', 'b'],
+                close : (item, index) => {
+                    console.log(item, index);
+                },
+            }
+            this.$store.dispatch('openBottomSheet' , payload);
+        }
     },
 }
 </script>

@@ -64,7 +64,7 @@ const routerInfo =  {
     ],
 }
 
-const useTest = false;
+const useTest = true;
 
 if(useTest){
     routerInfo.routes.push({

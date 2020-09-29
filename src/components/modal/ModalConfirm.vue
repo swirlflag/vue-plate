@@ -113,7 +113,7 @@ export const confirmStore = {
             dispatch('disableModal');
             commit('MODAL_hideConfirm');
             state.modal.confirmActionClose(confirmResult);
-            commit('MODAL_resetConfirmActionClose' , () => {});
+            commit('MODAL_resetConfirmActionClose');
         },
         
     },

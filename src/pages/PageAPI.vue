@@ -39,7 +39,7 @@
                     다국어
                 </div>
                 <div class="paragraph__text">
-                    다국어에대한설명
+                    다국어를 표현해 놓은 JSON 파일을 build될 프로젝트 플더(src)밖에 놓고, 필요할 때 가져와 본문을 교체합니다. 현재 프로젝트는 init시 모든 컨텐츠를 fetch해 클라이언트에 포함시킨 후, store의 languageType에 따라 선택 언어에 맞는 내용을 표기합니다. 메인만 적용되어 있습니다.
                 </div>
             </div>
         </div>

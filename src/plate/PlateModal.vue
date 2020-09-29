@@ -20,19 +20,23 @@
         <ModalAlert
         />
 
+        <ModalBottomSheet
+        />
+
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
-import ModalConfirm     , { confirmStore }  from '@/components/modal/ModalConfirm.vue';
-import ModalAlert       , { alertStore }    from '@/components/modal/ModalAlert.vue';
+import ModalConfirm     , { confirmStore }      from '@/components/modal/ModalConfirm.vue';
+import ModalAlert       , { alertStore }        from '@/components/modal/ModalAlert.vue';
+import ModalBottomSheet , { bottomSheetStore }  from '@/components/modal/ModalBottomSheet.vue';
 
 export default {
     name : "PlateModal",
     components: {
-         ModalConfirm , ModalAlert
+         ModalConfirm , ModalAlert , ModalBottomSheet
     },
     computed : {
         ...mapState(['modal'])
@@ -53,7 +57,8 @@ export const modalStore = {
     name : 'modal',
     alertStore,
     confirmStore,
-
+    bottomSheetStore,
+    
     state : {
 
         use_clickDimmedThenCloseModal   : true,
