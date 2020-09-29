@@ -22,6 +22,7 @@
             IE
             모달 bus방식 시도 취소하고 각 파일에서 vuex로 편입하기
             다국어 시스템...
+            기본 scss webpack 셋팅에서 붙이기
          -->
 
         <template v-if="this.$store.state.use_coverdPlate">

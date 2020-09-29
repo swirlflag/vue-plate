@@ -10,7 +10,7 @@ import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
 import PageStore        from '@/pages/PageStore.vue';
 import PageAPI          from '@/pages/PageAPI.vue';
 import PagePlugin       from '@/pages/PagePlugin.vue';
-// import PageTest         from '@/pages/PageTest.vue';
+import PageTest         from '@/pages/PageTest.vue';
 
 Vue.use(VueRouter);
 
@@ -58,14 +58,20 @@ const routerInfo =  {
             name        : 'Plugin',
             component   : PagePlugin,
         }
-        // ,
-        // {
-        //     path        : '/test',
-        //     name        : 'test',
-        //     component   : PageTest,
-        // }
+        ,
+        
 
     ],
+}
+
+const useTest = false;
+
+if(useTest){
+    routerInfo.routes.push({
+        path        : '/test',
+        name        : 'test',
+        component   : PageTest,
+    });
 }
 
 const router = new VueRouter(routerInfo);
