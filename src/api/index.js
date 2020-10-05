@@ -1,6 +1,6 @@
 /* 
     로직을 제외한 api에 대한 직접 호출을 정리합니다.
-    api에 대한 사용과 결과에 따른 로직은 @/store/actionsExternal.js 에서 정의합니다.
+    api에 대한 사용과 결과에 따른 로직은 @/store/actions.js 에서 정의합니다.
 */
 
 import axios from 'axios';

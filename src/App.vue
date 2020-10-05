@@ -9,22 +9,8 @@
             ${appClassNameLanguage} 
             ${appClassNameTouchdevice}
         `"
-
     >
-        <!-- 
-            TODO: 
-            구글 로그인
-            카카오 로그인
-            라우터 가드 
-            스피너
-            API 셋팅
-            smoothscroll
-            IE
-            모달 bus방식 시도 취소하고 각 파일에서 vuex로 편입하기
-            다국어 시스템...
-            기본 scss webpack 셋팅에서 붙이기
-         -->
-
+    
         <template v-if="this.$store.state.use_coverdPlate">
             <!-- IE 및 기타 환경 대체 화면 -->
             <PlateCover/>
@@ -36,9 +22,6 @@
 
             <!-- 네비게이션 -->
             <PlateNavigation/>
-
-            <!-- 백그라운드 fix -->
-            <!-- <PlateBackground/> -->
 
             <!-- 스피너 -->
             <!-- <PlateSpinner/> -->

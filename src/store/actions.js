@@ -73,10 +73,48 @@ const authActions = {
     },
 
     logout(context) {
-        context.commit('LOGOUT');
-        console.dev('로그아웃 합니다.');
+        const { is_login , loginType } = context.state.user;
+
+        if(is_login){
+
+            switch(loginType) {
+                case ('google') : {
+                    context.dispatch('logout_google');
+                    break;
+                }
+                case ('kakao') : {
+                    context.dispatch('logout_kakao');
+                    break;
+                }
+                case ('naver') : {
+                    context.dispatch('logout_naver');
+                    break;
+                }
+                default : {
+                    console.dev('로그인 타입이 올바르지 않습니다.');
+                    return;
+                }
+            }
+
+            // context.commit('LOGOUT');
+            // console.dev('로그아웃 합니다.');
+        }else {
+            console.dev('로그인 상태가 아닙니다');
+        }
+
     },
-    
+
+    logout_google () {
+        console.dev('google 로그아웃');
+    },
+    logout_kakao (context) {
+        console.log(context,this.$_Kakao);
+        console.dev('kakao 로그아웃');
+    },
+    logout_naver () {
+        console.dev('naver 로그아웃');
+    },
+        
 };
 
 const actionsExternal = {

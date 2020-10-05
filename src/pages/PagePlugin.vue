@@ -85,20 +85,21 @@ export default {
             
         },
         logouttest() {
-            if(this.user.is_login) {
-                if(this.user.loginType === 'kakao') {
-                    this.$_Kakao.API.request({
-                        url: '/v1/user/unlink',
-                        success(res) {
-                            console.dev(res);
-                        }
-                    });
-                }
+            this.$store.dispatch('logout');
+            // if(this.user.is_login) {
+            //     if(this.user.loginType === 'kakao') {
+            //         this.$_Kakao.API.request({
+            //             url: '/v1/user/unlink',
+            //             success(res) {
+            //                 console.dev(res);
+            //             }
+            //         });
+            //     }
 
-                this.$store.dispatch('logout');
-            }else {
-                console.log('로그인 상태가 아닙니다');
-            }
+            //     this.$store.dispatch('logout');
+            // }else {
+            //     console.log('로그인 상태가 아닙니다');
+            // }
 
         }
     },
