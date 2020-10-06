@@ -66,6 +66,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### 미구현
 
+* 비주얼 핸들링 가능한 기본 input 컴포넌트 배치
 * 전역 scss 변수등록
 * 클라이언트환경 기준의 다국어 시스템
 * api 시스템 정리

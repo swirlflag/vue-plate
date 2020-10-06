@@ -46,7 +46,7 @@
                     miniStore는 지역에서 공통 store에 등록할 수 있는 방법입니다.
                     지역적으로 작성해 유지보수를 원활하게 하고, 전역으로 사용해 호환성을 기대할 수 있습니다.
                     기존에는 지역 상태를 전역(정확히는 의존관계가 없는 두 컴포넌트)으로 이용하기 위해 event bus를 사용하지만 최근 이러한 사용성을 소화하는데 bus보다 vuex를 권장하는 추세입니다. 
-                    <a href="https://tkacz.pro/vue-js-why-event-bus-is-bad-idea/">링크 : why event bus is bad idea</a>
+                    <a href="https://tkacz.pro/vue-js-why-event-bus-is-bad-idea/" target="_blank">링크 : why event bus is bad idea</a>
                 </div>
                 <div class="paragraph__title size--3">
                     등록

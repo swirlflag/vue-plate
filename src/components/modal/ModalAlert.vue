@@ -109,11 +109,11 @@ export const alertStore = {
 @import '@/style/_mixin.scss';
 
 .modal--alert {
-    max-width: 500px; min-width : 300px; 
+    max-width: 500px; min-width : 360px; 
     height: auto;
     position: absolute;
     top: 50%; left: 50%; 
-    transform: translate(-50%,-50%);
+    transform :translate(-50% , calc(-50% + 30px));
     backdrop-filter: blur(10px);
     opacity: 0;
     z-index: 1020;
@@ -127,13 +127,20 @@ export const alertStore = {
     text-align: center;
     pointer-events: none;
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+    box-sizing: border-box;
     transition: transform 260ms $EASE_inCubic , 
                 opacity 250ms ease
                 ;
 
+    @include phone {
+        min-width: unset;
+        max-width: 360px;
+        width : calc(100% - 30px)
+    }
+
     &.st-show  {
         opacity: 1;
-        transform :translate(-50% ,calc(-50% - 30px));
+        transform: translate(-50%,-50%);
         pointer-events: all;
         transition: transform 400ms $EASE_outQuint , 
                     opacity 300ms ease

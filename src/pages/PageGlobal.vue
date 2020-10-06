@@ -40,6 +40,10 @@
                 <br>모달 오픈시 스크롤 잠금 : {{ this.$store.state.modal.use_openModalWithLockScroll }}
             </div>
 
+            <div class="paragraph__text">
+                다음은 modal plate에 등록된 모달컨텐츠들의 호출 예시입니다.
+            </div>
+
             <div>
                 <ButtonType1    text="Alert - simple"
                                 @click="alertSimple" 

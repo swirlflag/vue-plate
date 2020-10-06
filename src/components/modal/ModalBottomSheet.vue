@@ -130,8 +130,6 @@ export const bottomSheetStore = {
     width: calc(100% - 20px); max-height : 500px;
     max-width : $STANDARD_mobile;
     left: 50%; 
-    
-    opacity: 0.785;
     pointer-events: all !important;
     background: #fff;
     box-sizing: border-box;
@@ -139,9 +137,9 @@ export const bottomSheetStore = {
     border-radius: 10px 10px 0 0 ;
     border: 2px solid $COLOR_theme;
     border-bottom: none;
-    background-color: $COLOR_layer_background;
+    background-color: $COLOR_theme_background;
     box-shadow: 0 3px 30px rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     transition: transform 0.3s ease;
 
     overflow-y:scroll;
