@@ -24,7 +24,7 @@
             <PlateNavigation/>
 
             <!-- 스피너 -->
-            <!-- <PlateSpinner/> -->
+            <PlateSpinner/>
 
             <!-- 라우터 페이지 -->
             <PlatePage/>
@@ -44,11 +44,12 @@ import PlateModal           from '@/plate/PlateModal.vue';
 import PlatePage            from '@/plate/PlatePage.vue';
 import PlateFooter          from '@/plate/PlateFooter.vue';
 import PlateCover           from '@/plate/PlateCover.vue';
+import PlateSpinner         from '@/plate/PlateSpinner.vue';
 
 export default {
     name: 'App',
     components: {
-        PlateNavigation , PlateModal , PlatePage , PlateFooter , PlateCover
+        PlateNavigation , PlateModal , PlatePage , PlateFooter , PlateCover , PlateSpinner
     },
     data() {
         return {
@@ -91,7 +92,7 @@ export default {
     },
     created() {
         
-    }
+    },
 
 };
 </script>
@@ -99,6 +100,6 @@ export default {
 <style src="@/style/global/font.css"></style>
 <style src="@/style/global/reset.css"></style>
 <style src="@/style/global/global.scss" lang="scss"></style>
-<style src="@/style/mixin/_test.scss" lang="scss"></style>
+<style src="@/style/global/test.scss" lang="scss"></style>
 
 

@@ -15,8 +15,8 @@
             "en" : "HELLO, VUE PLATE"
         },
         "page-main:text_1" : {
-            "ko" : "\"뷰 플레이트\" 는 vue.js로 제작하는 프론트엔드 환경에서 웹앱이 담아야 하는 클라이언트 사이드의 기본적인 기능들을 미리 만들어 준비해 둔 보일러 플레이트 입니다. 기본적인 기능들의 정리와 약간의 폴더링이 되어있으므로 바로 수정,확장을 통해 제작을 시작할수 있습니다. 뷰 플레이트로 아주 다양한 페이지를 만들수는 없지만 주어진 기획이 잘 맞는다면 빠르게 초기 틀 제작과 설정을 건너뛰어 일관된 형태의 컨벤션을 유지할 수 있을 것입니다. 구현된 사항과 진행 해야하는 사항은 해당 리포지토리 github.com/swirlflag/vue-plate 의 README.md 에 작성중입니다.",
-            "en" : "\"View Plate\" is a boiler plate prepared in advance for the basic functions of the client side that the web app must contain in the front-end environment created with vue.js. The basic functions are organized and a little foldering is done, so you can start production by modifying and expanding immediately. You can't create a wide variety of pages with a view plate, but if the given plan fits well, you can quickly skip the initial framework and setup to maintain a consistent convention. Implementation and progress are being written in README.md of the repository github.com/swirlflag/vue-plate."
+            "ko" : "\"뷰 플레이트\" 는 vue.js로 제작하는 프론트엔드 환경에서 웹앱이 담아야 하는 클라이언트 사이드의 기본적인 기능들을 미리 만들어 준비해 둔 보일러 플레이트 입니다. 기본적인 기능들의 정리와 약간의 폴더링이 되어있으므로 바로 수정,확장을 통해 제작을 시작할수 있습니다. 뷰 플레이트로 아주 다양한 페이지를 만들수는 없지만 주어진 기획이 잘 맞는다면 빠르게 초기 틀 제작과 설정을 건너뛰어 일관된 형태의 컨벤션을 유지할 수 있을 것입니다. 구현된 사항과 진행 해야하는 사항은 해당 리포지토리의 README.md 에 작성중입니다.",
+            "en" : "\"View Plate\" is a boiler plate prepared in advance for the basic functions of the client side that the web app must contain in the front-end environment created with vue.js. The basic functions are organized and a little foldering is done, so you can start production by modifying and expanding immediately. You can't create a wide variety of pages with a view plate, but if the given plan fits well, you can quickly skip the initial framework and setup to maintain a consistent convention. Implementation and progress are being written in README.md of the repository."
         },
         "page-main:translate_notice" : {
             "ko" : "",

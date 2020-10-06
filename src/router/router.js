@@ -60,11 +60,10 @@ const routerInfo =  {
         }
         ,
         
-
     ],
 }
 
-const useTest = true;
+const useTest = false;
 
 if(useTest){
     routerInfo.routes.push({
@@ -81,15 +80,11 @@ router.beforeEach((to,from,next) => {
 })
 
 router.afterEach((to) => {
-
     if(router.app){
-
         if(store.state.is_dev){
             router.app.$_ua.pageview(to.path).send();
         }
-
     }
-
 });
 
 export {

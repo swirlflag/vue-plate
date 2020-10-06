@@ -23,7 +23,6 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
 ---
 
 # vue plate ? 
@@ -32,7 +31,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 프로젝트를 구성하면서 직접 컨텐츠와 관계없는 기능들에서 시간을 할애해야 할 때가 있습니다.
 
-예를 들면 특정 상황에 스크롤을 잠그는것 같은 일 입니다.
+예를 들면 핀치 줌을 막거나 특정 상황에 스크롤을 잠그는것 같은 일 입니다.
 
 이런 기능의 구현은 일반적으로 너무 당연하게 여겨지지만 막상 제작 중반기에 붙일때,
 

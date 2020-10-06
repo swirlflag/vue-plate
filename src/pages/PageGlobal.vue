@@ -6,7 +6,14 @@
             <div class="paragraph__title size--1">
                 전역적인 시스템
             </div>
-
+            <div class="paragraph__divider"></div>
+            <div class="paragraph__title size--2">
+                시작
+            </div>
+            <div class="paragraph__text">
+                init/init.js 에서 프로젝트 초기 셋팅에 대한 설정들을 기입해 줍니다.
+                이중에서 초기 플러그인 설치에 대한 내용은 plugin페이지에서 설명합니다. <router-link to="/plugin">링크</router-link>
+            </div>
             <div class="paragraph__divider"></div>
 
             <div class="paragraph__title size--2">
@@ -41,7 +48,7 @@
             </div>
 
             <div class="paragraph__text">
-                다음은 modal plate에 등록된 모달컨텐츠들의 호출 예시입니다.
+                다음은 modal plate에 예시로 등록된 모달 요소들의 호출 버튼입니다.
             </div>
 
             <div>
@@ -102,20 +109,20 @@
             <span class="paragraph__divider"></span>
             
             <div class="paragraph__title size--2">
-                IE 대응 환경
+                미지원 대응 환경
             </div>
             <div>
-                <ButtonType1    text="IE 대응 페이지 확인"
+                <ButtonType1    text="미지원 대응 화면 확인"
                                 @click="coverdTest" 
                 />
                 &nbsp;&nbsp;
                 새로고침을 통해 돌아와 주세요.
             </div>
             <div class="paragraph__text">
-                IE 및 대응 하려는 환경에서 표시할 페이지를 따로 제작해 표시할수 있습니다. 
+                미지원 하려는 환경에서 표시할 페이지를 따로 제작해 표시할수 있습니다. 
                 이경우 본 페이지의 메인 컨텐츠엔 접근할 수 없으며 
                 프로젝트의 성격에 따라 핵심 컨텐츠를 약식으로 표시해주거나, 적절히 생략합니다.
-                또한 특별한 이상이 없는 경우에 다른 환경에서 접속할 수 있는 안내를 반드시 해주어야 합니다.
+                또한 특별한 이상이 없는 경우에 다른 환경에서 접속할 수 있는 방법에 대한 안내를 반드시 해주어야 합니다.
             </div>
 
             <span class="paragraph__divider"></span>
@@ -226,9 +233,13 @@ export default {
             const randomPath = '/' + Math.floor(Math.random()*100);
             const modalAlertPayload = {
                 message : `${window.location.origin}${randomPath} 로 이동을 시도합니다.`,
-                close : () => this.$router.push(randomPath),
+                close : (result) => {
+                    if(result){
+                        this.$router.push(randomPath);
+                    }
+                }
             };
-            this.$store.dispatch('showModalAlert' , modalAlertPayload);
+            this.$store.dispatch('showModalConfirm' , modalAlertPayload);
         },
         
     }

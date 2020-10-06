@@ -8,6 +8,7 @@
             <div class="paragraph__text">
                 {{ $L['page-main:text_1'] }}
                 {{ $L["page-main:translate_notice"] }}
+                <a href="https://github.com/swirlflag/vue-plate" target="_blank">github.com/swirlflag/vue-plate</a>
             </div>
             <span class="paragraph__divider"></span>
             <div class="paragraph__title size--2">

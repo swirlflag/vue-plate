@@ -129,6 +129,7 @@ export default {
             margin-right: 50px;
             font-size: 50px;
             margin-left: auto;
+            font-weight: 700;
         
             @include phone {
                 margin-right: 0;

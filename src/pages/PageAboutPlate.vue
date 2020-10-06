@@ -44,14 +44,21 @@
                     #modal_plate
                 </div>
                 <div class="paragraph__text">
-                    #modal_plate에 들어가는 컨텐츠의 성격은 다음과 같으며 자세한 내용은 global페이지에서 설명합니다.&nbsp;<router-link to="/global">링크</router-link>
+                    modal_plate에 들어가는 컨텐츠의 성격은 다음과 같으며 자세한 내용은 global페이지에서 설명합니다.&nbsp;<router-link to="/global">링크</router-link>
                 </div>
                 <ul class="paragraph__list">
                     <li>position : fixed</li>
                     <li>주 컨텐츠보다 상위로 레이어드 포커스</li>
                     <li>공통의 상황에 등장 가능</li>
                 </ul>
-
+                <div class="paragraph__title size--3">
+                    #nav_plate
+                </div>
+                <div class="paragraph__text">
+                    nav_plate에서는 네비게이션과 관련된 컴포넌트들을 위치시킵니다.
+                    대부분 path를 초월해 접근가능한 글로벌 성격을 지니며 plate자체가 fixed를 가지고 있기 때문에
+                    본문과 어우러지는 static position은 놓을수 없습니다.
+                </div>
                 <div class="paragraph__title size--3">
                     #page_plate
                 </div>

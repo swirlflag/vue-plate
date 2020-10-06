@@ -104,20 +104,32 @@ br.br-phone {
         margin-top: 40px;
         margin-bottom: 40px;
         padding-right: 20px;
-        word-break: break-all;
+        // word-break: break-all;
         
         &.size--1 {
             font-size: 85px;
             margin-top: 100px;
+            @include phone {
+                font-size: 66px;
+            }
         }
         &.size--2 {
             font-size: 46px;
+            @include phone {
+                font-size: 38px;
+            }
         }
         &.size--3 {
             font-size: 32px;
+            @include phone {
+                font-size: 26px;
+            }
         }
         &.size--4 {
             font-size: 23px;
+            @include phone {
+                font-size: 20px;
+            }
         }
         
     }
@@ -126,6 +138,11 @@ br.br-phone {
         // margin-top: 0;
         font-size: 16px;
         line-height: 1.55em;
+
+        @include phone {
+            font-size: 14px;
+        }
+
         &.st-italic {
             font-style: italic;
         }

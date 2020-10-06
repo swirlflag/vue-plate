@@ -1,23 +1,53 @@
 <template>
-    <div id="page_plate">
+    <div    id="page_plate" 
+            :class="{'st-pressdown' : isPagePressDown}"
+            :style="{'transform-origin' : `50% ${scrollPercent}%`}"
+    >
         <transition name="page_transition">
             <router-view></router-view>
         </transition>
     </div>
 </template>
-
+s
 <script>
 // 페이지 등록은 router.js로 
 
 export default {
     name : 'PlatePage',
+    data() {
+        return {
+            scrollPercent : 0 , 
+        }
+    },
+    watch : {
+        isPagePressDown(now) {
+            if(now){
+                this.scrollPercent = (100/document.scrollingElement.scrollHeight * (window.scrollY + window.innerHeight)) * 0.9;
+            }
+        }   
+    },
+    computed : {
+        isPagePressDown () {
+            return this.$store.state.modal.is_bottomSheetActive
+        }
+    }
 }
 </script>
 
 <style scoped lang="scss">
+@import '@/style/_mixin.scss';
 #page_plate {
     flex: 1;
     flex-basis: 100%;
+    
+    transition: transform 400ms $EASE_outCubic;
+
+    &.st-pressdown {
+        transform: scale(0.98);
+        @include phone {
+            transform: scale(0.95);
+        }
+    }
 }
 </style>
 <style lang="scss">

@@ -140,15 +140,16 @@ export const bottomSheetStore = {
     background-color: $COLOR_theme_background;
     box-shadow: 0 3px 30px rgba(0,0,0,0.5);
     backdrop-filter: blur(20px);
-    transition: transform 0.3s ease;
-
+    transition: transform 400ms $EASE_inOutCubic;
     overflow-y:scroll;
+
     &::-webkit-scrollbar {
         display:none;
     }
 
     transform: translate(-50%,100%);
     &.st-show {
+        transition: transform 450ms $EASE_outCubic;
         transform: translate(-50%, 0%);
     }
 

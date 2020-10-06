@@ -4,17 +4,24 @@
 
             <div class="paragraph">
                 <div class="paragraph__title size--1">
-                    플러그인 (미구현)
+                    플러그인
                 </div>
                 <div class="paragraph__divider"></div>
                 <div class="paragraph__title size--2">
                     플러그인 설치법
                 </div>
                 <div class="paragraph__text">
-                    플러그인 설치법 작성하기
+                    이곳에서 설명하는 플러그인 설치는 패키지 관리자로 프로젝트 모듈에 설치하는것이 아닌 
+                    app root, 혹은 vue 생성자 prototype에 직접 설치하는 것을 의미합니다.
+                    따라서 npm으로 설치후 사용하는 것에는 영향이 없으며 그대로 혼용해서 사용해도 됩니다.
+                </div>
+                <div class="paragraph__text">
+                    init/plugin.js 에서 최초 실행시 필요한 요소들을 설치합니다.
+                    cdn script의 경우 window 전역과 렌더링될 public/index.html에 요소를 넣지 않기 위해 이곳에서 설치해줍니다.
+                    plugin.js내 존재하는 cdns라는 객체형식에 맞추어 작성해주면, url에 맞는 스크립트를 동적으로 생성해 가져온 후 window에서 삭제합니다. 가져온 아이템들은 vue root로 들어가며 접두로 $_가 붙습니다. ( 예) slider => $_slider )
                 </div>
                 <div class="paragraph__title size--2">
-                    외부 로그인
+                    외부 로그인 (미구현)
                 </div>
                 <div class="paragraph__text st-italic">
                     현재 로그인 상태 : <strong>{{ this.$store.state.user.is_login }}</strong>
@@ -45,7 +52,7 @@
                 </div>
 
                 <div class="paragraph__title size--2">
-                    결제
+                    결제 (미구현)
                 </div>
                 <div class="paragraph__text">
                     결제는 기본적으로 iamport를 사용해서 제작합니다
