@@ -23,9 +23,10 @@
                 </div>
                 <div class="paragraph__text">
                     #app은 vue에서 권장하는 render root component입니다. 
-                    vue내부에서 최상위로 취급하며 바로 아래에 필요한 plate들이 나열되어 있습니다. 
+                    vue내부에서 최상위로 취급하며 바로 아래에 필요한 plate들이 나열되어 있습니다.
                     뷰 플레이트에서 미리 준비된 plate들은 아래와 같으며 필요시 App.vue내부에서 늘려갈 수 있습니다.
                     fixed성격의 plate들은 z-index가 1000부터 관리됩니다.
+                    의미상 제일 root인 이곳에 class로 다양한 상태를 부여하기 때문에 스타일 작성시 하위 선택자를 이용해 분기 처리할 수 있습니다.
                 </div>
                 <div class="paragraph__text">
                     <strong>
