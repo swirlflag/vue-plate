@@ -1,10 +1,9 @@
 <template>
     <div class="modal--bottom_sheet" :class="{'st-show' : modal.is_bottomSheetActive }">
         <div class="bottom_sheet__list">
-            <div    class="bottom_sheet__item"
-                    v-for="(item,idx) in modal.bottomSheetList"
-                    :key="idx"
-                    @click="() => {close(item,idx)}"
+            <div    v-for="(item,idx) in modal.bottomSheetList" :key="idx"
+                    class="bottom_sheet__item" :class="{'st-select' : idx === modal.bottomSheetAlready}"
+                    @click="() => { close(item,idx) }"
             >   
                 <button>
                     {{item}}
@@ -38,12 +37,13 @@ export default {
 }
 
 export const bottomSheetStore = {
+
     state : {
         is_bottomSheetActive    : false,
         bottomSheetTitle        : '선택해주세요' ,
         bottomSheetList         : [],
+        bottomSheetAlready      : -1,
         bottomSheetActionClose  : () => {} ,
-        
     },
     
     mutations : {
@@ -52,6 +52,9 @@ export const bottomSheetStore = {
         },
         MODAL_hideBottomSheet(state) {
             state.modal.is_bottomSheetActive = false;
+        },
+        MODAL_recordBottomSheetAlreadyIndex(state, index) {
+            state.modal.bottomSheetAlready = index;
         },
         MODAL_changeBottomSheetTitle(state,title = '') {
             state.modal.bottomSheetTitle = title;
@@ -69,25 +72,45 @@ export const bottomSheetStore = {
 
     actions : {
         openBottomSheet({commit, dispatch}, payload = {}) {
+
             const {
-                list , close  
+                list , close  , already
             } = payload;
 
             if(!list){
                 return;
             }
 
+            if(already + 1){
+                if(typeof already === 'number'){
+                    commit('MODAL_recordBottomSheetAlreadyIndex' , already)
+                }else if(typeof already === 'string') {
+                    commit('MODAL_recordBottomSheetAlreadyIndex', list.indexOf(already))
+                }
+            }
+
             commit('MODAL_registBottomSheetList', list);
-            close && commit('MODAL_registBottomSheetActionClose' , close);
+
+            if(close){
+                commit('MODAL_registBottomSheetActionClose' , close);
+            }
+
             dispatch('enableModal');
             commit('MODAL_showBottomSheet');
-            
+
         },
+
         closeBottomSheet({state, commit, dispatch}, {selectItem , selectIndex} ) {
-        
+
             dispatch('disableModal');
             commit('MODAL_hideBottomSheet');
-            state.modal.bottomSheetActionClose(selectItem,selectIndex);
+
+            if(selectItem){
+                state.modal.bottomSheetActionClose(selectItem,selectIndex);
+            }else {
+                console.dev('선택이 취소되었습니다.')
+            }
+
             commit('MODAL_resetBottomSheetActionClose');
 
         },
@@ -117,7 +140,6 @@ export const bottomSheetStore = {
     border: 2px solid $COLOR_theme;
     border-bottom: none;
     background-color: $COLOR_layer_background;
-    background-color: #aaa;
     box-shadow: 0 3px 30px rgba(0,0,0,0.5);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
@@ -133,10 +155,8 @@ export const bottomSheetStore = {
     }
 
     @include phone {
-        max-height: 45vh;
+        max-height: 50vh;
     }
-
-
 
 }
 
@@ -156,7 +176,12 @@ export const bottomSheetStore = {
     &:nth-child(1) {
         border-top: none;
     }
-    
+
+    &.st-select button {
+        background: $COLOR_theme;
+        color: $COLOR_theme_background;
+    }
+
     button {
         text-align: left;
         
@@ -167,6 +192,10 @@ export const bottomSheetStore = {
 
         @include phone {
             padding-left: $SIZE_MO_distanceContent;
+        }
+        @include hover {
+            background: $COLOR_theme;
+            color: $COLOR_theme_background;
         }
     }
 }

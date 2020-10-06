@@ -7,6 +7,7 @@
             </div>
             <div class="paragraph__text">
                 {{ $L['page-main:text_1'] }}
+                {{ $L["page-main:translate_notice"] }}
             </div>
             <span class="paragraph__divider"></span>
             <div class="paragraph__title size--2">
@@ -35,7 +36,7 @@
                 {{ $L['page-main:title_3'] }}
             </div>
             <div class="paragraph__text">
-                
+                {{ $L["page-main:text_3"] }}
             </div>
             <ul class="paragraph__list">
                 <li v-for="(item,idx) in packageScripts" :key="idx">

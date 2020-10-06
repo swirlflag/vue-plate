@@ -44,14 +44,26 @@
                 <ButtonType1    text="Alert - simple"
                                 @click="alertSimple" 
                 />
-                &nbsp;
+                <br><br>
                 <ButtonType1    text="Alert - callback"
                                 @click="alertGotoMain" 
                 />
-                &nbsp;
+                <br><br>
                 <ButtonType1    text="Confirm - callback"
                                 @click="confirmSimple" 
                 />
+                <br><br>
+                <ButtonType1    text="bottomSheet - select"
+                                @click="bottomSheetCompany" 
+                /> 
+                <br><br>
+                <span>
+                    이름 : <strong> {{ this.selectCompany }} </strong>
+                </span>
+                <br><br>
+                <span>
+                    순번 : <strong> {{ this.selectCompanyIndex }} </strong> 
+                </span>
             </div>
 
             <div class="paragraph__title size--3">
@@ -132,6 +144,29 @@ import ButtonType1 from '@/components/input/ButtonType1.vue';
 
 export default {
     name : 'PageLayout',
+    data() {
+        return {
+            companytList : [
+                'Apple Inc.', 
+                'Amazon.com, Inc.',
+                'Microsoft Corporation',
+                'Alphabet Inc. Class C Capital Stock',
+                'Alphabet Inc. Class A',
+                'Facebook, Inc. Class A',
+                'Tesla, Inc.',
+                'NVIDIA Corporation',
+                'Adobe Inc.',
+                'PayPal Holdings, Inc.',
+                'Netflix, Inc.',
+                'Intel Corporation.',
+                'Comcast Corporation Class A',
+                'PepsiCo, Inc.',
+                'Cisco Systems, Inc.',
+            ],
+            selectCompany : '선택된 아이템의 이름이 나타납니다.',
+            selectCompanyIndex : null,
+        }
+    },
     components : {
         ButtonType1,
     },
@@ -155,11 +190,22 @@ export default {
                 message : '메인으로 이동하려면 확인을 누르세요.',
                 close : (result) => {
                     if(result){
-                        this.$router.push('/')
+                        this.$router.push('/');
                     }
                 },
             };
             this.$store.dispatch('showModalConfirm', payload);
+        },
+        bottomSheetCompany() {
+            const payload = {
+                list : this.companytList,
+                already : this.selectCompanyIndex,
+                close : (item, index) => {
+                    this.selectCompany = item;
+                    this.selectCompanyIndex = index;
+                },
+            }
+            this.$store.dispatch('openBottomSheet' , payload);
         },
         toggleScrollLock () {
             if(this.$store.state.is_pageScrollLock){

@@ -23,7 +23,6 @@
             소환~
         </button>
 
-   
     </div>
 </template>
 
@@ -50,7 +49,23 @@ export default {
         },
         bottomSheet() {
             const payload = {
-                list : ['a', 'b'],
+                list : [
+                    'Apple Inc.', 
+                    'Amazon.com, Inc.',
+                    'Microsoft Corporation',
+                    'Alphabet Inc. Class C Capital Stock',
+                    'Alphabet Inc. Class A',
+                    'Facebook, Inc. Class A',
+                    'Tesla, Inc.',
+                    'NVIDIA Corporation',
+                    'Adobe Inc.',
+                    'PayPal Holdings, Inc.',
+                    'Netflix, Inc.',
+                    'Intel Corporation.',
+                    'Comcast Corporation Class A',
+                    'PepsiCo, Inc.',
+                    'Cisco Systems, Inc.',
+                ],
                 close : (item, index) => {
                     console.log(item, index);
                 },

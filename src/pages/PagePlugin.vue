@@ -4,7 +4,7 @@
 
             <div class="paragraph">
                 <div class="paragraph__title size--1">
-                    플러그인 (아 너무어렵다)
+                    플러그인 (미구현)
                 </div>
                 <div class="paragraph__divider"></div>
                 <div class="paragraph__title size--2">
@@ -15,12 +15,6 @@
                 </div>
                 <div class="paragraph__title size--2">
                     외부 로그인
-                    <!-- 
-                        TODO: 
-                        구글 카카오 네이버 3사 기본적으로 연결하기
-                        세션 유지하기
-                        서비스 서버에 로그인정보 쏘는 모양까지??
-                     -->
                 </div>
                 <div class="paragraph__text st-italic">
                     현재 로그인 상태 : <strong>{{ this.$store.state.user.is_login }}</strong>
@@ -54,7 +48,7 @@
                     결제
                 </div>
                 <div class="paragraph__text">
-                    결제는 기본적으로 iamport를 사용..
+                    결제는 기본적으로 iamport를 사용해서 제작합니다
                 </div>
                 
             </div>
