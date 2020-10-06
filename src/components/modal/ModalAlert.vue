@@ -104,7 +104,7 @@ export const alertStore = {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import '@/style/_mixin.scss';
 

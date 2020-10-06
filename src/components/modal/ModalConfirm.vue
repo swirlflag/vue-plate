@@ -1,12 +1,12 @@
 <template>
-    <div class="modal--alert" :class="{'st-show' : modal.is_confirmActive }">
-        <div class="alert__title">            
+    <div class="modal--confirm" :class="{'st-show' : modal.is_confirmActive }">
+        <div class="confirm__title">            
             {{ modal.confirmTitle }}
         </div>
-        <div class="alert__message">
+        <div class="confirm__message">
             {{ modal.confirmMessage }}
         </div>
-        <div class="alert__button">
+        <div class="confirm__button">
             <ButtonType1    :text="modal.confirmButtonConfirm" 
                             @click="confirm" 
             />
@@ -121,7 +121,7 @@ export const confirmStore = {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/style/_mixin.scss';
 
 .modal--confirm {
@@ -163,14 +163,14 @@ export const confirmStore = {
         }
     }
 
-    .alert__title {
+    .confirm__title {
         font-size: 26px;
         font-weight: 700;
     }
-    .alert__message {
+    .confirm__message {
         
     }
-    .alert__check {
+    .confirm__check {
 
     }
 
