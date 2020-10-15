@@ -53,11 +53,11 @@ export const combineStore = (...stores) => {
     return combine;
 }
 
-export const installCDN = (Vue, cdns) => {
+export const installCDN = (Vue, cdns, prefix = '$_') => {
 
     const setStatePlugin = (pluginList,state = 'ready') => {
         pluginList.forEach((plugin) => {
-            Vue.prototype[`$_${plugin}`] = 
+            Vue.prototype[`${prefix}${plugin}`] = 
                 state === 'load' 
                 ? window[plugin] 
                 : { pluginState : state };

@@ -35,13 +35,13 @@
                     Google 
                 </div>
                 <div class="paragraph__text">
-                    <ButtonGoogleLogin @success="success" @cancle="cancle"/>
+                    <ButtonGoogleLogin @success="success" @cancel="cancel"/>
                 </div>
                 <div class="paragraph__title size--3">
                     Kakao
                 </div>
                 <div class="paragraph__text">
-                    <ButtonKakaoLogin @success="success" @cancle="cancle"/>
+                    <ButtonKakaoLogin @success="success" @cancel="cancel"/>
                     <br><button @click="logouttest">로그아웃 테스트(카카오만)</button>
                 </div>
                 <div class="paragraph__title size--3">
@@ -82,7 +82,7 @@ export default {
         success(){
             
         },
-        cancle(){
+        cancel(){
             
         },
         logouttest() {

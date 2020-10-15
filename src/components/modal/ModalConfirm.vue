@@ -11,8 +11,8 @@
                             @click="confirm" 
             />
             &nbsp;
-            <ButtonType1    :text="modal.confirmButtonCancle"
-                            @click="cancle"
+            <ButtonType1    :text="modal.confirmButtoncancel"
+                            @click="cancel"
             />
         </div>
     </div>
@@ -33,14 +33,14 @@ export default {
         confirm() {
             this.$store.dispatch('closeModalConfirm' , true);
         },
-        cancle() {
+        cancel() {
             this.$store.dispatch('closeModalConfirm' , false);
         },
     },
     created() {
         this.$store.commit('MODAL_addDimmedClickAction' , () => {
             if(this.modal.is_confirmActive) {
-                this.cancle();
+                this.cancel();
             }
         });
     },
@@ -54,7 +54,7 @@ export const confirmStore = {
         confirmTitle               : '확인 알림' ,
         confirmMessage             : '확인 내용입니다.' ,
         confirmButtonConfirm       : '확인' ,
-        confirmButtonCancle        : '취소' ,
+        confirmButtoncancel        : '취소' ,
         confirmActionClose         : () => {} ,
 
     },
@@ -76,8 +76,8 @@ export const confirmStore = {
         MODAL_changeConfirmButtonConfirm(state,confirmButtonText = '') {
             state.modal.confirmButtonConfirm = confirmButtonText;
         },
-        MODAL_changeConfirmButtonCancle(state,cancleButtonText = '') {
-            state.modal.confirmButtonCancle = cancleButtonText;
+        MODAL_changeConfirmButtoncancel(state,cancelButtonText = '') {
+            state.modal.confirmButtoncancel = cancelButtonText;
         },
         MODAL_registConfirmActionClose(state,action = () => {}) {
             state.modal.confirmActionClose = action;
@@ -95,13 +95,13 @@ export const confirmStore = {
                 commit('MODAL_changeConfirmMessage' , payload);
             }else {
                 const {
-                    title, message , close, confirmButton, cancleButton
+                    title, message , close, confirmButton, cancelButton
                 } = payload;
 
                 title           && commit('MODAL_changeConfirmTitle' , title);
                 message         && commit('MODAL_changeConfirmMessage' , message);
                 confirmButton   && commit('MODAL_changeConfirmButtonConfirm' , confirmButton);
-                cancleButton    && commit('MODAL_changeConfirmButtonCancle' , cancleButton);
+                cancelButton    && commit('MODAL_changeConfirmButtoncancel' , cancelButton);
                 close           && commit('MODAL_registConfirmActionClose' , close);
             }
 

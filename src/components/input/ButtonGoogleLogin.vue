@@ -32,8 +32,8 @@ export default {
                     this.$emit('success');
                 })
                 .catch((error) => {
-                    this.$store.dispatch('login_cancle',error)
-                    this.$emit('cancle');
+                    this.$store.dispatch('login_cancel',error)
+                    this.$emit('cancel');
                 })
             ;
         },

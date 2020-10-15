@@ -3,10 +3,13 @@
     store의 값들을 init시에만 수정할경우 별도의 mutation을 등록해 사용하지 않고 직접 수정합니다.
 */
 
+// import axios from 'axios';
 import { store } from '@/store/store.js';
 import { detectBrowser , detectOS , detectDevice , detectTouchdevice } from '@/util';
 
 const $state = store.state;
+
+// axios.defaults.baseURL = process.env.PROTOCOL + process.env.URLAPI;
 
 $state.type_browser     = detectBrowser();
 $state.type_os          = detectOS();

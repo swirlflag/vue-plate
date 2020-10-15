@@ -8,7 +8,7 @@
         </transition>
     </div>
 </template>
-s
+
 <script>
 // 페이지 등록은 router.js로 
 

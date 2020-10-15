@@ -20,7 +20,7 @@
             <!-- 모달 -->
             <PlateModal/>
 
-            <!-- 네비게이션 -->
+            <!-- 네비게이션 --> 
             <PlateNavigation/>
 
             <!-- 스피너 -->
@@ -31,6 +31,7 @@
             
             <!-- 공통 footer-->
             <PlateFooter/>
+
 
         </template>
 

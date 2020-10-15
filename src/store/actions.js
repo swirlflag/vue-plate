@@ -67,7 +67,7 @@ const authActions = {
         context.commit('RECORD_accessToken' , kakaoInfo.access_token);
     },
 
-    login_cancle(context,error) {
+    login_cancel(context,error) {
         console.dev('로그인을 취소했습니다.');
         console.dev(error);
     },

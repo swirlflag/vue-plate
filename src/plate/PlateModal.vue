@@ -43,7 +43,10 @@ export default {
     },
     methods : {
         clickModalDimmed() {
-            if(!this.modal.use_clickDimmedThenCloseModal && !this.modal.is_active){
+            if(!this.modal.use_clickDimmedThenCloseModal ){
+                return;
+            }
+            if(!this.modal.is_active){
                 return;
             }
             for(let i = 0, l = this.modal.clickDimmedActions.length; i < l; ++i){

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import { store } from '@/store/store.js';
 
-import Page404          from '@/pages/Page404.vue';
+// import Page404          from '@/pages/Page404.vue';
 import PageMain         from '@/pages/PageMain.vue';
 import PageGlobal       from '@/pages/PageGlobal.vue';
 import PageAboutPlate   from '@/pages/PageAboutPlate.vue';
@@ -20,7 +20,7 @@ const routerInfo =  {
         {
             path        : '*',
             name        : '404',
-            component   : Page404,
+            component   : () => import('@/pages/Page404.vue'),
         }
         ,
         {
